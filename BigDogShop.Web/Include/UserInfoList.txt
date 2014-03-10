@@ -1,0 +1,7 @@
+﻿                <div class="user_info_list">
+                    <ul>
+                        <li id="nav_baseinfo"><a href="User_Info.aspx" >基本信息</a></li>
+                        <li id="nav_more"><a href="#" >更多个人信息</a></li>
+                        <li id="nav_upgrade"><a href="#" >申请升级</a></li>
+                    </ul>
+                </div>

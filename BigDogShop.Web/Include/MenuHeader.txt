@@ -1,0 +1,30 @@
+﻿        <div class="top">
+            <div runat="server" id="top_header">
+                
+            </div>
+            </div>
+        <div>
+        <div class="top_container">
+            <div class="top_header_info">
+                <a href="Index.aspx"><div class="top_img"></div></a>
+                <div class="top_search">
+                    <asp:TextBox runat="server" ID="txt_search_keywords"></asp:TextBox>
+					<asp:Button  runat="server" ID="btn_search_keywords" Text="搜索"></asp:Button>
+					<a href="CenterInfo.aspx">我的走壹走</a>
+                </div>
+            </div>
+            
+            <div class="top_blank">
+				<span id="nav">全部商品分类</span>
+                <ul>
+
+                    <li id="nav_01" runat="server"><a href="Index.aspx">首页</a></li>
+                    <li id="nav_02" runat="server"><a href="Equipment.aspx">装备</a></li>
+                    <li id="nav_03" runat="server"><a href="#">伙伴</a></li>
+                    <li id="nav_04" runat="server"><a href="#">领队</a></li>
+                    <li id="nav_05" runat="server"><a href="#">路线</a></li>
+                    <li id="nav_06" runat="server"><a href="#">客服</a></li>
+                    <li id="nav_07" runat="server"><a href="#">视觉与百科</a></li>
+                </ul>
+            </div>
+        </div>

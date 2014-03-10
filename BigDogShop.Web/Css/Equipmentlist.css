@@ -1,0 +1,137 @@
+﻿#filter
+        {
+        	width:620px;
+        	height:auto;
+        	/*margin-left:auto;
+        	margin-right:auto;*/
+        	/*font-size:12px;*/
+        }
+        
+        #filter dl
+        {
+        	padding:0;
+        	margin-top:0;
+        	margin-bottom:0;
+        	clear:both;
+        	padding:4px 0;        
+        }
+        
+        #filter dt,dd
+        {
+        	display:block;
+        	float:left;
+        	width:auto;
+        	padding:0;
+        	margin:3px 0;
+            	       	
+        }
+        
+        #filter dt
+        {
+            color:#fff; 
+        	height:14px;
+        	padding-bottom:4px;
+        	font-weight:bold;
+            margin-right:20px;
+        	/*color:#333333;*/        	
+        }
+        
+        #filter dd
+        {
+        	color:#fff;
+        	margin-right:8px;
+        }
+        
+        #filter a
+        {
+        	cursor:pointer;
+        }
+        
+        .seling
+        {
+            background-color:#018636;
+        	color:#FFFFFF;
+        }
+        
+        .seled
+        {
+        	background-color:#018636;
+        	color:#FFFFFF;
+        }
+.condition
+{
+    width:960px;
+    height:30px;
+    line-height:30px;
+    float:left;
+    background:url(/Images/name_bg.png) repeat-x;
+}
+.equiplist
+{
+    float:left;
+    margin-top:50px;
+}
+.equipinfo
+{
+    margin-top:30px;
+    margin-left:auto;
+    margin-right:auto;
+    width:960px;
+    height:329px;
+    border-left:5px solid #018636;
+}
+.equipinfo_left
+{
+    float:left;
+    width:400px;
+    height:350px;
+    margin-left:15px;
+
+    
+}
+
+.equipinfo_right
+{
+    float:left;
+    width:400px;
+    height:329px;
+    margin-left:25px;
+
+    background:url(/images/name_bg.png) repeat;
+
+}
+
+.sp
+{
+    text-align:center;
+    color:#fff;
+}
+.data
+{
+    width:960px;
+    height:400px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#dataDiv
+{
+    width:960px;
+    height:400px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    color:#fff;
+}
+.divBuy
+{
+    width:120px;
+    height:40px;
+    background:url(/images/icon_reserve.jpg) no-repeat;
+}
+.divBuy a
+{
+    width:120px;
+    height:40px;
+   
+}

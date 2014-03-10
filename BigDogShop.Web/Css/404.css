@@ -1,0 +1,15 @@
+﻿body {
+    padding:0px;
+    margin:0px;
+}
+
+.message
+{
+    width:200px;
+    height:150px;
+    border:1px solid #ccc;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:200px;
+}

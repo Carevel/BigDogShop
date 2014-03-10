@@ -1,0 +1,89 @@
+﻿body {
+}
+
+.searchBox
+{
+    width:700px;
+    height:30px;
+    line-height:30px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.rpl_content
+{
+    width:720px;
+    height:auto;
+    margin:0px;
+    float:left;
+}
+.person_info img
+{
+    width:80px;
+    height:80px;
+
+}
+.person_info
+{ 
+    width:700px;
+}
+#table1 tr td
+{
+    color:#fff;
+ 
+}
+.list_top
+{
+    width:720px;
+    background:url(/images/bg_black.png) repeat;
+    margin-top:5px;
+    border-bottom:2px solid #808080;
+    margin-bottom:15px;
+
+}
+    .list_top:hover
+    {
+        background:url(/images/bg_gray.png) repeat;
+        background-color:#ccc;
+        border-bottom:2px solid Green;
+    }
+/*#table1 tr td:hover
+{
+    cursor:pointer;
+}*/
+/*#table1 tr td[class='rpl_contact_list']:hover
+{
+    cursor:pointer;
+}*/
+#table2
+{
+    width:100%;
+     border-top:1px solid #ccc;
+}
+    .person_info table tr td
+    {
+        min-width:100px;
+        border-collapse:inherit;
+        /*border-right:1px solid #fff;*/
+        
+       
+    } 
+.sp
+{
+    text-align:center;
+    color:#fff;
+}
+    .sp a
+    {
+        text-decoration:none;
+        color:#fff;
+    }
+
+.fenye
+{
+    width:720px;
+    height:30px;
+    margin-left:auto;
+    margin-right:auto;
+
+    margin-bottom:40px;
+}

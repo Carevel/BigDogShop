@@ -1,0 +1,205 @@
+﻿body {
+    padding:0px;
+    margin:0px;
+
+}
+.info_container
+{
+    width:750px;
+
+    float:left;
+    margin-left:10px;
+}
+.user_container
+{
+    float:left;
+    width:750px;
+    height:200px;
+    background:#eae7d5;
+}
+.title_info
+{
+    float:left;
+    width:750px;
+    height:30px;
+    line-height:30px;
+    border:1px solid #ccc;
+    border-bottom:3px solid #ff6a00;
+    font-weight:bold;
+}
+.user_img
+{
+    width:150px;
+    height:150px;
+    margin:15px 5px 15px 15px;
+    margin-right:5px;
+    float:left;
+}
+.user_info2
+{
+    width:400px;
+    height:200px;
+    margin-left:50px;
+    margin-top:20px;
+    float:left;
+}
+    .user_info2 table tr td
+    {
+        min-width:70px;
+    }
+.user_info
+{
+    
+    width:750px;
+    /*height:200px;*/
+    /*margin-left:50px;*/
+    margin-top:20px;
+    float:left;
+}
+.order_info
+{
+    float:left;
+    width:750px;
+    margin-left:15px;
+}
+
+
+/*基本信息*/
+.user_info_list
+{
+    float:left;
+    border-bottom:2px solid Green;
+    width:750px;
+    margin:15px 0px 15px 10px;
+}
+    .user_info_list ul
+    {
+        padding:0px;
+        text-decoration:none;
+        list-style:none;
+    }
+        .user_info_list ul li
+        {
+            text-decoration:none;
+            list-style:none;
+            background:#e8e8e8;
+            float:left;
+            text-align:center;
+            width:100px;
+            height:25px;
+            line-height:25px;
+            margin-right:2px;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+            
+        }
+            .user_info_list ul li:hover
+            {
+                background:#ffd800;
+            }
+            .user_info_list ul li a
+            {
+                list-style:none;
+                text-decoration:none;
+                display:block;
+                color:#000;
+
+            }
+
+.info_detail_left
+{
+    margin-left:40px;
+    float:left; 
+    width:500px;
+    border-right:1px solid #eae7d5;
+}
+    .info_detail_left table
+    {
+        margin-left:auto;
+        margin-right:auto;
+    }
+        .info_detail_left table tr
+        {
+            height:40px;
+        }
+            .info_detail_left table tr td:nth-child(2)
+            {
+                min-width:300px;
+            }
+.info_detail_right
+{
+    width:150px;
+    float:left;
+    margin-left:40px;
+    /*float:left;*/
+}
+    .info_detail_right table
+    {
+        margin-left:auto;
+        margin-right:auto;
+    }
+.photo_container
+{
+    float:left;
+    width:150px;
+    height:200px;
+}
+
+
+.user_security_info
+{
+    margin:15px 0px 15px 10px;
+    width:750px;
+    height:30px;
+    float:left;
+    border:1px solid #ffd800;
+    background:#eae7d5;
+    line-height:30px;
+}
+.step
+{
+    float:left;
+    width:240px;
+    height:30px;
+    line-height:30px;
+    margin-left:5px;
+    text-align:center;
+}
+    .step span
+    {
+        display:block;
+    }
+.user_security_info_list
+{
+    float:left;
+   
+    width:750px;
+    height:400px;
+    text-align:center;
+    margin-left:10px;
+}
+.user_security_info_list table
+{
+     margin-left:auto;
+    margin-right:auto;
+    width:300px;
+    height:50px;
+
+    margin-left:100px;
+}
+    .user_security_info_list table tr
+    {
+        height:30px;
+    }
+    .user_security_info_list table tr td
+    {
+        min-width:150px;
+    }
+#sp_newpwd
+{
+    display:none;
+}
+#sp_oldpwd
+{
+    display:none;
+}

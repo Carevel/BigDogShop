@@ -1,0 +1,133 @@
+﻿body
+{
+    padding:0px;
+}
+.center_menu
+{
+    margin-left:auto;
+    margin-right:auto;
+    width:960px;
+    height:78px;
+
+}
+.ul_a
+{
+    text-decoration:none;
+    padding:0px;
+}
+.li_0
+{
+    width:212px;
+    height:78px;
+    line-height:78px;
+    
+    float:left;
+    text-decoration:none;
+    list-style:none;
+    text-align:center;
+    background:url(../images/user_center_green.png) no-repeat;
+    
+}
+    .li_0 a
+    {
+        text-align:right;
+        color:#fff;
+        text-decoration:none;
+    }
+.li_s
+{
+    width: 236px;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    text-decoration: none;
+    /*list-style-type:none;*/
+    list-style: none;
+    float: left;
+    text-align: center;
+    background: url(../images/detail.png) repeat;
+}
+.li_s a
+    {
+    text-align:right;
+        color:#fff;
+        text-decoration:none;
+    }
+.li_v
+{
+    width: 212px;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    text-decoration: none;
+    /*list-style-type:none;*/
+    list-style: none;
+    float: left;
+    text-align: center;
+    background: url(../images/certificate.png) repeat;
+}
+    .li_v a
+    {
+        text-align:right;
+        color:#fff;
+        text-decoration:none;
+    }
+    .li_a
+{
+    width: 212px;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    text-decoration: none;
+    /*list-style-type:none;*/
+    list-style: none;
+    float: left;
+    text-align: center;
+    background: url(../images/add.png) repeat;
+}
+    .li_a a
+    {
+        text-align:right;
+        color:#fff;
+        text-decoration:none;
+    }
+.left_tree
+{
+    width:200px;
+    height:500px;
+    margin-left:230px;
+    float:left;
+}
+#left_menu
+{
+    padding:0px;
+    width:200px;
+}
+    #left_menu li
+    {
+        list-style:none;
+        float:left;
+        width:200px;
+        height:40px;
+        padding:0px;
+        text-align:center;
+        line-height:40px;
+        border-bottom:1px solid #ccc;
+        border-left:4px solid #ccc ;
+        background:url(../images/bg_gray.png) repeat;
+    }
+        #left_menu li:hover
+        {
+             background:url(../images/bg_black.png) repeat;
+             border-left:4px solid Green;
+        }
+        #left_menu li a
+        {
+            color:#fff;
+            text-decoration:none;
+            text-align:center;
+        }
+            #left_menu li a:hover
+            {
+               
+            }

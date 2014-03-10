@@ -1,0 +1,8 @@
+﻿          <div class="user_info_list">
+                    <ul>
+                        <li><a href="User_Info.aspx" >积分纪录</a></li>
+                        <li><a href="#" >积分换券</a></li>
+                        <li><a href="#" >更多优惠活动</a></li>
+						<li><a href="#" >积分规则</a></li>
+                    </ul>
+                </div>

@@ -1,0 +1,50 @@
+﻿<div class="service-2014">
+    <dl>
+     <dt><strong>购物指南</strong></dt>
+     <dd>
+         <div><a href="#">购物流程</a></div>
+         <div><a href="#">会员介绍</a></div>
+         <div><a href="#">常见问题</a></div>
+         <div><a href="#">商品验货与签收</a></div>
+         <div><a href="#">联系客服</a></div>
+     </dd>
+ </dl>
+ <dl>
+     <dt><strong>配送服务</strong></dt>
+     <dd>
+         <div><a href="#">上门自提</a></div>
+         <div><a href="#">211当天达</a></div>
+         <div><a href="#">配送方式</a></div>
+     </dd>
+ </dl>
+ <dl>
+     <dt><strong>支付方式</strong></dt>
+     <dd>
+         <div><a href="#">货到付款</a></div>
+         <div><a href="#">在线支付</a></div>
+         <div><a href="#">分期付款</a></div>
+         <div><a href="#">邮局汇款</a></div>
+         <div><a href="#">公司转账</a></div>
+     </dd>
+ </dl>
+ <dl>
+     <dt><strong>售后服务</strong></dt>
+     <dd>
+         <div><a href="#">售后政策</a></div>
+         <div><a href="#">价格保护</a></div>
+         <div><a href="#">退款说明</a></div>
+         <div><a href="#">返修/退换货</a></div>
+         <div><a href="#">取消订单</a></div>
+         <div><a href="#">在线投诉</a></div>
+         <div><a href="#">补开发票</a></div>
+     </dd>
+ </dl>
+  <dl>
+     <dt><strong>招商合作</strong></dt>
+     <dd>
+         <div><a href="#">供应商申请</a></div>
+         <div><a href="#">商家入驻</a></div>
+         <div><a href="#">商必赢</a></div>
+     </dd>
+ </dl>    
+</div>
