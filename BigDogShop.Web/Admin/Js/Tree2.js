@@ -2,19 +2,44 @@
     var id = 0;
     var mode = 'getTree';
     setMenuTree(0);
-});
+    var ODiv = $(".tree_li_header");
+    for (var i = 0; i < ODiv.length; i++)
+    {
 
+    }
+});
+//获取节点数据JSON列表列表,返回为
+function getList(id) {
+    var result = null;
+    var type = 'a';
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "Handler/TreeView.ashx",
+        data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
+        dataType: "json",
+        success: function (data) {
+            if (data == null) {
+                result = null;
+            }
+            result = eval(data);
+        }
+    });
+    return result;
+}
 //初始化生成树
 //root默认显示层次
 function setMenuTree(root) {
-    var arr = new Array();
     var treeView = getList(root);
-    for (var i = 0; i < treeView.length; i++) {
-        var node = treeView[i].Has_Children;
-        $div = $("<div id=" + treeView[i].Menu_Id + " data-flag=" + node + " class=\"tree_li_header\"><span class=\"tree_title\">" + treeView[i].Menu_Name + "</span><span class=\"tree_loading\" ></span><span class=\"div_tree_collapsed\"></span></div>");
-        ToggleIcon($div);
-        $(".tree_div").append($div);
-    }
+    if (treeView != null)
+    {
+        for (var i = 0; i < treeView.length; i++) {
+            var node = treeView[i].Has_Children;
+            $div = $("<div id=" + treeView[i].Menu_Id + " data-flag=" + node + " class=\"tree_li_header\"><span class=\"tree_title\">" + treeView[i].Menu_Name + "</span><span class=\"tree_loading\" ></span><span class=\"div_tree_collapsed\"></span></div>");
+            //ToggleIcon($div);
+            $(".tree_div").append($div);
+        }
+    }  
 }
 
 //图标轮转并获取绑定单击事件函数
@@ -23,7 +48,7 @@ function ToggleIcon($div) {
     var id = $div.attr("id");
     var jsonData = getList(id);
     var hasChild = $div.attr("data-flag");
-    $div.toggle(function () {
+    $div.toggle(function (e) {
         $(this).children("span").eq(1).show();
         
         if (jsonData == null)
@@ -38,6 +63,7 @@ function ToggleIcon($div) {
         $(this).children("span").last().removeClass("div_tree_collapsed");
         $(this).children("span").last().addClass("div_tree_expanded");
         $(this).children("span").eq(1).hide();
+        e.preventDefault(); 
     }, function () {
         if (jsonData != null)
         {
@@ -50,26 +76,7 @@ function ToggleIcon($div) {
     });
 }
 
-//获取节点数据JSON列表列表,返回为
-function getList(id) {
-    var result = null;
-    var type = 'a';
-    $.ajax({
-        type: "post",
-        async: false,
-        url: "Handler/TreeView.ashx",
-        data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
-        dataType: "json",
-        success: function (data) {
-            if (data == null)
-            {
-                result = null;
-            }
-            result = eval(data);
-        }
-    });
-    return result;
-}
+
 
 //根据节点数据列表生成<div></div>子节点树
 function addTree(jsonTree) {

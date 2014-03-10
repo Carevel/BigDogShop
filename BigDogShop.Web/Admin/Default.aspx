@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BigDogShop.Web.Admin.Default" %>
 
-<%@ Register TagPrefix="Admin" TagName="Ad" Src="~/UserControl/AdminTop.ascx" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +7,8 @@
     <title></title>
     <link href="Styles/Base.css" rel="stylesheet" />
     <script type="text/javascript" src="../Js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="Js/Tree2.js"></script>
+    <%--<script type="text/javascript" src="Js/Tree2.js"></script>--%>
+    <script src="Js/tree_menu.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -29,8 +28,9 @@
                     </div>
                 </div>
             </div>
-            <div class="framecontainer">                
-                <iframe id="Iframe1" runat="server" style="float:left;" frameborder="0" width="1000" height="800"></iframe>
+            <div class="framecontainer">        
+                <asp:DropDownList ID="DDL_TEST" runat="server"></asp:DropDownList>        
+                <%--<iframe id="Iframe1" runat="server" style="float:left;" frameborder="0" width="1000" height="800"></iframe>--%>
             </div>
         </div>
     </form>
