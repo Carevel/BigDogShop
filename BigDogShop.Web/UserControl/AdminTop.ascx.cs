@@ -10,7 +10,7 @@ using BigDogShop.Web.Base;
 
 namespace BigDogShop.Web.Admin.UserControl
 {
-    public partial class TopInfo : System.Web.UI.UserControl
+    public partial class AdminTop : System.Web.UI.UserControl
     {
         protected AdminInfo admin = null;
 

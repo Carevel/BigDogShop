@@ -4,22 +4,6 @@
     setMenuTree(0);
 });
 
-//root     根节点
-//level    默认显示级次
-//url      链接
-//img     默认图片
-//imgOnClick 鼠标点击时图片
-//isOpen   是否打开
-function addTree(jsonData, root, level, url, img, imgOnClick, isOpen) {
-    var arr = [];
-    var treeView = getList(root);
-    for (var i = 0; i < treeView.length; i++) {
-        if (treeView[i].Has_Children == "true") {
-            $div = $("<div><span><img src='" + img + "'/>" + treeView[i].Menu_Name + "</span></div>");
-        }
-    }
-}
-
 //初始化生成树
 //root默认显示层次
 function setMenuTree(root) {
@@ -37,11 +21,17 @@ function setMenuTree(root) {
 function ToggleIcon($div) {
     var flag = true;
     var id = $div.attr("id");
+    var jsonData = getList(id);
     var hasChild = $div.attr("data-flag");
     $div.toggle(function () {
         $(this).children("span").eq(1).show();
-        var jsonData = getList(id);
+        
+        if (jsonData == null)
+        {
+            return;
+        }
         var node = addTree(jsonData);
+           
         node.hide();
         node.insertAfter($div);
         $(this).next().slideDown(150);
@@ -49,9 +39,14 @@ function ToggleIcon($div) {
         $(this).children("span").last().addClass("div_tree_expanded");
         $(this).children("span").eq(1).hide();
     }, function () {
-        $(this).children("span").last().removeClass("div_tree_expanded");
-        $(this).children("span").last().addClass("div_tree_collapsed");
-        $(this).next().slideUp(150);
+        if (jsonData != null)
+        {
+            $(this).children("span").last().removeClass("div_tree_expanded");
+            $(this).children("span").last().addClass("div_tree_collapsed");
+            $(this).next().slideUp(150);
+            //$(this).next().remove();
+        }
+        
     });
 }
 
@@ -66,6 +61,10 @@ function getList(id) {
         data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
         dataType: "json",
         success: function (data) {
+            if (data == null)
+            {
+                result = null;
+            }
             result = eval(data);
         }
     });

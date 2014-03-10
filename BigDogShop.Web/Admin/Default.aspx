@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BigDogShop.Web.Admin.Default" %>
 
-<%@ Register TagPrefix="Admin" TagName="Ad" Src="~/Admin/UserControl/TopInfo.ascx" %>
+<%@ Register TagPrefix="Admin" TagName="Ad" Src="~/UserControl/AdminTop.ascx" %>
 
 <!DOCTYPE html>
 
@@ -29,8 +29,8 @@
                     </div>
                 </div>
             </div>
-            <div class="framecontainer">
-                <%--<iframe id="frameContent" runat="server" style="float: left;" frameborder="0"  width="1000" height="600"></iframe>--%>
+            <div class="framecontainer">                
+                <iframe id="Iframe1" runat="server" style="float:left;" frameborder="0" width="1000" height="800"></iframe>
             </div>
         </div>
     </form>

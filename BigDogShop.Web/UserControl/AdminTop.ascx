@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TopInfo.ascx.cs" Inherits="BigDogShop.Web.Admin.UserControl.TopInfo" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AdminTop.ascx.cs" Inherits="BigDogShop.Web.Admin.UserControl.AdminTop" %>
 
 <link href="../Admin/Styles/Base.css" rel="stylesheet" />
 
@@ -13,7 +13,7 @@
             你好，欢迎光临
             <br />
             <a href="Index.aspx">管理中心</a> |
-            <a target="_blank" href="../Index.aspx">预览网站</a> |
+            <a target="_blank" href="../Default.aspx">预览网站</a> |
             <asp:LinkButton ID="lbtn_Exit" runat="server" OnClick="lbtn_Click">安全退出</asp:LinkButton>
         </div>
     </div>

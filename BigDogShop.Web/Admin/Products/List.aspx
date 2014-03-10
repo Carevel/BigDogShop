@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Admin_Product_Product_Edit" Codebehind="Product_Edit.aspx.cs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Admin_Product_Admin_Product_Detail" Codebehind="List.aspx.cs" %>
 
 <!DOCTYPE html>
 

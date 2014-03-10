@@ -71,6 +71,10 @@ public class TreeHandler : IHttpHandler
             }
             html.Append("]");
         }
+        else
+        {
+            html = null;
+        }
         return html.ToString();
     }
     public bool IsReusable

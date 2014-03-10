@@ -10,7 +10,7 @@
 namespace BigDogShop.Web.Admin.UserControl {
     
     
-    public partial class TopInfo {
+    public partial class AdminTop {
         
         /// <summary>
         /// Img1 control.

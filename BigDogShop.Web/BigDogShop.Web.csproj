@@ -68,6 +68,12 @@
     <Content Include="About.aspx" />
     <Content Include="Admin\Advertisement\Edit.aspx" />
     <Content Include="Admin\Advertisement\List.aspx" />
+    <Content Include="Admin\Articles\Edit.aspx" />
+    <Content Include="Admin\Articles\List.aspx" />
+    <Content Include="Admin\Category\Edit.aspx" />
+    <Content Include="Admin\Category\List.aspx" />
+    <Content Include="Admin\Comments\Edit.aspx" />
+    <Content Include="Admin\Comments\List.aspx" />
     <Content Include="Admin\Images\addImg.bmp" />
     <Content Include="Admin\Images\bg.gif" />
     <Content Include="Admin\Images\folder.bmp" />
@@ -578,14 +584,17 @@
     <Content Include="Admin\Js\Tree.js" />
     <Content Include="Admin\Js\Tree2.js" />
     <Content Include="Admin\Login.aspx" />
-    <Content Include="Admin\Menu\MenuManager.aspx" />
     <Content Include="Admin\News\News_Add.aspx" />
     <Content Include="Admin\News\News_Delete.aspx" />
     <Content Include="Admin\News\News_Update.aspx" />
-    <Content Include="Admin\Product\Product_Edit.aspx" />
-    <Content Include="Admin\Product\Product_List.aspx" />
+    <Content Include="Admin\Orders\Edit.aspx" />
+    <Content Include="Admin\Orders\List.aspx" />
+    <Content Include="Admin\Products\Edit.aspx" />
+    <Content Include="Admin\Products\List.aspx" />
     <Content Include="Admin\Styles\Base.css" />
-    <Content Include="Admin\UserControl\TopInfo.ascx" />
+    <Content Include="UserControl\TopInfo.ascx" />
+    <Content Include="Admin\Users\Edit.aspx" />
+    <Content Include="Admin\Users\List.aspx" />
     <Content Include="App_Data\BigDogShopDB.mdf" />
     <Content Include="App_Data\BigDogShopDB_log.ldf">
       <DependentUpon>BigDogShopDB.mdf</DependentUpon>
@@ -1196,6 +1205,48 @@
     <Compile Include="Admin\Advertisement\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Articles\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Articles\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Articles\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Articles\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Category\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Category\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Category\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Category\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Comments\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Comments\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Comments\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Comments\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1209,13 +1260,6 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Menu\MenuManager.aspx.cs">
-      <DependentUpon>MenuManager.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Menu\MenuManager.aspx.designer.cs">
-      <DependentUpon>MenuManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\News\News_Add.aspx.cs">
       <DependentUpon>News_Add.aspx</DependentUpon>
@@ -1238,26 +1282,54 @@
     <Compile Include="Admin\News\News_Update.aspx.designer.cs">
       <DependentUpon>News_Update.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Product\Product_Edit.aspx.cs">
-      <DependentUpon>Product_Edit.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Product\Product_Edit.aspx.designer.cs">
-      <DependentUpon>Product_Edit.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Product\Product_List.aspx.cs">
-      <DependentUpon>Product_List.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Product\Product_List.aspx.designer.cs">
-      <DependentUpon>Product_List.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\UserControl\TopInfo.ascx.cs">
+    <Compile Include="Admin\Products\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Products\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Products\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Products\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\TopInfo.ascx.cs">
       <DependentUpon>TopInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\UserControl\TopInfo.ascx.designer.cs">
+    <Compile Include="UserControl\TopInfo.ascx.designer.cs">
       <DependentUpon>TopInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="BuyAddressList.aspx.cs">
       <DependentUpon>BuyAddressList.aspx</DependentUpon>
@@ -1489,10 +1561,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\Comments\" />
-    <Folder Include="Admin\Member\" />
-    <Folder Include="Admin\Order\" />
-    <Folder Include="Admin\Promote\" />
     <Folder Include="Css\CenterInfo\" />
     <Folder Include="Help\" />
     <Folder Include="Images\News\" />
