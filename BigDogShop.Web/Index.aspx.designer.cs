@@ -28,7 +28,7 @@ namespace BigDogShop.Web {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::BigDogShop.Web.UserControl.Top to1;
+        protected global::BigDogShop.Web.UserControl.AdminHeader to1;
         
         /// <summary>
         /// he1 control.

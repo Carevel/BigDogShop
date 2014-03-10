@@ -42,6 +42,7 @@
     <Compile Include="IAdmin.cs" />
     <Compile Include="IAdvertisement.cs" />
     <Compile Include="IAdvertisementType.cs" />
+    <Compile Include="IArticle.cs" />
     <Compile Include="ICategory.cs" />
     <Compile Include="ILink.cs" />
     <Compile Include="IMenu.cs" />

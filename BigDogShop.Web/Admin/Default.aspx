@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Admin_Default" Codebehind="Index.aspx.cs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BigDogShop.Web.Admin.Default" %>
 
-<%@ Register TagPrefix="Admin" TagName="Ad" Src="UserControl/Admin.ascx" %>
+<%@ Register TagPrefix="Admin" TagName="Ad" Src="~/Admin/UserControl/TopInfo.ascx" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,6 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <Admin:Ad ID="ad1" runat="server" />
+        
         <div class="content">
             <div class="TreeMenu">
                 <div class="l-layout-header">
@@ -28,13 +30,9 @@
                 </div>
             </div>
             <div class="framecontainer">
-                <iframe id="frameContent" style="float: left;" frameborder="0" runat="server" width="1000" height="600"></iframe>
+                <%--<iframe id="frameContent" runat="server" style="float: left;" frameborder="0"  width="1000" height="600"></iframe>--%>
             </div>
         </div>
     </form>
 </body>
 </html>
-
-
-
-

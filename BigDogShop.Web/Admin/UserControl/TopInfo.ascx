@@ -1,9 +1,11 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Admin.ascx.cs" Inherits="BigDogShop.Web.UserControl.Admin" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TopInfo.ascx.cs" Inherits="BigDogShop.Web.Admin.UserControl.TopInfo" %>
+
 <link href="../Admin/Styles/Base.css" rel="stylesheet" />
+
 <div class="top">
     <div class="top_right">
         <div class="admin_photo">
-            <img src="~/Images/Photo/Admin/default_user_avatar.gif" runat="server" />
+            <img id="Img1" src="~/Images/Photo/Admin/default_user_avatar.gif" runat="server" />
         </div>
         <div class="admin_right_info">
             <br />

@@ -10,7 +10,7 @@
 namespace BigDogShop.Web.UserControl {
     
     
-    public partial class Top {
+    public partial class AdminHeader {
         
         /// <summary>
         /// panel1 控件。

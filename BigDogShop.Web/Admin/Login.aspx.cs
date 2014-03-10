@@ -46,7 +46,7 @@ namespace BigDogShop.Web.Admin
 
             Utils.WriteCookie("Admin_Name", "BDAdmin", admin.User_Name);
             Utils.WriteCookie("Admin_Pwd", "BDAdmin", admin.Password);
-            Response.Redirect("Index.aspx");
+            Response.Redirect("Default.aspx");
             return;
         }
 

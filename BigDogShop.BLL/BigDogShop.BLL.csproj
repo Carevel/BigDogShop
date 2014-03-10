@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AdminBLL.cs" />
     <Compile Include="AdvertisementBLL.cs" />
+    <Compile Include="ArticleBLL.cs" />
     <Compile Include="CategoryBLL.cs" />
     <Compile Include="LinkBLL.cs" />
     <Compile Include="MenuBLL.cs" />

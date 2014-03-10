@@ -42,6 +42,7 @@
     <Compile Include="AdminInfo.cs" />
     <Compile Include="AdvertisementInfo.cs" />
     <Compile Include="AdvertisementTypeInfo.cs" />
+    <Compile Include="ArticleInfo.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="CategoryInfo.cs" />
     <Compile Include="LinkInfo.cs" />

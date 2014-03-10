@@ -572,7 +572,7 @@
     <Content Include="Admin\Images\login_bg.gif" />
     <Content Include="Admin\Images\SubImg.bmp" />
     <Content Include="Admin\Include\LeftMenu.txt" />
-    <Content Include="Admin\Index.aspx" />
+    <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Js\Common.js" />
     <Content Include="Admin\Js\jquery-2.1.0.js" />
     <Content Include="Admin\Js\Tree.js" />
@@ -585,6 +585,7 @@
     <Content Include="Admin\Product\Product_Edit.aspx" />
     <Content Include="Admin\Product\Product_List.aspx" />
     <Content Include="Admin\Styles\Base.css" />
+    <Content Include="Admin\UserControl\TopInfo.ascx" />
     <Content Include="App_Data\BigDogShopDB.mdf" />
     <Content Include="App_Data\BigDogShopDB_log.ldf">
       <DependentUpon>BigDogShopDB.mdf</DependentUpon>
@@ -1115,6 +1116,7 @@
     <Content Include="Js\Effact\Rotation.js" />
     <Content Include="Js\Effact\Rotation2.js" />
     <Content Include="Handler\GetGlobalLeftMenuData.ashx" />
+    <Content Include="List.aspx" />
     <Content Include="测试滑动js.aspx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
@@ -1153,7 +1155,6 @@
     <Content Include="UserCenter.aspx" />
     <Content Include="UserChangePassword.aspx" />
     <Content Include="UserChangePwd.aspx" />
-    <Content Include="Admin\UserControl\Admin.ascx" />
     <Content Include="UserControl\HeaderNav.ascx" />
     <Content Include="UserControl\Link.ascx" />
     <Content Include="UserControl\Top.ascx" />
@@ -1195,12 +1196,12 @@
     <Compile Include="Admin\Advertisement\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -1250,6 +1251,13 @@
     </Compile>
     <Compile Include="Admin\Product\Product_List.aspx.designer.cs">
       <DependentUpon>Product_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\TopInfo.ascx.cs">
+      <DependentUpon>TopInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\TopInfo.ascx.designer.cs">
+      <DependentUpon>TopInfo.ascx</DependentUpon>
     </Compile>
     <Compile Include="BuyAddressList.aspx.cs">
       <DependentUpon>BuyAddressList.aspx</DependentUpon>
@@ -1302,6 +1310,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -1377,13 +1392,6 @@
     <Compile Include="UserChangePwd.aspx.cs">
       <DependentUpon>UserChangePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\UserControl\Admin.ascx.cs">
-      <DependentUpon>Admin.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\UserControl\Admin.ascx.designer.cs">
-      <DependentUpon>Admin.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserChangePwd.aspx.designer.cs">
       <DependentUpon>UserChangePwd.aspx</DependentUpon>

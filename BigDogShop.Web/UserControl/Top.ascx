@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Top.ascx.cs" Inherits="BigDogShop.Web.UserControl.Top" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Top.ascx.cs" Inherits="BigDogShop.Web.UserControl.AdminHeader" %>
 
 <div class="top">
     <div class="top_header">

@@ -9,7 +9,7 @@ using BigDogShop.Model;
 
 namespace BigDogShop.Web.UserControl
 {
-    public partial class Top : System.Web.UI.UserControl
+    public partial class AdminHeader : System.Web.UI.UserControl
     {
         protected UserInfo user = null;
         protected string preUrl = null;

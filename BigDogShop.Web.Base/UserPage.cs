@@ -10,7 +10,7 @@ using BigDogShop.BLL;
 
 namespace BigDogShop.Web.Base
 {
-    public class UserPage:System.Web.UI.Page
+    public class UserPage : System.Web.UI.Page
     {
         protected string preUrl = string.Empty;
 

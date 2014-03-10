@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BigDogShop.Web.UserControl {
+namespace BigDogShop.Web.Admin.UserControl {
     
     
-    public partial class Admin {
+    public partial class TopInfo {
+        
+        /// <summary>
+        /// Img1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage Img1;
         
         /// <summary>
         /// txt_admin_name control.

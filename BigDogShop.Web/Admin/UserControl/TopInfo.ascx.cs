@@ -8,9 +8,9 @@ using BigDogShop.Common;
 using BigDogShop.Model;
 using BigDogShop.Web.Base;
 
-namespace BigDogShop.Web.UserControl
-{ 
-    public partial class Admin : System.Web.UI.UserControl
+namespace BigDogShop.Web.Admin.UserControl
+{
+    public partial class TopInfo : System.Web.UI.UserControl
     {
         protected AdminInfo admin = null;
 
@@ -39,6 +39,5 @@ namespace BigDogShop.Web.UserControl
             Utils.WriteCookie("Admin_Pwd", "BDAdmin", -10080);
             Response.Redirect("Login.aspx");
         }
-    
     }
 }

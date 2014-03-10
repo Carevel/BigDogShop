@@ -58,5 +58,10 @@ namespace BigDogShop.DALFactory
         {
             return (INews)Assembly.Load("BigDogShop." + type + "DAL").CreateInstance("BigDogShop." + type + "DAL.News");
         }
+
+        public static IArticle CreateArticle()
+        {
+            return (IArticle)Assembly.Load("BigDogShop." + type + "DAL").CreateInstance("BigDogShop." + type + "DAL.News");
+        }
     }
 }
