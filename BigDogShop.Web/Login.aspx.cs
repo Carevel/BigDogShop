@@ -51,7 +51,7 @@ namespace BigDogShop.Web
                         Session["error_message"] = "该账号未激活，请登录你的注册邮箱激活";
                         this.lab_mess.Text = "该账号未激活，请登录你的注册邮箱激活";
 
-                        WebCom.ShowAlert(this.Page, "系统提示!", "error", "该账号未激活，请登录你的注册邮箱激活");
+                        //WebCom.ShowAlert(this.Page, "系统提示!", "error", "该账号未激活，请登录你的注册邮箱激活");
                     }
                     else
                     {

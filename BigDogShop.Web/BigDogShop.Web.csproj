@@ -41,10 +41,6 @@
     <Reference Include="AspNetPager">
       <HintPath>..\..\..\..\..\..\SharedLibs\AspNetPager.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\NHibernate-3.3.3.GA-bin\Tests\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -1151,7 +1147,6 @@
     <Content Include="Seller\Promote_Seller\Promote_Add.aspx" />
     <Content Include="Seller\Promote_Seller\Promote_Update.aspx" />
     <Content Include="Success.aspx" />
-    <Content Include="test.html" />
     <Content Include="UploadImage\User\1.jpg" />
     <Content Include="UploadImage\User\12.jpg" />
     <Content Include="UploadImage\User\2.jpg" />

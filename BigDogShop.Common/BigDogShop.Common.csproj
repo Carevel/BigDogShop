@@ -33,9 +33,6 @@
     <Reference Include="AspNetPager">
       <HintPath>..\..\..\..\..\..\SharedLibs\AspNetPager.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\NHibernate-3.3.3.GA-bin\Tests\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -47,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DESEncrypt.cs" />
-    <Compile Include="ErrorTracking.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Keys.cs" />
     <Compile Include="PageHelper.cs" />
@@ -55,7 +51,6 @@
     <Compile Include="SendMail.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Verify.cs" />
-    <Compile Include="WebCom.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigDogShop.DBUtility\BigDogShop.DBUtility.csproj">

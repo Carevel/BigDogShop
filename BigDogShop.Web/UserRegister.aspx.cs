@@ -33,10 +33,7 @@ namespace BigDogShop.Web
                 Session["user_id"] = user.Id;
                 Response.Redirect("Success.aspx");
             }
-            else
-            {
-                WebCom.ShowJsMessage(this.Page, "注册失败.");
-            }
+            
         }
     }
 }
