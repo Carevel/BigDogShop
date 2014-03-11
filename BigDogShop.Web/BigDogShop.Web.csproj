@@ -594,6 +594,17 @@
     <Content Include="Admin\Styles\Base.css" />
     <Content Include="Admin\Styles\tree.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="TestEffect\1.css" />
+    <Content Include="TestEffect\images\1.jpg" />
+    <Content Include="TestEffect\images\2.jpg" />
+    <Content Include="TestEffect\images\3.jpg" />
+    <Content Include="TestEffect\images\4.jpg" />
+    <Content Include="TestEffect\images\5.jpg" />
+    <Content Include="TestEffect\images\6.jpg" />
+    <Content Include="TestEffect\images\btn.gif" />
+    <Content Include="TestEffect\images\loading.gif" />
+    <Content Include="TestEffect\move.js" />
+    <Content Include="TestEffect\仿flash滑动.html" />
     <Content Include="UserControl\AdminTop.ascx" />
     <Content Include="Admin\Users\Edit.aspx" />
     <Content Include="Admin\Users\List.aspx" />

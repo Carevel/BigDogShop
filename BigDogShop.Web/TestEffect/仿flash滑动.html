@@ -1,0 +1,156 @@
+﻿<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="TestEffect/1.css">
+<script type="text/javascript" src="TestEffect/move.js"></script>
+<script type="text/javascript">
+function getByClass(oParent,sClass)
+{
+	var  aElement=oParent.getElementsByTagName('*');
+	var aResult=[];
+	for(var i=0;i<aElement.length;i++)
+	{
+		if(aElement[i].className==sClass)
+		{
+			aResult.push(aElement[i]);
+		}
+	}
+	return aResult;
+}
+window.onload=function(){
+	var oDiv=document.getElementById('playimages');
+	var oBtnPrev=getByClass(oDiv,'prev')[0];
+	var oBtnNext=getByClass(oDiv,'next')[0];
+	var oMarkLeft=getByClass(oDiv,'mark_left')[0];
+	var oMarkRight=getByClass(oDiv,'mark_right')[0];
+	// alert(oBtnPrev);
+	oBtnPrev.onmouseover=oMarkLeft.onmouseover=function(){
+		// alert('a');
+		startMove(oBtnPrev,'opacity',100);
+	}
+	oBtnPrev.onmouseout=oMarkLeft.onmouseout=function(){
+		startMove(oBtnPrev,'opacity',0);
+	}
+	oBtnNext.onmouseover=oMarkRight.onmouseover=function(){
+		startMove(oBtnNext,'opacity',100);
+	}
+	oBtnNext.onmouseout=oMarkRight.onmouseout=function(){
+		startMove(oBtnNext,'opacity',0);
+	}
+
+	var oBig=getByClass(oDiv,'big_pic')[0];
+	var aliBig=oBig.getElementsByTagName('li');
+
+	var nowZIndex=2;
+	var now=0;
+
+	var oDivSmall=getByClass(oDiv,'small_pic')[0];
+	var aliSmall=oDivSmall.getElementsByTagName('li');
+	var oUlSmall=oDivSmall.getElementsByTagName('ul')[0];
+	oUlSmall.style.width=aliSmall.length*aliSmall[0].offsetWidth+'px';
+	for (var i=0;i<aliSmall.length;i++)
+	{
+
+		aliSmall[i].index=i;
+		aliSmall[i].onclick=function(){
+			if(this.index==now) return;
+			now=this.index;
+			tab();
+		}
+
+		aliSmall[i].onmouseover=function(){
+			startMove(this,'opacity',100);
+		}
+		aliSmall[i].onmouseout=function(){
+			if(this.index!=now)
+			startMove(this,'opacity',60);
+		}
+	}
+
+	function tab()
+	{
+		aliBig[now].style.zIndex=nowZIndex++;
+
+			for(var i=0;i<aliSmall.length;i++)
+			{
+				startMove(aliSmall[i],'opacity',60);
+			}
+			startMove(aliSmall[now],'opacity',100);
+			aliBig[now].style.height=0;
+			startMove(aliBig[now],'height',320);
+
+			if(now==0)
+			{
+				startMove(oUlSmall,'left',0);
+			}
+			else if (now==aliSmall.length-1)
+			{
+				startMove(oUlSmall,'left',-(now-2)*aliSmall[0].offsetWidth);
+			}
+			else
+			{
+				startMove(oUlSmall,'left',-(now-1)*aliSmall[0].offsetWidth);
+			}
+			
+	}
+
+	oBtnPrev.onclick=function(){
+		now--;
+		if(now==-1)
+		{
+			now=aliSmall.length-1;
+		}
+		tab();
+	}
+	oBtnNext.onclick=function(){
+		now++;
+		if(now==aliSmall.length)
+		{
+			now=0;
+		}
+		tab();
+	}
+
+	var timer=setInterval(oBtnNext.onclick,2000);
+	oDiv.onmouseover=function()
+	{
+		clearInterval(timer);
+	}
+	oDiv.onmouseout=function()
+	{
+		timer=setInterval(oBtnNext.onclick,2000);
+	}
+}
+</script>
+</head>
+<body>
+	<div id="playimages" class="play">
+		<ul class="big_pic">
+			<div class="prev"></div>
+			<div class="next"></div>
+			<div class="text">说明</div>
+			<div class="length">数量</div>
+			<a class="mark_left" href="#"></a>
+			<a class="mark_right" href="#"></a>
+			<li style="z-index:1"><img src="images/1.jpg" /></li>
+			<li><img src="images/2.jpg" /></li>
+			<li><img src="images/3.jpg" /></li>
+			<li><img src="images/4.jpg" /></li>
+			<li><img src="images/5.jpg" /></li>
+			<li><img src="images/6.jpg" /></li>
+		</ul>
+		<div class="small_pic">
+		<ul>
+			<li style="filter:100;opacity:1;"><img src="images/1.jpg" /></li>
+			<li><img src="images/2.jpg" /></li>
+			<li><img src="images/3.jpg" /></li>
+			<li><img src="images/4.jpg" /></li>
+			<li><img src="images/5.jpg" /></li>
+			<li><img src="images/6.jpg" /></li>
+		</ul>
+		</div>
+	</div>
+
+</body>
+</html>

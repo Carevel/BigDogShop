@@ -16,6 +16,7 @@
                 发生错误，请联系管理员！
                 <cite><strong><a href="Index.aspx">返回主页</a></strong></cite>
             </p>
+            <p></p>
         </div>
     </div>
     </form>
