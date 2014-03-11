@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Admin_News_Admin_News_Delete" Codebehind="News_Delete.aspx.cs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="BigDogShop.Web.Admin.News.List" %>
 
 <!DOCTYPE html>
 

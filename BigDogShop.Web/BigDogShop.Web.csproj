@@ -585,9 +585,8 @@
     <Content Include="Admin\Js\tree_menu.js" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\ManagerCenter.aspx" />
-    <Content Include="Admin\News\News_Add.aspx" />
-    <Content Include="Admin\News\News_Delete.aspx" />
-    <Content Include="Admin\News\News_Update.aspx" />
+    <Content Include="Admin\News\Edit.aspx" />
+    <Content Include="Admin\News\List.aspx" />
     <Content Include="Admin\Orders\Edit.aspx" />
     <Content Include="Admin\Orders\List.aspx" />
     <Content Include="Admin\Products\Edit.aspx" />
@@ -1274,26 +1273,19 @@
     <Compile Include="Admin\ManagerCenter.aspx.designer.cs">
       <DependentUpon>ManagerCenter.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\News\News_Add.aspx.cs">
-      <DependentUpon>News_Add.aspx</DependentUpon>
+    <Compile Include="Admin\News\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\News\News_Add.aspx.designer.cs">
-      <DependentUpon>News_Add.aspx</DependentUpon>
+    <Compile Include="Admin\News\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\News\News_Delete.aspx.cs">
-      <DependentUpon>News_Delete.aspx</DependentUpon>
+    <Compile Include="Admin\News\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\News\News_Delete.aspx.designer.cs">
-      <DependentUpon>News_Delete.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\News\News_Update.aspx.cs">
-      <DependentUpon>News_Update.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\News\News_Update.aspx.designer.cs">
-      <DependentUpon>News_Update.aspx</DependentUpon>
+    <Compile Include="Admin\News\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Orders\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>

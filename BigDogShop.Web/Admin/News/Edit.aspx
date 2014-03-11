@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Admin_News_Admin_News_Add" Codebehind="News_Add.aspx.cs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="BigDogShop.Web.Admin.News.Edit" %>
 
 <!DOCTYPE html>
 
