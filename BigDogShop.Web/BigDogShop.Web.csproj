@@ -594,6 +594,17 @@
     <Content Include="Admin\Styles\Base.css" />
     <Content Include="Admin\Styles\tree.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="JsSlide\1.css" />
+    <Content Include="JsSlide\images\1.jpg" />
+    <Content Include="JsSlide\images\2.jpg" />
+    <Content Include="JsSlide\images\3.jpg" />
+    <Content Include="JsSlide\images\4.jpg" />
+    <Content Include="JsSlide\images\5.jpg" />
+    <Content Include="JsSlide\images\6.jpg" />
+    <Content Include="JsSlide\images\btn.gif" />
+    <Content Include="JsSlide\images\loading.gif" />
+    <Content Include="JsSlide\move.js" />
+    <Content Include="JsSlide\仿flash滑动.html" />
     <Content Include="UserControl\AdminTop.ascx" />
     <Content Include="Admin\Users\Edit.aspx" />
     <Content Include="Admin\Users\List.aspx" />
