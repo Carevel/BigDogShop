@@ -11,7 +11,7 @@ namespace BigDogShop.BLL
 {
     public class ProductBLL
     {
-        private static IProduct Dal = Facotry.CreateProduct();
+        private static IProduct Dal = Facotry.CreateProductImages();
 
         public static bool Add(ProductInfo model)
         {

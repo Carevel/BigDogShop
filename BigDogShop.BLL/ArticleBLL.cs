@@ -12,7 +12,7 @@ namespace BigDogShop.BLL
 {
     public class ArticleBLL
     {
-        private static IArticle Dal = Facotry.CreateArticle();
+        private static IArticle Dal = Facotry.CreateProduct();
         public bool Add(ArticleInfo article)
         {
             return Dal.Add(article);

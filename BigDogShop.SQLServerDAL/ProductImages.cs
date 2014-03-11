@@ -95,8 +95,8 @@ namespace BigDogShop.SQLServerDAL
 
         public DataTable GetByCategory(int id)
         {
-            StringBuilder sql=new StringBuilder()
-            sql.Append("select Id,Product_Image_Id,Category_Id,Image_Url,Link_Url,Description from BigDog_Product_Images")
+            StringBuilder sql=new StringBuilder();
+            sql.Append("select Id,Product_Image_Id,Category_Id,Image_Url,Link_Url,Description from BigDog_Product_Images");
             sql.Append(" where Category_Id=@Category_Id");
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@Category_Id",SqlDbType.Int)
@@ -115,7 +115,7 @@ namespace BigDogShop.SQLServerDAL
         public DataTable GetList()
         {
             StringBuilder sql=new StringBuilder();
-            sql.Append("select Id,Product_Image_Id,Category_Id,Image_Url,Link_Url,Description from BigDog_Product_Images")
+            sql.Append("select Id,Product_Image_Id,Category_Id,Image_Url,Link_Url,Description from BigDog_Product_Images");
             DataTable dt=SQLHelper.GetDs(sql.ToString()).Tables[0];
             if(dt.Rows.Count>0)
             {
