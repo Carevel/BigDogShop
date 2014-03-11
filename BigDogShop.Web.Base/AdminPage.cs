@@ -15,6 +15,13 @@ namespace BigDogShop.Web.Base
     {
         protected internal AdminInfo admin;
 
+        private void AdminPage_load(object sender, EventArgs e)
+        {
+            if (!IsAdminLogin())
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
         /// <summary>
         /// 判断管理员是否登录，针对session超时
         /// </summary>

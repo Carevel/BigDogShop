@@ -7,22 +7,21 @@ namespace BigDogShop.Model
 {
     public class ProductInfo:BaseModel
     {
-        public string ProductName { get; set; }
-        public int ProductNo { get; set; }
-        public int ProviderId { get; set; }
-        public int ProductTypeId { get; set; }
-        public string ProductOrigin { get; set; }
-        public string ProductStatus { get; set; }
-        public int SalesCount { get; set; }
+        public string Product_Name { get; set; }
+        public int Product_No { get; set; }
+        public int Provider_Id { get; set; }
+        public int Product_Type_Id { get; set; }
+        public string Product_Origin { get; set; }
+        public int Sales_Count { get; set; }
         public string Description { get; set; }
         public int Rank { get; set; }
-        public int Price { get; set; }
-        public int PromotePrice { get; set; }
-        public int MemberPrice { get; set; }
-        public int VipPrice { get; set; }
+        public decimal Price { get; set; }
+        public decimal Promote_Price { get; set; }
+        public decimal Member_Price { get; set; }
+        public decimal Vip_Price { get; set; }
         public int Stock { get; set; }
-        public int ProductImageId { get; set; }
-        public int ExtraProperties { get; set; }
+        public int Product_Image_Id { get; set; }
+        public int Extra_Property_Id { get; set; }
         public string Status { get; set; }
     }
 }

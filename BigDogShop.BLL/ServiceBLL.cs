@@ -12,36 +12,36 @@ namespace BigDogShop.BLL
 {
     public class ServiceBLL
     {
-        protected static IService serviceDAL = Facotry.CreateService();
+        protected static IService Dal = Facotry.CreateService();
 
         public static bool Add(ServiceInfo service)
         {
-            return serviceDAL.Add(service);
+            return Dal.Add(service);
         }
 
         public static bool Delete(int id)
         {
-            return serviceDAL.Delete(id);
+            return Dal.Delete(id);
         }
 
         public static bool Update(ServiceInfo service)
         {
-            return serviceDAL.Update(service);
+            return Dal.Update(service);
         }
 
         public static ServiceInfo GetById(int id)
         {
-            return serviceDAL.GetById(id);
+            return Dal.GetById(id);
         }
 
         public static DataTable GetServiceList(int id)
         {
-            return serviceDAL.GetServiceList(id);
+            return Dal.GetServiceList(id);
         }
 
         public static DataTable GetServiceList()
         {
-            return serviceDAL.GetServiceList();
+            return Dal.GetServiceList();
         }
     }
 }

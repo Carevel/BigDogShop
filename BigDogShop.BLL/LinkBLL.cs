@@ -12,31 +12,31 @@ namespace BigDogShop.BLL
 {
     public class LinkBLL
     {
-        protected static ILink linkDAL = Facotry.CreateLink();
+        protected static ILink Dal = Facotry.CreateLink();
 
         public static  bool Add(LinkInfo link)
         {
-            return linkDAL.Add(link);
+            return Dal.Add(link);
         }
 
         public static bool Delete(int id)
         {
-            return linkDAL.Delete(id);
+            return Dal.Delete(id);
         }
 
         public static bool Update(LinkInfo link)
         {
-            return linkDAL.Update(link);
+            return Dal.Update(link);
         }
 
         public static LinkInfo GetById(int id)
         {
-            return linkDAL.GetById(id);
+            return Dal.GetById(id);
         }
 
         public static DataTable GetLinkList()
         {
-            return linkDAL.GetLinkList();
+            return Dal.GetLinkList();
         }
     }
 }

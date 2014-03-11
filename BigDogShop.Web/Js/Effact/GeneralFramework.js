@@ -17,7 +17,7 @@ function startMove(obj, attr, iTarget) {
         }
         var speed = (iTarget - c) / 2;
         speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
-        if (s == iTarget) {
+        if (c == iTarget) {
             clearInterval(obj.timer);
         }
         else {
@@ -25,7 +25,7 @@ function startMove(obj, attr, iTarget) {
                 obj.style.filter = 'alpha(opacity=' + (c + speed)+')';
                 obj.style.opacity = (c + speed)/100;
             }
-            obj.style[attr] = s + speed + 'px';
+            obj.style[attr] = c + speed + 'px';
         }
     }, 30);
 }

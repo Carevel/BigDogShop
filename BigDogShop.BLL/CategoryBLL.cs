@@ -12,26 +12,26 @@ namespace BigDogShop.BLL
 {
     public class CategoryBLL
     {
-        private static ICategory categoryDAL = Facotry.CreateCategory();
+        private static ICategory Dal = Facotry.CreateCategory();
 
         public static bool Add(CategoryInfo category)
         {
-            return categoryDAL.Add(category);
+            return Dal.Add(category);
         }
 
         public static bool Delete(int id)
         {
-            return categoryDAL.Delete(id);
+            return Dal.Delete(id);
         }
 
         public static bool Update(CategoryInfo category)
         {
-            return categoryDAL.Update(category);
+            return Dal.Update(category);
         }
 
         public static CategoryInfo GetById(int id)
         {
-            return categoryDAL.GetById(id);
+            return Dal.GetById(id);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static DataTable GetChildList(int father_id,int type_id)
         {
-            return categoryDAL.GetChildList(father_id,type_id);
+            return Dal.GetChildList(father_id,type_id);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static DataTable GetCategoryList(int father_id)
         {
-            return categoryDAL.GetCategoryList(father_id);
+            return Dal.GetList(father_id);
         }
     }
 }

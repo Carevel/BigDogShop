@@ -574,6 +574,8 @@
     <Content Include="Admin\Images\loading.gif" />
     <Content Include="Admin\Images\login_bg.gif" />
     <Content Include="Admin\Images\SubImg.bmp" />
+    <Content Include="Admin\Images\tools_bg.gif" />
+    <Content Include="Admin\Images\tools_btn_bg.gif" />
     <Content Include="Admin\Include\LeftMenu.txt" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Js\Common.js" />
@@ -582,6 +584,7 @@
     <Content Include="Admin\Js\Tree2.js" />
     <Content Include="Admin\Js\tree_menu.js" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\ManagerCenter.aspx" />
     <Content Include="Admin\News\News_Add.aspx" />
     <Content Include="Admin\News\News_Delete.aspx" />
     <Content Include="Admin\News\News_Update.aspx" />
@@ -590,6 +593,8 @@
     <Content Include="Admin\Products\Edit.aspx" />
     <Content Include="Admin\Products\List.aspx" />
     <Content Include="Admin\Styles\Base.css" />
+    <Content Include="Admin\Styles\tree.css" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="UserControl\AdminTop.ascx" />
     <Content Include="Admin\Users\Edit.aspx" />
     <Content Include="Admin\Users\List.aspx" />
@@ -1261,6 +1266,13 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManagerCenter.aspx.cs">
+      <DependentUpon>ManagerCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManagerCenter.aspx.designer.cs">
+      <DependentUpon>ManagerCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\News\News_Add.aspx.cs">
       <DependentUpon>News_Add.aspx</DependentUpon>

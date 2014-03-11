@@ -12,36 +12,36 @@ namespace BigDogShop.BLL
 {
     public class NewsBLL
     {
-        private static INews NewsDAL = Facotry.CreateNews();
+        private static INews Dal = Facotry.CreateNews();
 
         public static bool Add(NewsInfo news)
         {
-            return NewsDAL.Add(news);
+            return Dal.Add(news);
         }
 
         public static  bool Delete(int id)
         {
-            return NewsDAL.Delete(id);
+            return Dal.Delete(id);
         }
 
         public static  bool Update(NewsInfo news)
         {
-            return NewsDAL.Update(news);
+            return Dal.Update(news);
         }
 
         public static NewsInfo GetById(int id)
         {
-            return NewsDAL.GetById(id);
+            return Dal.GetById(id);
         }
 
         public static DataTable GetNewsList(int father_id)
         {
-            return NewsDAL.GetNewsList(father_id);
+            return Dal.GetNewsList(father_id);
         }
 
         public static DataTable GetNewsList()
         {
-            return NewsDAL.GetNewsList();
+            return Dal.GetNewsList();
         }
     }
 }

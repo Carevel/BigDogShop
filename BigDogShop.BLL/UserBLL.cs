@@ -14,7 +14,7 @@ namespace BigDogShop.BLL
     public class UserBLL
     {
 
-        protected static IDAL.IUser UserDAL = DALFactory.Facotry.CreateUser();
+        protected static IDAL.IUser Dal = DALFactory.Facotry.CreateUser();
 
         /// <summary>
         /// 判断用户名是否已经存在
@@ -23,7 +23,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static bool Exists(string user_name)
         {
-            return UserDAL.Exists(user_name);
+            return Dal.Exists(user_name);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public  static UserInfo GetUserInfo(string user_name, string password)
         {
-            return UserDAL.GetUserInfo(user_name, password);
+            return Dal.GetUserInfo(user_name, password);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static bool Register(UserInfo user)
         {
-            return UserDAL.Register(user);
+            return Dal.Register(user);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static bool Update(UserInfo user)
         {
-            return UserDAL.Update(user);
+            return Dal.Update(user);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static bool Delete(int id)
         {
-            return UserDAL.Delete(id);
+            return Dal.Delete(id);
         }
 
        
@@ -76,7 +76,7 @@ namespace BigDogShop.BLL
         public static UserInfo GetById(int id)
         {
             //Users u = new Users();
-            return UserDAL.GetById(id);
+            return Dal.GetById(id);
         }
 
         ///// <summary>

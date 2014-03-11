@@ -7,19 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BigDogShop.Web.Admin.Products {
+namespace BigDogShop.Web.Admin {
     
     
-    public partial class List {
-        
-        /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class ManagerCenter {
         
         /// <summary>
         /// form1 control.
@@ -31,39 +22,39 @@ namespace BigDogShop.Web.Admin.Products {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Text1 control.
+        /// lbl_admin_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
+        protected global::System.Web.UI.WebControls.Label lbl_admin_name;
         
         /// <summary>
-        /// btn_search control.
+        /// login_ip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_search;
+        protected global::System.Web.UI.WebControls.Label login_ip;
         
         /// <summary>
-        /// ddl_user_type control.
+        /// login_last_ip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_user_type;
+        protected global::System.Web.UI.WebControls.Label login_last_ip;
         
         /// <summary>
-        /// rpt_data_list control.
+        /// login_last_time control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt_data_list;
+        protected global::System.Web.UI.WebControls.Label login_last_time;
     }
 }

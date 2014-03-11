@@ -15,6 +15,6 @@ namespace BigDogShop.IDAL
         bool Update(CategoryInfo category);
         CategoryInfo GetById(int id);
         DataTable GetChildList(int father_id,int type_id);
-        DataTable GetCategoryList(int father_id);
+        DataTable GetList(int father_id);
     }
 }

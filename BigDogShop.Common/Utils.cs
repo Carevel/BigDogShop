@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Data;
+using System.Text.RegularExpressions;
 
 namespace BigDogShop.Common
 {
@@ -175,6 +177,16 @@ namespace BigDogShop.Common
                 return "";
             }
             return HttpContext.Current.Server.UrlDecode(str);
+        }
+
+        /// <summary>
+        /// 驗證是否為IP地址
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsIp(string str)
+        {
+            return Regex.IsMatch(str, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
         }
     }
 }

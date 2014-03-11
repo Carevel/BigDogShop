@@ -58,21 +58,13 @@
     width:200px;
     height:800px;
     float:left;
+    /*position:absolute;*/
     /*border-right:1px solid #eee;*/
 }
-    #TreeMenu
-    {
-        list-style:none;
-    }
-        .f
-        {
-            /*width:80px;*/
-            height:30px;
-            line-height:30px;
-        }
+
 .framecontainer
 {
-    width:800px;
+    width:1000px;
     height:800px;
     float:left;
 }
@@ -289,11 +281,12 @@ h3
 .tree_title
 {
     display:inline-block;
-    margin-left:50px;
     text-align:center;
 }
 /*divTree生成树*/
+/*二层*/
 
+/*多层*/
 .div_tree_collapsed
 {
     width:20px;
@@ -315,43 +308,35 @@ h3
     right:5px;
 
 }
+
 .tree_li_header
 {
-    width:200px;
+    width:198px;
     line-height:28px;
     list-style:none;
-    background: #E5EFFE url(../images/layout/layout-header.gif) left bottom repeat-x;
+    /*background: #E5EFFE url(../images/layout/layout-header.gif) left bottom repeat-x;*/
     cursor:pointer;
 }
-.tree_li_header:hover
-{
-    background: #E5EFFE url('../Images/Layout/layout-header-hover.gif') repeat-x;
-}
-/*.tree li
-{
-    width:200px;
-    line-height:30px;
-    list-style:none;
 
-    background: #E5EFFE url('../Images/Layout/layout-header.gif') repeat-x;
-    cursor:pointer;
-}*/
-    /*.tree li:hover
-    {
-         background: #E5EFFE url('../Images/Layout/layout-header-hover.gif') repeat-x;
-    }*/
+
 
  /*ulTree*/
-.tree ul li div
+.tree
 {
-    
+    width:198px;
+    height:800px;
+    margin:0px;
+    padding:0px;
+    background:#fff;
+    border:1px solid #E5EFFE;
+    position:absolute;
+    font:12px Arial, Helvetica, sans-serif, "宋体";
 }
 .tree li ul
 {
     list-style:none;
     padding:0px;
     margin:0px;
-    /*margin-left:20px;*/
 }
 
 .tree li span
@@ -380,6 +365,7 @@ h3
 }
 .tree_hit
 {
+    margin-left:20px;
     cursor:pointer;
 }
 /*一级菜单*/
@@ -441,7 +427,7 @@ h3
     width:200px;
     height:30px;
     line-height:30px;
-    position:absolute;
+    position:relative;
     font-weight:bold;
     background: #E5EFFE url('../Images/Layout/layout-header.gif') repeat-x;
     cursor:pointer;
@@ -516,3 +502,99 @@ h3
         {
             cursor:pointer;
         }*/
+
+
+/*admin_center*/
+.navigation
+{
+    width:1000px;
+    height:20px;
+    line-height:20px;
+    padding-left:18px;
+    margin-top:10px;
+    margin-left:10px;
+}
+.nav_icon
+{
+    height:18px;
+    line-height:18px;
+     background:url(../images/Icons/contact_blue.png) no-repeat;
+}
+.login_info ul li
+{
+    list-style:none;
+    width:250px;
+    height:30px;
+    line-height:30px;
+    float:left;
+}
+
+
+
+/*container-css*/
+.container
+{
+    width:1000px;
+    height:800px;
+    float:left;
+    /*background:#eee;*/
+}
+.nav
+{
+    width:100%;
+    height:30px;
+    line-height:30px;
+}
+.tool_bar
+{
+    width:100%;
+    height:50px;
+    line-height:50px;
+    background:url(../images/tool_bg.gif) repeat;
+}
+    .tool_bar a
+    {
+        margin-left:2px;
+        width:auto;
+        min-width:45px;
+        height:39px;
+        border-radius:5px;
+        /*background:red;*/
+        display:block;
+        float:left;
+        text-align:center;
+        text-decoration:none;
+        font-size:10px;
+        color:#000;
+    }
+        .tool_bar a:hover
+        {
+            background:url(../images/tools_btn_bg.gif) -50px 0px no-repeat;
+            display:block;
+        }
+    .tool_bar span b
+    {
+        font-weight:normal;
+        display:block;
+        text-align:center;
+        font-size:10px;
+        padding-top:5px;
+    }
+        .tool_bar span b.add
+        {
+            background:url(../images/icons/add.png) no-repeat 50% 10%;
+        }
+        .tool_bar span b.all
+        {
+            background:url(../images/icons/application_osx_add.png) no-repeat 50% 10%;
+        }
+        .tool_bar span b.del
+        {
+            background:url(../images/icons/application_osx_remove.png) no-repeat 50% 10%;
+        }
+
+.search_box
+{
+    float:right;
+    margin-right:10px;
+}

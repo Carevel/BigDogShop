@@ -34,7 +34,7 @@ namespace BigDogShop.Web.Admin.Handler
                 html.Append("<ul>");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    html.Append("<li id=" + dt.Rows[i]["Id"] + " onclick='getList(" + dt.Rows[i]["Id"] + ");'>" + dt.Rows[i]["Menu_Name"] + "</li>");
+                    html.Append("<li id=" + dt.Rows[i]["Id"] + " class='tree_li_header'><span id=" + dt.Rows[i]["Id"] + " class=\"tree_hit tree_collapsed\"></span><span>" + dt.Rows[i]["Menu_Name"] + "</span></li>");
                 }
                 html.Append("</ul>");
             }

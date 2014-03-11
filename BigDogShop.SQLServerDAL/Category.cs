@@ -103,7 +103,7 @@ namespace BigDogShop.SQLServerDAL
         /// 获取数据集
         /// </summary>
         /// <returns></returns>
-        public DataTable GetCategoryList()
+        public DataTable GetList()
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select Id,Type_Id,Category_Name,Link_Url,Description from BigDog_Category");
@@ -141,7 +141,7 @@ namespace BigDogShop.SQLServerDAL
         /// 获取数据集
         /// </summary>
         /// <returns></returns>
-        public DataTable GetCategoryList(int father_id)
+        public DataTable GetList(int father_id)
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select Id,Type_Id,Father_Id,Category_Name,Description,Link_Url from BigDog_Category where Father_Id=@Father_Id");

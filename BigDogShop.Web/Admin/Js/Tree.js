@@ -4,8 +4,14 @@ $(document).ready(function () {
     var id = 0;
     var mode = 'getTree';
     setMenuTree(0);
-
+    var obj = document.getElementsByClassName("TreeMenu")[0];
+    var div1 = document.getElementById("div1");
+    $(".l-layout-header-toogle").click(function () {
+        startMove(obj, 'height', 1000);
+        startMove(div1, 'left', -20);
+    });
 });
+
 
 //root     根节点
 //level    默认显示级次
@@ -37,12 +43,50 @@ function setMenuTree(root) {
             iconToggle($li,id,root);//添加图标单击事件并图标轮转
         }
         else {
-            $li = $("<li class=\"tree_li_header\"><span id=" + treeView[i].Menu_Id + " class=\"tree_indent \"></span><div id=" + treeView[i].Menu_Id + " class=\"tree_title\">" + treeView[i].Menu_Name + "</div></li>");
+            $li = $("<li class=\"tree_li_header\"><span class=\"tree_indent \"></span><span id=" + treeView[i].Menu_Id + " class=\"tree_indent \"></span><div id=" + treeView[i].Menu_Id + " class=\"tree_title\">" + treeView[i].Menu_Name + "</div></li>");
             $(".tree").append($li);
         }
     }
 }
+//获取节点数据JSON列表列表,返回为
+function getList(id) {
+    var result = null;
+    var type = 'a';
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "Handler/TreeView.ashx",
+        data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
+        dataType: "json",
+        success: function (data) {
+            result = eval(data);
+        }
+    });
+    return result;
+}
 
+var fl = true;
+//根据节点数据列表生成<ul></ul>子节点树
+function addTree(jsonTree) {
+    $ul = $("<ul id=\"ul_" + jsonTree[0].Menu_Id + "\" ></ul>");
+    for (var i = 0; i < jsonTree.length; i++) {
+        var node = jsonTree[i].Has_Children;
+        if (node == "true") {
+            //有子节点
+            id = jsonTree[i].Menu_Id;
+            $li = $("<li><span id=" + jsonTree[i].Menu_Id + " class=\"tree_hit tree_collapsed \"></span><span class=\"tree_folder\"></span><div class=\"tree_title\">" + jsonTree[i].Menu_Name + "</div></li>");
+            $ul.append($li);
+            iconToggle($li, id);
+            fl = false;
+        }
+        else {
+            $li = $("<li><span class=\"tree_indent \"></span><span class=\"tree_indent \"></span><span class=\"tree_file\"></span><div dd=" + jsonTree[i].Link_Url + " id=" + jsonTree[i].Menu_Id + " class=\"tree_title\">" + jsonTree[i].Menu_Name + "</div></li>");
+            $ul.append($li);
+            fl = false;
+        }
+    }
+    return $ul;
+}
 //图标轮转函数
 function iconToggle($li, id) {
     var flag = true;
@@ -80,45 +124,7 @@ function iconToggle($li, id) {
         }
     });
 }
-//获取节点数据JSON列表列表,返回为
-function getList(id) {
-    var result = null;
-    var type = 'a';
-    $.ajax({
-        type: "post",
-        async: false,
-        url: "Handler/TreeView.ashx",
-        data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
-        dataType: "json",
-        success: function (data) {
-            result = eval(data);
-        }
-    });
-    return result;
-}
 
-var fl = true;
-//根据节点数据列表生成<ul></ul>子节点树
-function addTree(jsonTree) {
-    $ul = $("<ul id=\"ul_" + jsonTree[0].Menu_Id + "\" ></ul>");
-    for (var i = 0; i < jsonTree.length; i++) {
-        var node = jsonTree[i].Has_Children;
-        if (node == "true") {
-            //有子节点
-            id = jsonTree[i].Menu_Id;
-            $li = $("<li><span id=" + jsonTree[i].Menu_Id + " class=\"tree_hit tree_collapsed \"></span><span class=\"tree_folder\"></span><div class=\"tree_title\">" + jsonTree[i].Menu_Name + "</div></li>");
-            $ul.append($li);
-            iconToggle($li, id);
-            fl = false;
-        }
-        else {
-            $li = $("<li><span class=\"tree_file\"></span><div dd="+jsonTree[i].Link_Url+" id=" + jsonTree[i].Menu_Id + " class=\"tree_title\">" + jsonTree[i].Menu_Name + "</div></li>");
-            $ul.append($li);
-            fl = false;
-        }
-    }
-    return $ul;
-}
 
 //设置Url
 function setIframeSrc() {

@@ -7,13 +7,14 @@
     <title></title>
     <link href="Styles/Base.css" rel="stylesheet" />
     <script type="text/javascript" src="../Js/jquery-1.4.2.min.js"></script>
+    <script src="Js/Tree.js"></script>
+    <script src="../Js/Effact/GeneralFramework.js"></script>
     <%--<script type="text/javascript" src="Js/Tree2.js"></script>--%>
-    <script src="Js/tree_menu.js"></script>
+    <%--<script src="Js/tree_menu.js"></script>--%>
 </head>
 <body>
     <form id="form1" runat="server">
-        <Admin:Ad ID="ad1" runat="server" />
-        
+        <Admin:Ad ID="ad1" runat="server" />   
         <div class="content">
             <div class="TreeMenu">
                 <div class="l-layout-header">
@@ -21,16 +22,13 @@
                     <div class="l-layout-header-text">管理菜单</div>
                 </div>
                 <div class="l-layout-content">
-                    <div class="l-accordion-header">
-                    </div>
                     <div class="l-layout-member">
-                        <div class="tree_div"></div>
+                        <div class="tree"></div>
                     </div>
                 </div>
             </div>
-            <div class="framecontainer">        
-                <asp:DropDownList ID="DDL_TEST" runat="server"></asp:DropDownList>        
-                <%--<iframe id="Iframe1" runat="server" style="float:left;" frameborder="0" width="1000" height="800"></iframe>--%>
+            <div class="framecontainer" style="width:1000px;min-width:800px;">        
+              <iframe id="sysContent" width="1000" height="800" frameborder="0" src="ManagerCenter.aspx" ></iframe>
             </div>
         </div>
     </form>

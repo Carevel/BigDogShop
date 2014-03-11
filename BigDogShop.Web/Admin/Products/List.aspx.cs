@@ -4,11 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using BigDogShop.BLL;
+using BigDogShop.Model;
+using BigDogShop.Web.Base;
 
-public partial class Admin_Product_Admin_Product_Detail : System.Web.UI.Page
+namespace BigDogShop.Web.Admin.Products
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class List : AdminPage
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
+        }
+        public void Bind()
+        { 
+            
+        }
     }
 }

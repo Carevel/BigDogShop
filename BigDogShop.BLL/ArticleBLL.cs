@@ -12,33 +12,33 @@ namespace BigDogShop.BLL
 {
     public class ArticleBLL
     {
-        private static IArticle ArticleDAL = Facotry.CreateArticle();
+        private static IArticle Dal = Facotry.CreateArticle();
         public bool Add(ArticleInfo article)
         {
-            return ArticleDAL.Add(article);
+            return Dal.Add(article);
         }
         public bool Delete(int id)
         {
-            return ArticleDAL.Delete(id);
+            return Dal.Delete(id);
         }
         public bool Update(ArticleInfo article)
         {
-            return ArticleDAL.Update(article);
+            return Dal.Update(article);
         }
 
         public ArticleInfo GetById(int id)
         {
-            return ArticleDAL.GetById(id);
+            return Dal.GetById(id);
         }
 
         public DataTable GetArticleList(int father_id)
         {
-            return ArticleDAL.GetArticleList(father_id);
+            return Dal.GetArticleList(father_id);
         }
 
         public DataTable GetArticleList()
         {
-            return ArticleDAL.GetArticleList();
+            return Dal.GetArticleList();
         }
     }
 }

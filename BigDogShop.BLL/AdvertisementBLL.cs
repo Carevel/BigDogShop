@@ -11,7 +11,7 @@ namespace BigDogShop.BLL
 {
     public class AdvertisementBLL
     {
-        protected static IDAL.IAdvertisement AdvertisementDAL = DALFactory.Facotry.CreateAdvertisement();
+        protected static IDAL.IAdvertisement Dal = DALFactory.Facotry.CreateAdvertisement();
 
         public static bool Insert(AdvertisementInfo ad)
         {
@@ -25,23 +25,23 @@ namespace BigDogShop.BLL
 
         public static bool Update(AdvertisementInfo ad)
         {
-            return AdvertisementDAL.Update(ad);
+            return Dal.Update(ad);
             //return true;
         }
         public static AdvertisementInfo GetById(int id)
         {
-            return AdvertisementDAL.GetById(id);
+            return Dal.GetById(id);
 
         }
 
         public static DataTable GetItemsBySearchCase(string keywords, string type, string enabled)
         {
-            DataTable dt = AdvertisementDAL.GetItemsBySearchCase(keywords, type, enabled);
+            DataTable dt = Dal.GetItemsBySearchCase(keywords, type, enabled);
             return dt;
         }
         public static DataTable GetAllAdvertisement()
         {
-            DataTable dt = AdvertisementDAL.GetAllAdvertisement();
+            DataTable dt = Dal.GetAllAdvertisement();
             return dt;
         }
     }

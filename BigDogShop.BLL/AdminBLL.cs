@@ -10,16 +10,16 @@ namespace BigDogShop.BLL
 {
     public class AdminBLL
     {
-        protected static IAdmin AdminDAL = DALFactory.Facotry.CreateAdmin();
+        protected static IAdmin Dal = DALFactory.Facotry.CreateAdmin();
 
         public static bool Exists(int id)
         {
-            return AdminDAL.Exists(id);
+            return Dal.Exists(id);
         }
 
         public static bool Exists(string user_name)
         {
-            return AdminDAL.Exists(user_name);
+            return Dal.Exists(user_name);
         }
 
         /// <summary>
@@ -30,27 +30,27 @@ namespace BigDogShop.BLL
         /// <returns></returns>
         public static AdminInfo GetModel(string user_name, string password)
         {
-            return AdminDAL.GetModel(user_name, password);
+            return Dal.GetModel(user_name, password);
         }
 
         public static bool Add(AdminInfo admin)
         {
-            return AdminDAL.Add(admin);
+            return Dal.Add(admin);
         }
 
         public static bool Update(AdminInfo admin)
         {
-            return AdminDAL.Update(admin);
+            return Dal.Update(admin);
         }
 
         public static bool Delete(int id)
         {
-            return AdminDAL.Delete(id);
+            return Dal.Delete(id);
         }
 
         public static AdminInfo GetById(int id)
         {
-            return AdminDAL.GetById(id);
+            return Dal.GetById(id);
         }
     }
 }
