@@ -7,8 +7,11 @@ namespace BigDogShop.Model
 {
     public class ProductImageInfo:BaseModel
     {
-        public int ProductNo { get; set; }
-        public string ImageUrl { get; set; }
-        public int Status { get; set; }
+        public int Product_Image_Id { get; set; }
+        public int Category_Id { get; set; }
+        public string Image_Url { get; set; }
+        public string Link_Url { get; set; }
+        public string Description { get; set; }
+        
     }
 }

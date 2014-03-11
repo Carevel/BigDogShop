@@ -68,5 +68,10 @@ namespace BigDogShop.DALFactory
         {
             return (IProduct)Assembly.Load("BigDogShop." + type + "DAL").CreateInstance("BigDogShop." + type + "DAL.Product");
         }
+
+        public static IProductImages CreateProductImages()
+        {
+            return (IProductImages)Assembly.Load("BigDogShop." + type + "DAL").CreateInstance("BigDogShop." + type + "DAL.ProductImages");
+        }
     }
 }

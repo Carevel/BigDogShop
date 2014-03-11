@@ -63,7 +63,6 @@
     <Content Include="404.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Admin\Advertisement\Edit.aspx" />
-    <Content Include="Admin\Advertisement\HtmlPage1.html" />
     <Content Include="Admin\Advertisement\List.aspx" />
     <Content Include="Admin\Articles\Edit.aspx" />
     <Content Include="Admin\Articles\List.aspx" />
