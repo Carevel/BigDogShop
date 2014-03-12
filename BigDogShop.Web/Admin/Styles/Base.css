@@ -315,7 +315,7 @@ h3
     line-height:28px;
     list-style:none;
     /*background: #E5EFFE url(../images/layout/layout-header.gif) left bottom repeat-x;*/
-    cursor:pointer;
+    /*cursor:pointer;*/
 }
 
 
@@ -332,12 +332,17 @@ h3
     position:absolute;
     font:12px Arial, Helvetica, sans-serif, "宋体";
 }
+.tree ul
+{
+    margin:0px;
+    padding:0px;
+}
 .tree li ul
 {
     list-style:none;
     padding:0px;
     margin:0px;
-    margin-left:16px;
+    margin-left:18px;
 }
 
 .tree li span
@@ -402,12 +407,11 @@ h3
 }
 .tree_file
 {
-    
+
     background:url('../images/Icons/document_letter.png') no-repeat;
 }
 .tree_title
 {
-    
     cursor:pointer;
 }
 .tree_title_checked

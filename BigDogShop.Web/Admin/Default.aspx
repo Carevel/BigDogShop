@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="framecontainer" style="width:1000px;min-width:800px;">        
-              <iframe id="sysContent" width="1000" height="800" frameborder="0" src="Users/List.aspx" ></iframe>
+              <iframe id="sysContent" width="1000" height="800" frameborder="0" src="Default.aspx" ></iframe>
             </div>
         </div>
     </form>

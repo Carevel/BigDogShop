@@ -41,11 +41,14 @@ namespace BigDogShop.Web.Admin.Handler
                     {
                         html.Append("<li id=" + dt.Rows[i]["Id"] + " class='tree_li_header'>");
                         html.Append("<span id=" + dt.Rows[i]["Id"] + " class='tree_hit tree_collapsed' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span>");
+                        html.Append("<span class='tree_folder'></span>");
                         html.Append("<div class='tree_title'>" + dt.Rows[i]["Menu_Name"] + "</tree_title></li>");
                     }
                     else
                     {
                         html.Append("<li id=" + dt.Rows[i]["Id"] + " data-rel='"+dt.Rows[i]["Nav_Url"].ToString()+"' class='tree_li_header tree_child'>");
+                        html.Append("<span id=" + dt.Rows[i]["Id"] + " class='tree_hit tree_collapsed' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span>");
+                        //html.Append("<span class='tree_indent'></span>");
                         html.Append("<span id=" + dt.Rows[i]["Id"] + " class='tree_file' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span>");
                         html.Append("<div class='tree_title'>" + dt.Rows[i]["Menu_Name"] + "</tree_title></li>");
                     }

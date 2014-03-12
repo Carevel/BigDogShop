@@ -17,7 +17,7 @@
                     <tr>
                         <td>用户名：</td>
                         <td>
-                            <asp:TextBox ID="txt_name" runat="server" class="tx"></asp:TextBox>
+                            <asp:TextBox ID="txt_name" runat="server" CssClass="tx"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="lbl_name_tip" runat="server"></asp:Label>
@@ -26,7 +26,7 @@
                     <tr>
                         <td>密码：</td>
                         <td>
-                            <asp:TextBox ID="txt_pwd" runat="server" TextMode="Password" class="tx"></asp:TextBox>
+                            <asp:TextBox ID="txt_pwd" runat="server" TextMode="Password" CssClass="tx"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="lbl_pwd_tip" runat="server"></asp:Label>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>验证码：</td>
                         <td>
-                            <asp:TextBox ID="txt_ckcode" runat="server" TextMode="Password" class="tx"></asp:TextBox>
+                            <asp:TextBox ID="txt_ckcode" runat="server" TextMode="Password" CssClass="tx"></asp:TextBox>
                         </td>
                         <td>
                             <img src="../Handler/Validate.ashx" id="ckcode" alt="验证码" />

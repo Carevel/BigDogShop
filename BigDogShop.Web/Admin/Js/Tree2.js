@@ -12,12 +12,16 @@ function getList(obj, id) {
         if (flag) {
             $(obj).removeClass('tree_collapsed');
             $(obj).addClass('tree_expanded');
+            $(obj).next().removeClass("tree_folder");
+            $(obj).next().addClass("tree_folder_open");
             $(obj).siblings('ul').show();
             flag = false;
         }
         else {
             $(obj).removeClass('tree_expanded');
             $(obj).addClass('tree_collapsed');
+            $(obj).next().removeClass("tree_folder_open");
+            $(obj).next().addClass("tree_folder");
             $(obj).siblings('ul').hide();
             flag = true;
         }
@@ -44,7 +48,8 @@ function getList(obj, id) {
         }
         $(obj).removeClass('tree_collapsed');
         $(obj).addClass('tree_expanded');
-
+        $(obj).next().removeClass("tree_folder");
+        $(obj).next().addClass("tree_folder_open");
         $(obj).parent().append(result);
         flag = false;
 
@@ -54,16 +59,19 @@ function getList(obj, id) {
     {
         OLi[i].onclick = function ()
         {
-            alert('a');
+            setIframeSrc(this);
         }
     }
-    //for (var i = 0; i < $(obj).siblings("ul").children().length; i++)
-    //{
-    //    $(obj).siblings("ul").children()[i].click = function () {
-    //        alert('a');
-    //    };
-    //}
 }
+
+//设置Url
+function setIframeSrc(obj) {
+    var url = $(obj).attr('data-rel');
+    //url = "Advertisement/" + url;
+    //alert(url);
+    $("#sysContent").attr("src", "" + url + "");
+}
+
 //初始化生成树
 //root默认显示层次
 function setMenuTree(root) {
@@ -119,13 +127,6 @@ function ToggleIcon($div) {
     });
 }
 
-//设置Url
-function setIframeSrc() {
-    var url = $(this).attr('dd');
-    url = "Advertisement/" + url;
-    //alert(url);
-    $("#frameContent").attr("src", "" + url + "");
-}
 
 //通用设置监听事件函数
 function addEvent(elememt, type, fn) {
