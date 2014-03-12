@@ -51,6 +51,7 @@
     <Compile Include="ProductImageInfo.cs" />
     <Compile Include="ProductInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderInfo.cs" />
     <Compile Include="ServiceInfo.cs" />
     <Compile Include="UserInfo.cs" />
   </ItemGroup>

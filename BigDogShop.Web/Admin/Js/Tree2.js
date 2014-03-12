@@ -6,13 +6,8 @@
 var flag = true;
 //获取节点数据JSON列表列表,返回为
 function getList(obj, id) {
-
-    var result = null;
-    var type = 'a';
-
-
+   
     //$(obj).parent().append(result);
-
     if ($(obj).siblings('ul').length > 0) {
         if (flag) {
             $(obj).removeClass('tree_collapsed');
@@ -21,16 +16,15 @@ function getList(obj, id) {
             flag = false;
         }
         else {
-
-
             $(obj).removeClass('tree_expanded');
             $(obj).addClass('tree_collapsed');
-
             $(obj).siblings('ul').hide();
             flag = true;
         }
     }
     else {
+        var result = null;
+        var type = 'a';
         $.ajax({
             type: "post",
             async: false,
@@ -41,18 +35,43 @@ function getList(obj, id) {
                 result = data;
             }
         });
+        if (result == "")
+        {
+            $(obj).click = function () {
+                alert('a');
+            }
+            return false;
+        }
         $(obj).removeClass('tree_collapsed');
         $(obj).addClass('tree_expanded');
 
         $(obj).parent().append(result);
         flag = false;
+
     }
+    var OLi = document.getElementsByClassName("tree_child");
+    for (var i = 0; i < OLi.length; i++)
+    {
+        OLi[i].onclick = function ()
+        {
+            alert('a');
+        }
+    }
+    //for (var i = 0; i < $(obj).siblings("ul").children().length; i++)
+    //{
+    //    $(obj).siblings("ul").children()[i].click = function () {
+    //        alert('a');
+    //    };
+    //}
 }
 //初始化生成树
 //root默认显示层次
 function setMenuTree(root) {
     var result = null;
     var type = 'a';
+    //$.get('Handler/GlobalTree.ashx', { id: root }, function (data) {
+    //    result = data;
+    //});
     $.ajax({
         type: "post",
         async: false,
@@ -98,26 +117,6 @@ function ToggleIcon($div) {
         }
         
     });
-}
-
-
-
-//根据节点数据列表生成<div></div>子节点树
-function addTree(jsonTree) {
-    $div = $("<div id=\"div_" + jsonTree[0].Menu_Id + "\" ></div>");
-    for (var i = 0; i < jsonTree.length; i++) {
-        var node = jsonTree[i].Has_Children;
-        id = jsonTree[i].Menu_Id;
-        $div1 = $("<div id=" + jsonTree[i].Menu_Id + "><span id=" + jsonTree[i].Menu_Id + " class=\"tree_hit tree_collapsed \"></span><span class=\"tree_folder\"></span><div class=\"tree_title\">" + jsonTree[i].Menu_Name + "</div></div>");
-        $div.append($div1);
-        //iconToggle($div1, id);
-        //}
-        //else {
-        //    $div1 = $("<div><span class=\"tree_file\"></span><div dd=" + jsonTree[i].Link_Url + " id=" + jsonTree[i].Menu_Id + " class=\"tree_title\">" + jsonTree[i].Menu_Name + "</div></div>");
-        //    $div.append($div1);
-        //}
-    }
-    return $div;
 }
 
 //设置Url

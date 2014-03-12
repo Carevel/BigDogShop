@@ -20,10 +20,12 @@ namespace BigDogShop.Web.Admin.Handler
         {
             context.Response.ContentType = "text/html";
             string father_id = context.Request.Params["id"].ToString();
-            
+
             StringBuilder sql = new StringBuilder();
             StringBuilder html = new StringBuilder();
-            sql.Append("select Id,Father_Id,Menu_Name,Nav_Url from BigDog_Admin_Menu where Father_Id=@father_id");
+            sql.Append("select Id,Father_Id,Menu_Name,Nav_Url,");
+            sql.Append("(select (case count(1) when '0' then 'false' else 'true' end) from BigDog_Admin_Menu b where a.Id=b.Father_Id) Has_Child ");
+            sql.Append(" from BigDog_Admin_Menu a where a.Father_Id=@father_id");
             SqlParameter[] parms = new SqlParameter[] { 
                 new SqlParameter("@father_id",SqlDbType.Int)
             };
@@ -32,11 +34,22 @@ namespace BigDogShop.Web.Admin.Handler
             dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
             if (dt.Rows.Count > 0)
             {
-                //html.Append("<span class='tree_indent'></span>");
                 html.Append("<ul>");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    html.Append("<li id=" + dt.Rows[i]["Id"] + " class='tree_li_header'><span id=" + dt.Rows[i]["Id"] + " class='tree_hit tree_collapsed' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span><div class='tree_title'>" + dt.Rows[i]["Menu_Name"] + "</tree_title></li>");
+                    if (dt.Rows[i]["Has_Child"].ToString() == "true")
+                    {
+                        html.Append("<li id=" + dt.Rows[i]["Id"] + " class='tree_li_header'>");
+                        html.Append("<span id=" + dt.Rows[i]["Id"] + " class='tree_hit tree_collapsed' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span>");
+                        html.Append("<div class='tree_title'>" + dt.Rows[i]["Menu_Name"] + "</tree_title></li>");
+                    }
+                    else
+                    {
+                        html.Append("<li id=" + dt.Rows[i]["Id"] + " data-rel='"+dt.Rows[i]["Nav_Url"].ToString()+"' class='tree_li_header tree_child'>");
+                        html.Append("<span id=" + dt.Rows[i]["Id"] + " class='tree_file' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span>");
+                        html.Append("<div class='tree_title'>" + dt.Rows[i]["Menu_Name"] + "</tree_title></li>");
+                    }
+
                 }
                 html.Append("</ul>");
             }
