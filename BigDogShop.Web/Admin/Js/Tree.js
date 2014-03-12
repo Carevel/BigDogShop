@@ -21,7 +21,7 @@ $(document).ready(function () {
 //isOpen   是否打开
 function addTree(jsonData, root, level, url, img, imgOnClick, isOpen) {
     var arr = [];
-    var treeView = getList(root);
+    var treeView = getSubMenuList(root);
     for (var i = 0; i < treeView.length; i++) {
         if (treeView[i].Has_Children == "true") {
             $li = $("<li><span><img src='" + img + "'/>" + treeView[i].Menu_Name + "</span></li>");
@@ -32,7 +32,7 @@ function addTree(jsonData, root, level, url, img, imgOnClick, isOpen) {
 //root默认显示层次
 function setMenuTree(root) {
     var arr = new Array();
-    var treeView = getList(root);
+    var treeView = getSubMenuList(root);
     for (var i = 0; i < treeView.length; i++) {
         var node = treeView[i].Has_Children;
         if (node == "true") {
@@ -49,7 +49,7 @@ function setMenuTree(root) {
     }
 }
 //获取节点数据JSON列表列表,返回为
-function getList(id) {
+function getSubMenuList(id) {
     var result = null;
     var type = 'a';
     $.ajax({
@@ -100,7 +100,7 @@ function iconToggle($li, id) {
             spanArr.eq(0).addClass("tree_expanded");
             spanArr.eq(1).removeClass("tree_loading");
             spanArr.eq(1).addClass("tree_folder_open");
-            var jsonData = getList(id);
+            var jsonData = getSubMenuList(id);
             var node = addTree(jsonData);
             node.hide();
             $("#" + id).parent().append(node);

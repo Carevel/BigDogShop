@@ -14,7 +14,7 @@ namespace BigDogShop.Web.Admin
 {
     public partial class ManagerCenter :AdminPage
     {
-        private AdminInfo admin = null;
+        //private AdminInfo admin = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             //if (IsAdminLogin())

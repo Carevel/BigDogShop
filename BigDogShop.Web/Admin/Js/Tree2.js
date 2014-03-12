@@ -1,45 +1,69 @@
 ﻿$(document).ready(function () {
     var id = 0;
-    var mode = 'getTree';
+ 
     setMenuTree(0);
-    var ODiv = $(".tree_li_header");
-    for (var i = 0; i < ODiv.length; i++)
-    {
-
-    }
 });
+var flag = true;
 //获取节点数据JSON列表列表,返回为
-function getList(id) {
+function getList(obj, id) {
+
+    var result = null;
+    var type = 'a';
+
+
+    //$(obj).parent().append(result);
+
+    if ($(obj).siblings('ul').length > 0) {
+        if (flag) {
+            $(obj).removeClass('tree_collapsed');
+            $(obj).addClass('tree_expanded');
+            $(obj).siblings('ul').show();
+            flag = false;
+        }
+        else {
+
+
+            $(obj).removeClass('tree_expanded');
+            $(obj).addClass('tree_collapsed');
+
+            $(obj).siblings('ul').hide();
+            flag = true;
+        }
+    }
+    else {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "Handler/GlobalTree.ashx",
+            data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
+            dataType: "text",
+            success: function (data) {
+                result = data;
+            }
+        });
+        $(obj).removeClass('tree_collapsed');
+        $(obj).addClass('tree_expanded');
+
+        $(obj).parent().append(result);
+        flag = false;
+    }
+}
+//初始化生成树
+//root默认显示层次
+function setMenuTree(root) {
     var result = null;
     var type = 'a';
     $.ajax({
         type: "post",
         async: false,
-        url: "Handler/TreeView.ashx",
-        data: "type=" + type + "&Id=" + id,//data:"Id="+id+"&a="+a+"&b="+b;    示例
-        dataType: "json",
+        url: "Handler/GlobalTree.ashx",
+        data: "type=" + type + "&Id=" + root,//data:"Id="+id+"&a="+a+"&b="+b;    示例
+        dataType: "text",
         success: function (data) {
-            if (data == null) {
-                result = null;
-            }
-            result = eval(data);
+            result = data;
         }
     });
-    return result;
-}
-//初始化生成树
-//root默认显示层次
-function setMenuTree(root) {
-    var treeView = getList(root);
-    if (treeView != null)
-    {
-        for (var i = 0; i < treeView.length; i++) {
-            var node = treeView[i].Has_Children;
-            $div = $("<div id=" + treeView[i].Menu_Id + " data-flag=" + node + " class=\"tree_li_header\"><span class=\"tree_title\">" + treeView[i].Menu_Name + "</span><span class=\"tree_loading\" ></span><span class=\"div_tree_collapsed\"></span></div>");
-            //ToggleIcon($div);
-            $(".tree_div").append($div);
-        }
-    }  
+    $(".tree").append(result);
 }
 
 //图标轮转并获取绑定单击事件函数

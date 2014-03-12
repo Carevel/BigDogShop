@@ -18,8 +18,9 @@ namespace BigDogShop.Web.Admin.Handler
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.ContentType = "text/plain";
-            string father_id = context.Request.Params["father_id"].ToString();
+            context.Response.ContentType = "text/html";
+            string father_id = context.Request.Params["id"].ToString();
+            
             StringBuilder sql = new StringBuilder();
             StringBuilder html = new StringBuilder();
             sql.Append("select Id,Father_Id,Menu_Name,Nav_Url from BigDog_Admin_Menu where Father_Id=@father_id");
@@ -31,10 +32,11 @@ namespace BigDogShop.Web.Admin.Handler
             dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
             if (dt.Rows.Count > 0)
             {
+                //html.Append("<span class='tree_indent'></span>");
                 html.Append("<ul>");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    html.Append("<li id=" + dt.Rows[i]["Id"] + " class='tree_li_header'><span id=" + dt.Rows[i]["Id"] + " class=\"tree_hit tree_collapsed\"></span><span>" + dt.Rows[i]["Menu_Name"] + "</span></li>");
+                    html.Append("<li id=" + dt.Rows[i]["Id"] + " class='tree_li_header'><span id=" + dt.Rows[i]["Id"] + " class='tree_hit tree_collapsed' onclick='getList(this," + dt.Rows[i]["Id"] + ");'></span><div class='tree_title'>" + dt.Rows[i]["Menu_Name"] + "</tree_title></li>");
                 }
                 html.Append("</ul>");
             }

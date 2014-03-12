@@ -7,7 +7,8 @@
     <title></title>
     <link href="Styles/Base.css" rel="stylesheet" />
     <script type="text/javascript" src="../Js/jquery-1.4.2.min.js"></script>
-    <script src="Js/Tree.js"></script>
+    <%--<script src="Js/Tree.js"></script>--%>
+    <script src="Js/Tree2.js"></script>
     <script src="../Js/Effact/GeneralFramework.js"></script>
     <%--<script type="text/javascript" src="Js/Tree2.js"></script>--%>
     <%--<script src="Js/tree_menu.js"></script>--%>
@@ -28,7 +29,7 @@
                 </div>
             </div>
             <div class="framecontainer" style="width:1000px;min-width:800px;">        
-              <iframe id="sysContent" width="1000" height="800" frameborder="0" src="ManagerCenter.aspx" ></iframe>
+              <iframe id="sysContent" width="1000" height="800" frameborder="0" src="Users/List.aspx" ></iframe>
             </div>
         </div>
     </form>
