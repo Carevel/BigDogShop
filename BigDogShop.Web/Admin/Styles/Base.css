@@ -267,7 +267,7 @@ h3
 
 
 /*生成树*/
-.tree_div
+/*.tree_div
 {
     width:200px;
     height:800px;
@@ -282,12 +282,12 @@ h3
 {
     display:inline-block;
     text-align:center;
-}
+}*/
 /*divTree生成树*/
 /*二层*/
 
 /*多层*/
-.div_tree_collapsed
+/*.div_tree_collapsed
 {
     width:20px;
     height:20px;
@@ -314,14 +314,13 @@ h3
     width:198px;
     line-height:28px;
     list-style:none;
-    /*background: #E5EFFE url(../images/layout/layout-header.gif) left bottom repeat-x;*/
-    /*cursor:pointer;*/
-}
+
+}*/
 
 
 
  /*ulTree*/
-.tree
+/*.tree
 {
     width:198px;
     height:800px;
