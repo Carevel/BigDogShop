@@ -66,6 +66,7 @@
     <Content Include="Admin\Advertisement\List.aspx" />
     <Content Include="Admin\Articles\Edit.aspx" />
     <Content Include="Admin\Articles\List.aspx" />
+    <Content Include="Admin\Authority\List.aspx" />
     <Content Include="Admin\Category\Edit.aspx" />
     <Content Include="Admin\Category\List.aspx" />
     <Content Include="Admin\Comments\Edit.aspx" />
@@ -582,6 +583,7 @@
     <Content Include="Admin\Js\index.js" />
     <Content Include="Admin\Js\jquery-2.1.0.js" />
     <Content Include="Admin\Js\jquery.easyui.min.js" />
+    <Content Include="Admin\Js\jquery.menu.js" />
     <Content Include="Admin\Js\jquery.min.js" />
     <Content Include="Admin\Styles\themes\black\accordion.css" />
     <Content Include="Admin\Styles\themes\black\calendar.css" />
@@ -1399,6 +1401,7 @@
     <Content Include="Admin\Styles\themes\gray\images\Thumbs.db" />
     <Content Include="Admin\Styles\themes\metro\images\Thumbs.db" />
     <Content Include="Admin\Handler\TreeData.ashx" />
+    <Content Include="Admin\Handler\GetUserJson.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
     <Content Include="Js\jquery-1.4.1.js" />
@@ -1490,6 +1493,13 @@
     <Compile Include="Admin\Articles\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Authority\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Authority\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Category\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1524,6 +1534,9 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\GetUserJson.ashx.cs">
+      <DependentUpon>GetUserJson.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Handler\GlobalTree.ashx.cs">
       <DependentUpon>GlobalTree.ashx</DependentUpon>

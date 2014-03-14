@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <div>
         <div class="mainbody">
-        <div class="nav">商品管理 > 商品列表</div>
+        <div class="nav">会员管理 > 会员列表</div>
         <div class="tool_bar">
             <a href="javascript:void(0);" onclick="Add(this);" class="tool_btn">
                 <span>
@@ -34,8 +34,14 @@
              </div>
         </div>
        <div class="select_box">
+<<<<<<< HEAD
            <span>请选择</span>
            <asp:DropDownList ID="ddl_type" runat="server">         
+=======
+           <span>会员类型：</span>
+           <asp:DropDownList ID="ddl_type" runat="server">
+               
+>>>>>>> 9ab507bfa3427c7c6edf8fd0cb65cd8bdbf478c3
            </asp:DropDownList>
        </div>
        <div class="data_list">

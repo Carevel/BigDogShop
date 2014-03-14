@@ -533,8 +533,11 @@ h3
 /*container-css*/
 .mainbody
 {
+<<<<<<< HEAD
     /*width:1000px;
     height:800px;*/
+=======
+>>>>>>> 9ab507bfa3427c7c6edf8fd0cb65cd8bdbf478c3
     margin-left:auto;
     margin-right:auto;
 }
