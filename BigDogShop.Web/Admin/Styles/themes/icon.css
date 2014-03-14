@@ -8,7 +8,7 @@
 	background:url('icons/pencil.png') no-repeat center center;
 }
 .icon-remove{
-	background:url('icons/edit_remove.png') no-repeat center center;
+	background:url('icons/remove.png') no-repeat center center;
 }
 .icon-save{
 	background:url('icons/filesave.png') no-repeat center center;
@@ -55,6 +55,17 @@
 .icon-filter{
 	background:url('icons/filter.png') no-repeat center center;
 }
+
+
+.icon-share{
+	background:url('icons/share_user.png') no-repeat center center;
+}
+
+.icon-details{
+	background:url('icons/details.png') no-repeat center center;
+}
+
+
 
 
 .icon-mini-add{

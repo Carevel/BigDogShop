@@ -295,6 +295,32 @@ namespace BigDogShop.OracleDAL
             }
         }
 
-        
+        public DataTable GetList()
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select Id,User_Name,Password,Nick_Name,Real_Name,Score,User_Photo_Url,Birthday,Income,Marry_Status,");
+            sql.Append(" E_Mail,Phone_Number,User_Type,Hobby,Address,School_Type,School,Department,Enrolled_Date,Company_Name,");
+            sql.Append(" Worked_Time_Begin,Worked_Time_End,Status from BigDog_User ");
+            DataTable dt = OracleHelper.GetDS(sql.ToString()).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
+        }
+
+        public DataTable GetList(string type)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select Id,User_Name,Password,Nick_Name,Real_Name,Score,User_Photo_Url,Birthday,Income,Marry_Status,");
+            sql.Append(" E_Mail,Phone_Number,User_Type,Hobby,Address,School_Type,School,Department,Enrolled_Date,Company_Name,");
+            sql.Append(" Worked_Time_Begin,Worked_Time_End,Status from BigDog_User where User_Type='"+type+"' ");
+            DataTable dt = OracleHelper.GetDS(sql.ToString()).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
+        }
     }
 }

@@ -1401,7 +1401,12 @@
     <Content Include="Admin\Styles\themes\gray\images\Thumbs.db" />
     <Content Include="Admin\Styles\themes\metro\images\Thumbs.db" />
     <Content Include="Admin\Handler\TreeData.ashx" />
-    <Content Include="Admin\Handler\GetUserJson.ashx" />
+    <Content Include="Admin\Handler\RoleJson.ashx" />
+    <Content Include="Admin\Handler\Authority\Add.ashx" />
+    <Content Include="Admin\Handler\Authority\Delete.ashx" />
+    <Content Include="Admin\Handler\Authority\Update.ashx" />
+    <Content Include="Admin\Handler\Authority\List.ashx" />
+    <Content Include="Admin\Handler\Authority\Search.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
     <Content Include="Js\jquery-1.4.1.js" />
@@ -1535,8 +1540,23 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Handler\GetUserJson.ashx.cs">
-      <DependentUpon>GetUserJson.ashx</DependentUpon>
+    <Compile Include="Admin\Handler\Authority\Add.ashx.cs">
+      <DependentUpon>Add.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\Delete.ashx.cs">
+      <DependentUpon>Delete.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\List.ashx.cs">
+      <DependentUpon>List.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\Search.ashx.cs">
+      <DependentUpon>Search.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\Update.ashx.cs">
+      <DependentUpon>Update.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\RoleJson.ashx.cs">
+      <DependentUpon>RoleJson.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Handler\GlobalTree.ashx.cs">
       <DependentUpon>GlobalTree.ashx</DependentUpon>
