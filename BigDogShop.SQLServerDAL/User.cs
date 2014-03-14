@@ -198,7 +198,43 @@ namespace BigDogShop.SQLServerDAL
             {
                 return null;
             }
+        }
 
+        /// <summary>
+        /// 获取所有数据
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetList()
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select Id,User_Name,Password,Nick_Name,Real_Name,Score,User_Photo_Url,Birthday,Income,Marry_Status,");
+            sql.Append(" E_Mail,Phone_Number,User_Type,Hobby,Address,School_Type,School,Department,Enrolled_Date,Company_Name,");
+            sql.Append(" Worked_Begin_Date,Status from BigDog_User");
+            DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 根据用户类型获取数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public DataTable GetList(string type)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select Id,User_Name,Password,Nick_Name,Real_Name,Score,User_Photo_Url,Birthday,Income,Marry_Status,");
+            sql.Append(" E_Mail,Phone_Number,User_Type,Hobby,Address,School_Type,School,Department,Enrolled_Date,Company_Name,");
+            sql.Append(" Worked_Begin_Date,Status from BigDog_User where User_Type='N'");
+            DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
         }
     }
 }

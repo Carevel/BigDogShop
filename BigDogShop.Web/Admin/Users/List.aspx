@@ -35,14 +35,18 @@
         </div>
        <div class="select_box">
            <span>请选择</span>
-           <asp:DropDownList ID="ddl_type" runat="server">
-               
+           <asp:DropDownList ID="ddl_type" runat="server">         
            </asp:DropDownList>
        </div>
        <div class="data_list">
            <asp:Repeater ID="rpt_data_list" runat="server">
-
+               <ItemTemplate>
+                  
+               </ItemTemplate>
            </asp:Repeater>
+           <asp:GridView ID="gv_data_list" runat="server">
+               
+           </asp:GridView>
        </div>
     </div>
     </div>

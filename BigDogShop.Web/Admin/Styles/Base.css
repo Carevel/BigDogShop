@@ -116,14 +116,14 @@
     }
 .container
 {
-    margin-top:10px;
-    margin-left:20px;
-    width:800px;
-    height:600px;
-    float:left;
-    border-left:1px solid #eee;
-    /*overflow:hidden;*/
-    /*background:#ccc;*/
+    margin-left:auto;
+    margin-right:auto;
+    /*margin-top:10px;
+    margin-left:20px;*/
+    /*width:800px;
+    height:600px;*/
+    /*float:left;*/
+    /*border-left:1px solid #eee;*/
 }
 h3
 {
@@ -502,11 +502,6 @@ h3
     width:300px;
     height:65px;
 }
-        /*.top_right a:hover
-        {
-            cursor:pointer;
-        }*/
-
 
 /*admin_center*/
 .navigation
@@ -538,11 +533,10 @@ h3
 /*container-css*/
 .mainbody
 {
-    width:1000px;
-    height:800px;
+    /*width:1000px;
+    height:800px;*/
     margin-left:auto;
     margin-right:auto;
-    /*background:#eee;*/
 }
 .nav
 {
@@ -564,7 +558,6 @@ h3
         min-width:45px;
         height:39px;
         border-radius:5px;
-        /*background:red;*/
         display:block;
         float:left;
         text-align:center;
@@ -574,7 +567,7 @@ h3
     }
         .tool_bar a:hover
         {
-            background:url(../images/tools_btn_bg.gif) -50px 0px no-repeat;
+            background:url(../images/tools_btn_bg.gif) no-repeat right -39px;
             display:block;
         }
     .tool_bar span b

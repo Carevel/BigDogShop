@@ -294,5 +294,7 @@ namespace BigDogShop.OracleDAL
                 throw new Exception(ex.Message);
             }
         }
+
+        
     }
 }

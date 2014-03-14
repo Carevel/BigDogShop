@@ -89,6 +89,24 @@ namespace BigDogShop.BLL
         //    return User.CheckEmail(email);
         //}
 
+        /// <summary>
+        /// 获取所有会员数据
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetList()
+        {
+            return Dal.GetList();
+        }
+
+        /// <summary>
+        /// 根据会员类型获取数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static DataTable GetList(string type)
+        {
+            return Dal.GetList(type);
+        }
      
     }
 }

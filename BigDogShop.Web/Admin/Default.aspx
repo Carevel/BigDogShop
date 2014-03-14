@@ -17,8 +17,7 @@
         <Admin:Ad ID="ad1" runat="server" />
         <div class="easyui-layout" style="width:1200px; height: 600px; margin-left:auto;margin-right:auto;">
             <div region="west" split="true" title="管理菜单" style="width: 200px">
-                <p style="padding: 5px; margin: 0;">选择一个菜单:</p>
-                <ul id="tt" class="easyui-tree">
+                <ul id="tt" class="easyui-tree" style="margin-left:10px; margin-top:20px;">
                 </ul>
             </div>
             <div data-options="region:'center',border:false">
