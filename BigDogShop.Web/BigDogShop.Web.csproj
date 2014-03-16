@@ -859,6 +859,7 @@
     <Content Include="JsSlide\move.js" />
     <Content Include="JsSlide\仿flash滑动.html" />
     <Content Include="Js\jquery.easyui.min.js" />
+    <Content Include="UserControl\AdminButtom.ascx" />
     <Content Include="UserControl\AdminTop.ascx" />
     <Content Include="Admin\Users\Edit.aspx" />
     <Content Include="Admin\Users\List.aspx" />
@@ -1626,6 +1627,13 @@
     </Compile>
     <Compile Include="Admin\Products\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\AdminButtom.ascx.cs">
+      <DependentUpon>AdminButtom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\AdminButtom.ascx.designer.cs">
+      <DependentUpon>AdminButtom.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControl\AdminTop.ascx.cs">
       <DependentUpon>AdminTop.ascx</DependentUpon>

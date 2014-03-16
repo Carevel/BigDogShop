@@ -94,7 +94,7 @@
             <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-details" onclick="javascript:alert('Ok')">详细</a>
             <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-remove" onclick="javascript:alert('Ok')">删除</a>
             <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-share" onclick="javascript:alert('Ok')">分配用户</a>
-        </div>a
+        </div>
         <div id="dlg-buttons">
             <a href="#" id="btnSubmit" class="easyui-linkbutton" iconcls="icon-ok">提交</a>
             <a href="#" id="btnCancel" class="easyui-linkbutton" iconcls="icon-cancel">取消</a>
