@@ -99,6 +99,7 @@
                 }
             });
             $("#btnEdit").click(function () {
+                $("#Div1").window('open');
                 var row = $("#data").datagrid("getSelected");
                 if (row) {
                     $("#d_edit").dialog('open');
@@ -151,29 +152,9 @@
                 </tr>
             </table>
         </div>
-        <div id="d_edit" class="easyui-dialog" style="padding: 5px; width: 400px; height: 200px;"
-            title="编辑角色" iconcls="icon-edit" buttons="#dlg-buttons" closed="true" modal="true">
-            <table>
-                <tr>
-                    <td>角色ID</td>
-                    <td>
-                        <%--<input id="txt_name" type="text" name="name"" />--%></td>
-                    <asp:TextBox ID="txt_eid" name="name" runat="server"></asp:TextBox>
-                </tr>
-                <tr>
-                    <td>角色名称</td>
-                    <td>
-                        <%--<input id="txt_name" type="text" name="name"" />--%></td>
-                    <asp:TextBox ID="txt_ename" name="name" runat="server"></asp:TextBox>
-                </tr>
-                <tr>
-                    <td>说明</td>
-                    <td>
-                        <asp:TextBox ID="txt_edesc" type="text" name="desc" runat="server" />
-                    </td>
-                </tr>
-            </table>
-        </div>
+      <div id="w" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:500px;height:200px;padding:10px;">
+        The window content.
+    </div>
         <div id="dlg-toolbar">
             <span>角色名称:</span>
             <input id="txt_search" style="line-height: 20px; border: 1px solid #ccc">
@@ -184,9 +165,12 @@
             <a href="#" id="btnDel" class="easyui-linkbutton" plain="true" iconcls="icon-remove">删除</a>
             <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-share" onclick="javascript:alert('Ok')">分配用户</a>
         </div>
-        <div id="dlg-buttons1">
-            <a href="#" id="btnSubmit1" class="easyui-linkbutton" iconcls="icon-ok">提交</a>
-            <a href="#" id="btnCancel1" class="easyui-linkbutton" iconcls="icon-cancel">取消</a>
+        <div id="Div1" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:500px;height:200px;padding:10px;">
+        The window content.
+            <div data-options="region:'center',border:false" style="text-align:right;padding:5px 0 0;">
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:alert('ok')">Ok</a>
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:alert('cancel')">Cancel</a>
+            </div>
         </div>
         <div id="dlg-buttons">
             <a href="#" id="btnSubmit" class="easyui-linkbutton" iconcls="icon-ok">提交</a>
