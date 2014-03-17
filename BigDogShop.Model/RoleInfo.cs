@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BigDogShop.Model
 {
-    public class RoleInfo:BaseModel
+    public class RoleInfo
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 

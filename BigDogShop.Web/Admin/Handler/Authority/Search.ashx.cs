@@ -22,7 +22,8 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             context.Response.ContentType = "text/plain";
             string name = context.Request.Params["name"].ToString();
             StringBuilder json = new StringBuilder();
-            DataTable dt = RoleBLL.GetListByName(name);
+            DataTable dt = new DataTable();
+            //DataTable dt = RoleBLL.GetListByName(name);
             if (dt.Rows.Count > 0)
             {
                 json.Append("[");
@@ -37,8 +38,7 @@ namespace BigDogShop.Web.Admin.Handler.Authority
                 }
                 json.Remove(json.Length - 1, 1);
                 json.Append("]");
-            }
-            
+            }          
         }
 
         public bool IsReusable

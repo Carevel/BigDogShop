@@ -70,22 +70,7 @@ namespace BigDogShop.Web.Admin.Handler
 
                 }
             }
-            if (type == "delete")
-            {
-                int id = Convert.ToInt32(context.Request.Params["id"].ToString());
-                if (RoleBLL.Delete(id))
-                {
-                    json.Append("[");
-                    json.Append("\"result\":\"1\",\"data\":\"\"");
-                    json.Append("]");
-                }
-                else
-                {
-                    json.Append("[");
-                    json.Append("\"result\":\"0\",\"data\":\"\"");
-                    json.Append("]");
-                }
-            }
+           
             if (type == "update")
             {
                 string name = context.Request.Params["name"].ToString();

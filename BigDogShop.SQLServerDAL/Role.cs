@@ -23,18 +23,32 @@ namespace BigDogShop.SQLServerDAL
             };
             parms[0].Value = model.Name;
             parms[1].Value = model.Description;
-            return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
+            try
+            { 
+                return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally { }
+            
         }
 
-        public bool Delete(int id)
+        public string Delete(string id)
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("delete from BigDog_Admin_Role where Id=@Id");
             SqlParameter[] parms = new SqlParameter[] { 
-                new SqlParameter("@Id",SqlDbType.Int)
+                new SqlParameter("@Id",SqlDbType.NVarChar,50)
             };
             parms[0].Value = id;
-            return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
+            bool success= SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
+            StringBuilder json = new StringBuilder();
+            json.Append("[");
+            json.Append("{\"success\":\""+success+"\"}");
+            json.Append("]");
+            return json.ToString();
         }
 
         public bool Update(RoleInfo model)
@@ -52,39 +66,107 @@ namespace BigDogShop.SQLServerDAL
             return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
         }
 
-        public RoleInfo GetById(int id)
+        //public RoleInfo GetById(int id)
+        //{
+        //    StringBuilder sql = new StringBuilder();
+        //    sql.Append("select Id,Name,Description from BigDog_Admin_Role where Id=@id");
+        //    SqlParameter[] parms = new SqlParameter[] { 
+        //        new SqlParameter("@Id",SqlDbType.Int)
+        //    };
+        //    parms[0].Value = id;
+        //    RoleInfo model = new RoleInfo();
+        //    DataTable dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        model.Id = Convert.ToInt32(dt.Rows[0]["Id"].ToString());
+        //        model.Name = dt.Rows[0]["Name"].ToString();
+        //        model.Description = dt.Rows[0]["Description"].ToString();
+        //        return model;
+        //    }
+        //    return null;
+        //}
+        public string GetById(string id)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Id,Name,Description from BigDog_Admin_Role where Id=@id");
+            sql.Append("select Id,Name,Description,Created_Date from BigDog_Admin_Role where Id=@id");
             SqlParameter[] parms = new SqlParameter[] { 
-                new SqlParameter("@Id",SqlDbType.Int)
+                new SqlParameter("@Id",SqlDbType.NVarChar,50)
             };
             parms[0].Value = id;
             RoleInfo model = new RoleInfo();
             DataTable dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
+            StringBuilder json = new StringBuilder();
             if (dt.Rows.Count > 0)
             {
-                model.Id = Convert.ToInt32(dt.Rows[0]["Id"].ToString());
-                model.Name = dt.Rows[0]["Name"].ToString();
-                model.Description = dt.Rows[0]["Description"].ToString();
-                return model;
+                json.Append("[");
+                foreach (DataRow dr in dt.Rows)
+                {
+                    json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");
+                    json.Append(",\"Name\":\"" + dr["Name"].ToString() + "\"");
+                    json.Append(",\"Description\":\"" + dr["Description"].ToString() + "\"");
+                    json.Append(",\"Created_Date\":\"" + dr["Created_Date"].ToString() + "\"");
+                    json.Append("},");
+                }
+                json.Remove(json.Length - 1, 1);
+                json.Append("]");
+                return json.ToString();
             }
             return null;
         }
+        //public DataTable GetList()
+        //{
+        //    StringBuilder sql = new StringBuilder();
+        //    sql.Append("select Id,Name,Description from BigDog_Admin_Role ");
+        //    DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        return dt;
+        //    }
+        //    return null;
+        //}
 
-        public DataTable GetList()
+        public string GetList()
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select Id,Name,Description from BigDog_Admin_Role ");
             DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            StringBuilder json = new StringBuilder();
             if (dt.Rows.Count > 0)
             {
-                return dt;
+                json.Append("[");
+                foreach (DataRow dr in dt.Rows)
+                {
+                    json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");
+                    json.Append(",\"Name\":\"" + dr["Name"].ToString() + "\"");
+                    json.Append(",\"Description\":\"" + dr["Description"].ToString() + "\"");
+                    json.Append(",\"Created_Date\":\"" + dr["Created_Date"].ToString() + "\"");
+                    json.Append("},");
+                }
+                json.Remove(json.Length - 1, 1);
+                json.Append("]");
+                return json.ToString();
             }
-            return null;
+            return "";
         }
 
-        public DataTable GetListByName(string name)
+        //public DataTable GetListByName(string name)
+        //{
+        //    StringBuilder sql = new StringBuilder();
+        //    sql.Append("select Id,Name,Description from BigDog_Admin_Role ");
+        //    sql.Append("where Name like '%@name' ");
+        //    SqlParameter[] parms = new SqlParameter[] { 
+        //        new SqlParameter("@name",SqlDbType.NVarChar,50)
+        //    };
+        //    parms[0].Value = name;
+        //    DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        return dt;
+        //    }
+        //    return null;
+        //}
+
+        public string GetListByName(string name)
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select Id,Name,Description from BigDog_Admin_Role ");
@@ -94,11 +176,23 @@ namespace BigDogShop.SQLServerDAL
             };
             parms[0].Value = name;
             DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            StringBuilder json = new StringBuilder();
             if (dt.Rows.Count > 0)
             {
-                return dt;
+                json.Append("[");
+                foreach (DataRow dr in dt.Rows)
+                {
+                    json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");
+                    json.Append(",\"Name\":\"" + dr["Name"].ToString() + "\"");
+                    json.Append(",\"Description\":\"" + dr["Description"].ToString() + "\"");
+                    json.Append(",\"Created_Date\":\"" + dr["Created_Date"].ToString() + "\"");
+                    json.Append("},");
+                }
+                json.Remove(json.Length - 1, 1);
+                json.Append("]");
+                return json.ToString();
             }
-            return null;
+            return "";
         }
     }
 }

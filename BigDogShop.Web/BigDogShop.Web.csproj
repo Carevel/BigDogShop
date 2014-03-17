@@ -66,7 +66,8 @@
     <Content Include="Admin\Advertisement\List.aspx" />
     <Content Include="Admin\Articles\Edit.aspx" />
     <Content Include="Admin\Articles\List.aspx" />
-    <Content Include="Admin\Authority\List.aspx" />
+    <Content Include="Admin\Authority\RoleList.aspx" />
+    <Content Include="Admin\Authority\SysList.aspx" />
     <Content Include="Admin\Category\Edit.aspx" />
     <Content Include="Admin\Category\List.aspx" />
     <Content Include="Admin\Comments\Edit.aspx" />
@@ -1404,7 +1405,6 @@
     <Content Include="Admin\Handler\TreeData.ashx" />
     <Content Include="Admin\Handler\RoleJson.ashx" />
     <Content Include="Admin\Handler\Authority\Add.ashx" />
-    <Content Include="Admin\Handler\Authority\Delete.ashx" />
     <Content Include="Admin\Handler\Authority\Update.ashx" />
     <Content Include="Admin\Handler\Authority\List.ashx" />
     <Content Include="Admin\Handler\Authority\Search.ashx" />
@@ -1499,12 +1499,19 @@
     <Compile Include="Admin\Articles\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Authority\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
+    <Compile Include="Admin\Authority\RoleList.aspx.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Authority\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
+    <Compile Include="Admin\Authority\RoleList.aspx.designer.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Authority\SysList.aspx.cs">
+      <DependentUpon>SysList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Authority\SysList.aspx.designer.cs">
+      <DependentUpon>SysList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Category\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
@@ -1543,9 +1550,6 @@
     </Compile>
     <Compile Include="Admin\Handler\Authority\Add.ashx.cs">
       <DependentUpon>Add.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Handler\Authority\Delete.ashx.cs">
-      <DependentUpon>Delete.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Handler\Authority\List.ashx.cs">
       <DependentUpon>List.ashx</DependentUpon>
@@ -1930,6 +1934,9 @@
       <Project>{2bf8106a-c3cd-435b-a35b-69e89e7356c0}</Project>
       <Name>BigDogShop.Web.Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

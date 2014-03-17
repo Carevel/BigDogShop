@@ -19,7 +19,7 @@ namespace BigDogShop.BLL
             return Dal.Add(model);
         }
 
-        public static bool Delete(int id)
+        public static string Delete(string id)
         {
             return Dal.Delete(id);
         }
@@ -29,17 +29,17 @@ namespace BigDogShop.BLL
             return Dal.Update(model);
         }
 
-        public static RoleInfo GetById(int id)
+        public static string GetById(string id)
         {
             return Dal.GetById(id);
         }
 
-        public static DataTable GetList()
+        public static string GetList()
         {
             return Dal.GetList();
         }
 
-        public static DataTable GetListByName(string name)
+        public static string GetListByName(string name)
         {
             return Dal.GetListByName(name);
         }
