@@ -112,7 +112,8 @@ namespace BigDogShop.SQLServerDAL
         public bool Delete(string usernames)
         {
             StringBuilder sql = new StringBuilder();
-            SqlTransaction trans=new SqlTransaction();
+            SqlConnection con = new SqlConnection(SQLHelper.ConnString);
+            SqlTransaction trans = con.BeginTransaction();
             bool success = true;
             string[] names = usernames.Split(new char[] { ',' });
             for (int i = 0; i < names.Length; i++)

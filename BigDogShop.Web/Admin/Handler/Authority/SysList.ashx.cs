@@ -21,8 +21,26 @@ namespace BigDogShop.Web.Admin.Handler.Authority
         {
             context.Response.ContentType = "text/plain";
             string name = context.Request.Params["Name"] != null ? context.Request.Params["Name"] : "";
+            string type = context.Request.Params["type"] != null ? context.Request.Params["type"] : "";
             StringBuilder sql = new StringBuilder();
             StringBuilder json = new StringBuilder();
+            switch (type)
+            { 
+                case "GetList":
+                    
+            }
+            if(type=="GetList")
+            {
+               
+            }
+
+
+            context.Response.Write(json.ToString());
+        }
+        public static string GetList(string name="")
+        {
+            StringBuilder json = new StringBuilder();
+            StringBuilder sql = new StringBuilder();
             sql.Append("select Id,User_Name,Real_Name,User_Photo_Url,E_Mail,Is_Lock,Created_Date from BigDog_Admin where 1=1 ");
             if (name != "")
             {
@@ -45,12 +63,12 @@ namespace BigDogShop.Web.Admin.Handler.Authority
                 json.Remove(json.Length - 1, 1);
                 json.Append("]");
             }
-            context.Response.Write(json.ToString());
-        }
-        public static string str()
-        {
-            string json = "a";
             return json.ToString();
+        }
+
+        public static string Add(string username,string password)
+        {
+
         }
 
         public bool IsReusable
