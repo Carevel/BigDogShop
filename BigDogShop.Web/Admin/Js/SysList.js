@@ -16,7 +16,7 @@
         nowrap: true,
         method:'post',
         autoRowHeight: false,
-        url: '/Admin/Authority/SysList.aspx/GetList',
+        url: '/Admin/Handler/Authority/SysList.ashx',
         idField: 'Id',
         striped: true,
         columns: [[
@@ -76,8 +76,14 @@
         $("#dialog_add").dialog('close');
     });
     $("#btnDel").click(function () {
-        var row = $("#data").datagrid('getSelected');
-        var id = row.Id;
+        var usernames="";
+        var rows = $("#data").datagrid('getChecked');
+        for (var i = 0; i < rows.length; i++)
+        {
+            usernames = usernames + rows[i].User_Name + ",";
+        }
+        usernames = usernames.substring(0, id.length - 1);
+        //var id = row.Id;
         if (row) {
             $.messager.confirm("提示信息", "确定要删除吗？", function (r) {
                 if (r) {
@@ -85,7 +91,7 @@
                         type: "post",
                         url: "/Admin/Authority/SysList.aspx/Delete",
                         contentType: "application/json",
-                        data: "{'id':'" + id + "'}",
+                        data: "{'usernames':'" + usernames + "'}",
                         success: function (result) {
                             var s = $.parseJSON(result.d)[0];
                             if (s.success) {

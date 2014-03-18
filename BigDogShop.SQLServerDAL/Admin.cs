@@ -107,16 +107,34 @@ namespace BigDogShop.SQLServerDAL
         /// <summary>
         /// 删除记录
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="usernames"></param>
         /// <returns></returns>
-        public bool Delete(int id)
+        public bool Delete(string usernames)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("delete from BigDog_Admin where Id=@Id");
-            SqlParameter[] parms = new SqlParameter[] {
+            SqlTransaction trans=new SqlTransaction();
+            bool success = true;
+            string[] names = usernames.Split(new char[] { ',' });
+            for (int i = 0; i < names.Length; i++)
+            {
+                sql.Append("delete from BigDog_Admin where Id=@Id");
+                SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@Id",SqlDbType.NVarChar,50)             
-            };
-            return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
+                };
+                SQLHelper.ExecuteNonQuery(trans, CommandType.Text, sql.ToString(), parms);
+                
+            }
+            try
+            {
+                trans.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                return false;
+            }
+                      
         }
 
         /// <summary>
@@ -182,7 +200,7 @@ namespace BigDogShop.SQLServerDAL
             return SQLHelper.GetDs(sql.ToString()).Tables[0];
         }
 
-        public DataTable GetList(string name="")
+        public DataTable GetList(string name = "")
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("delete from BigDog_Admin where 1=1 ");
