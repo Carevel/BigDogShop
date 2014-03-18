@@ -20,7 +20,7 @@ namespace BigDogShop.DBUtility
         /// <summary>
         /// 連接字符串
         /// </summary>
-        public static string ConnString = ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString;
+        public static string ConnString = ConfigurationManager.ConnectionStrings["SqlConnString"].ConnectionString;
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
         public static SqlDataAdapter rdr;
 

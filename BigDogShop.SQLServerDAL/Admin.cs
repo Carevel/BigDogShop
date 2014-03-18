@@ -20,7 +20,7 @@ namespace BigDogShop.SQLServerDAL
         public bool Exists(int id)
         {
             StringBuilder sql = new StringBuilder();
-           
+
             sql.Append("select count(1) from BigDog_Admin where Id=@Id ");
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@Id",SqlDbType.NVarChar,50)             
@@ -172,6 +172,28 @@ namespace BigDogShop.SQLServerDAL
                 return GetById(Convert.ToInt32(val));
             }
             return null;
+        }
+
+
+        public DataTable GetList()
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("delete from BigDog_Admin ");
+            return SQLHelper.GetDs(sql.ToString()).Tables[0];
+        }
+
+        public DataTable GetList(string name="")
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("delete from BigDog_Admin where 1=1 ");
+            if (name != "")
+            {
+                sql.Append(" and User_Name like '%" + name + "%'");
+            }
+            SqlParameter[] parms = new SqlParameter[] {
+                new SqlParameter("@Id",SqlDbType.NVarChar,50)             
+            };
+            return SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
         }
     }
 }

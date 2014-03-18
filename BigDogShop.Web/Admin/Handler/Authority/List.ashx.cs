@@ -19,14 +19,18 @@ namespace BigDogShop.Web.Admin.Handler.Authority
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
+            string name = context.Request.Params["Name"] != null ? context.Request.Params["Name"] : "";
             StringBuilder sql = new StringBuilder();
             StringBuilder json = new StringBuilder();
-            sql.Append("select Id,Name,Description,Created_Date from BigDog_Admin_Role");
+            sql.Append("select Id,Name,Description,Created_Date from BigDog_Admin_Role where 1=1 ");
+            if (name != "")
+            {
+                sql.Append(" and Name like '%" + name + "%' ");
+            }
             DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
             if (dt.Rows.Count > 0)
             {
                 json.Append("[");
-                //json.Append("\"result\":\"1\",\"data\":");
                 foreach (DataRow dr in dt.Rows)
                 {
                     json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");

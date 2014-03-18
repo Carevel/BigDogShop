@@ -15,7 +15,7 @@
 <body>
     <form id="form1" runat="server">
         <Admin:Ad ID="ad1" runat="server" />
-        <div class="easyui-layout" style="width:1200px; height: 600px; margin-left:auto;margin-right:auto;">
+        <div class="easyui-layout" style="width:1200px; height: 680px; margin-left:auto;margin-right:auto;">
             <div region="west" split="true" title="管理菜单" style="width: 200px">
                 <ul id="tt" class="easyui-tree" style="margin-left:10px; margin-top:20px;">
                 </ul>
@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+        <AdminB:Ab ID="ab1" runat="server" />
     </form>
 </body>
 </html>

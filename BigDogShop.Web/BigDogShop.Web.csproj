@@ -75,6 +75,7 @@
     <Content Include="Admin\Images\addImg.bmp" />
     <Content Include="Admin\Images\bg.gif" />
     <Content Include="Admin\Images\folder.bmp" />
+    <Content Include="Admin\Images\foot_bg.gif" />
     <Content Include="Admin\Images\head_bg.gif" />
     <Content Include="Admin\Images\Icons\add.png" />
     <Content Include="Admin\Images\Icons\add_outline.png" />
@@ -586,6 +587,8 @@
     <Content Include="Admin\Js\jquery.easyui.min.js" />
     <Content Include="Admin\Js\jquery.menu.js" />
     <Content Include="Admin\Js\jquery.min.js" />
+    <Content Include="Admin\Js\RoleList.js" />
+    <Content Include="Admin\Js\SysList.js" />
     <Content Include="Admin\Styles\themes\black\accordion.css" />
     <Content Include="Admin\Styles\themes\black\calendar.css" />
     <Content Include="Admin\Styles\themes\black\combo.css" />
@@ -1404,10 +1407,8 @@
     <Content Include="Admin\Styles\themes\metro\images\Thumbs.db" />
     <Content Include="Admin\Handler\TreeData.ashx" />
     <Content Include="Admin\Handler\RoleJson.ashx" />
-    <Content Include="Admin\Handler\Authority\Add.ashx" />
-    <Content Include="Admin\Handler\Authority\Update.ashx" />
     <Content Include="Admin\Handler\Authority\List.ashx" />
-    <Content Include="Admin\Handler\Authority\Search.ashx" />
+    <Content Include="Admin\Handler\Authority\SysList.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
     <Content Include="Js\jquery-1.4.1.js" />
@@ -1548,17 +1549,11 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Handler\Authority\Add.ashx.cs">
-      <DependentUpon>Add.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Handler\Authority\List.ashx.cs">
       <DependentUpon>List.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Handler\Authority\Search.ashx.cs">
-      <DependentUpon>Search.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Handler\Authority\Update.ashx.cs">
-      <DependentUpon>Update.ashx</DependentUpon>
+    <Compile Include="Admin\Handler\Authority\SysList.ashx.cs">
+      <DependentUpon>SysList.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Handler\RoleJson.ashx.cs">
       <DependentUpon>RoleJson.ashx</DependentUpon>

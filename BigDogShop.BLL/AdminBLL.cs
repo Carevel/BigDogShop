@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using BigDogShop.IDAL;
 using BigDogShop.Model;
 using BigDogShop.DALFactory;
@@ -51,6 +52,11 @@ namespace BigDogShop.BLL
         public static AdminInfo GetById(int id)
         {
             return Dal.GetById(id);
+        }
+
+        public static DataTable GetList(string name="")
+        {
+            return Dal.GetList(name);
         }
     }
 }

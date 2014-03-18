@@ -16,5 +16,6 @@ namespace BigDogShop.IDAL
         bool Delete(int id);
         AdminInfo GetById(int id);
         AdminInfo GetModel(string user_name, string password);
+        DataTable GetList(string name="");
     }
 }

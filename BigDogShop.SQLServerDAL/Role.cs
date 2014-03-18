@@ -11,20 +11,22 @@ using System.Data.SqlClient;
 
 namespace BigDogShop.SQLServerDAL
 {
-    public class Role:IRole
+    public class Role : IRole
     {
         public bool Add(RoleInfo model)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("insert into BigDog_Admin_Role(Name,Description) values(@name,@desc)");
+            sql.Append("insert into BigDog_Admin_Role(Id,Name,Description) values(@id,@name,@desc)");
             SqlParameter[] parms = new SqlParameter[] { 
+                new SqlParameter("@id",SqlDbType.NVarChar,50),
                 new SqlParameter("@name",SqlDbType.NVarChar,50),
                 new SqlParameter("@desc",SqlDbType.NVarChar,200)
             };
-            parms[0].Value = model.Name;
-            parms[1].Value = model.Description;
+            parms[0].Value = model.Id;
+            parms[1].Value = model.Name;
+            parms[2].Value = model.Description;
             try
-            { 
+            {
                 return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
             }
             catch (Exception ex)
@@ -32,21 +34,41 @@ namespace BigDogShop.SQLServerDAL
                 throw new Exception(ex.Message);
             }
             finally { }
-            
+
         }
 
+        /// <summary>
+        /// 支持批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string Delete(string id)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("delete from BigDog_Admin_Role where Id=@Id");
-            SqlParameter[] parms = new SqlParameter[] { 
-                new SqlParameter("@Id",SqlDbType.NVarChar,50)
-            };
-            parms[0].Value = id;
-            bool success= SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
             StringBuilder json = new StringBuilder();
+            bool success = true ;
+            string[] arr = id.Split(new char[] { ',' });
+            for (var i = 0; i < arr.Length; i++)
+            {
+                sql.Append("delete from BigDog_Admin_Role where Id in (@Id)");
+                SqlParameter[] parms = new SqlParameter[] { 
+                    new SqlParameter("@Id",SqlDbType.NVarChar,50)
+                };
+                parms[0].Value = arr[i];
+                success = SQLHelper.ExecuteNonQuery(SQLHelper.ConnString, CommandType.Text, sql.ToString(), parms) > 0;
+                if (!success)
+                {
+                    json.Append("[");
+                    json.Append("{\"success\":\"" + success + "\"}");
+                    json.Append("]");
+                    return json.ToString();
+                }
+            }
+
+            //bool success= SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
+            
             json.Append("[");
-            json.Append("{\"success\":\""+success+"\"}");
+            json.Append("{\"success\":\"" + success + "\"}");
             json.Append("]");
             return json.ToString();
         }
@@ -58,7 +80,7 @@ namespace BigDogShop.SQLServerDAL
             SqlParameter[] parms = new SqlParameter[] { 
                 new SqlParameter("@name",SqlDbType.NVarChar,50),
                 new SqlParameter("@desc",SqlDbType.NVarChar,200),
-                new SqlParameter("@id",SqlDbType.Int)
+                new SqlParameter("@id",SqlDbType.NVarChar,50)
             };
             parms[0].Value = model.Name;
             parms[1].Value = model.Description;
