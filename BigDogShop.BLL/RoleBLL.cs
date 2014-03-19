@@ -13,7 +13,7 @@ namespace BigDogShop.BLL
 {
     public class RoleBLL
     {
-        private static IRole Dal = Facotry.CreateRole();
+        private static IRole Dal = Facotry.CreateOperate();
         public static bool Add(RoleInfo model)
         {
             return Dal.Add(model);

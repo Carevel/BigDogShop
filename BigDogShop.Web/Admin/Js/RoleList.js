@@ -9,8 +9,9 @@
     });
     $("#data").datagrid({
         title: "角色列表",
-        width: 965,
-        height: 550,
+        fit: true,
+        //width: 965,
+        //height: 550,
         nowrap: true,
         autoRowHeight: false,
         url: '/Admin/Handler/Authority/List.ashx',

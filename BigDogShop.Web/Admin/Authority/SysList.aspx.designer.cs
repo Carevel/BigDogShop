@@ -40,22 +40,13 @@ namespace BigDogShop.Web.Admin.Authority {
         protected global::System.Web.UI.WebControls.TextBox txt_user_name;
         
         /// <summary>
-        /// txt_real_name control.
+        /// txt_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_real_name;
-        
-        /// <summary>
-        /// txt_pwd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_pwd;
+        protected global::System.Web.UI.WebControls.TextBox txt_password;
         
         /// <summary>
         /// txt_e_mail control.
@@ -67,30 +58,39 @@ namespace BigDogShop.Web.Admin.Authority {
         protected global::System.Web.UI.WebControls.TextBox txt_e_mail;
         
         /// <summary>
-        /// txt_eid control.
+        /// img_user control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_eid;
+        protected global::System.Web.UI.HtmlControls.HtmlImage img_user;
         
         /// <summary>
-        /// txt_ename control.
+        /// txt_edit_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_ename;
+        protected global::System.Web.UI.WebControls.TextBox txt_edit_name;
         
         /// <summary>
-        /// txt_edesc control.
+        /// txt_edit_e_mail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_edesc;
+        protected global::System.Web.UI.WebControls.TextBox txt_edit_e_mail;
+        
+        /// <summary>
+        /// txt_edit_pwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_edit_pwd;
     }
 }

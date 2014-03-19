@@ -48,6 +48,7 @@
     <Compile Include="LinkInfo.cs" />
     <Compile Include="MenuInfo.cs" />
     <Compile Include="NewsInfo.cs" />
+    <Compile Include="OperateInfo.cs" />
     <Compile Include="ProductImageInfo.cs" />
     <Compile Include="ProductInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

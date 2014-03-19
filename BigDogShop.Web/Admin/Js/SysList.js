@@ -1,28 +1,20 @@
 ﻿$(function () {
-    //$.ajax({
-    //    type: 'post',
-    //    url: '/Admin/Authority/SysList.aspx/GetList',
-    //    data:"{'user_name':'a'}",
-    //    contentType: 'application/json',
-    //    success: function (data)
-    //    {
-    //        alert('a');
-    //    }
-    //});
     $("#data").datagrid({
-        title: "角色列表",
-        width: 965,
-        height: 550,
+        title: "系统管理员列表",
+        fit: true,
+        //width: 965,
+        //height: 635,
+        //filter:true,
         nowrap: true,
-        method:'post',
+        method: 'post',
         autoRowHeight: false,
-        url: '/Admin/Handler/Authority/SysList.ashx',
+        url: '/Admin/Handler/Authority/SysList.ashx?type=GetList',
         idField: 'Id',
         striped: true,
         columns: [[
                 { field: 'ck', checkbox: true, rowspan: 2 },
-                { field: 'Id', title: '用户Id', width: 150, rowspan: 2 },
-                { field: 'User_Photo_Url', title: '用户头像', width: 150, rowspan: 2 },
+                { field: 'Id', title: 'Id', width: 150, rowspan: 2 },
+                { field: 'User_Photo_Url', title: '头像', width: 150, rowspan: 2 },
                 {
                     field: 'User_Name', title: '名称', width: 120, rowspan: 3, sortable: true,
                     sorter: function (a, b) {
@@ -54,12 +46,12 @@
         var e_mail = $("#txt_e_mail").val();
         $.ajax({
             type: 'post',
-            url: '/Admin/Authority/SysList.aspx/Add',
-            data: "{'user_name':'" + user_name + "','real_name':'" + real_name + "','password':'" + password + "','e_mail':'"+e_mail+"'}",
+            url: '/Admin/Handler/Authority/SysList.ashx?type=Add',
+            data: { user_name: user_name, real_name: real_name, password: password, e_mail: e_mail },
             contentType: 'application/json',
             datatype: 'json',
             success: function (data) {
-                var json = eval(data.d)[0];
+                var json = eval(data)[0];
                 $.messager.alert('操作提示', '操作成功!');
                 $("#dialog_add").dialog('close');
                 $("#data").datagrid('reload');
@@ -76,24 +68,28 @@
         $("#dialog_add").dialog('close');
     });
     $("#btnDel").click(function () {
-        var usernames="";
+        var ids = "";
         var rows = $("#data").datagrid('getChecked');
-        for (var i = 0; i < rows.length; i++)
+        if (rows.length == 0)
         {
-            usernames = usernames + rows[i].User_Name + ",";
+            $.messager.alert("操作提示", "请选择要删除的项");
+            return false;
         }
-        usernames = usernames.substring(0, id.length - 1);
-        //var id = row.Id;
-        if (row) {
+        for (var i = 0; i < rows.length; i++) {
+            ids = ids + rows[i].Id + ",";
+        }
+        ids = ids.substring(0, ids.length - 1);
+        if (rows) {
             $.messager.confirm("提示信息", "确定要删除吗？", function (r) {
                 if (r) {
                     $.ajax({
-                        type: "post",
-                        url: "/Admin/Authority/SysList.aspx/Delete",
+                        type: "get",
+                        url: "/Admin/Handler/Authority/SysList.ashx?type=Delete",
                         contentType: "application/json",
-                        data: "{'usernames':'" + usernames + "'}",
+                        data: { ids: ids },
+                        datatype: "json",
                         success: function (result) {
-                            var s = $.parseJSON(result.d)[0];
+                            var s = $.parseJSON(result)[0];
                             if (s.success) {
                                 $.messager.show({
                                     title: '操作提示',
@@ -113,6 +109,7 @@
                 }
             });
         }
+
     });
     $("#btnEdit").click(function () {
         var row = $("#data").datagrid("getSelected");
@@ -121,9 +118,9 @@
             var id = row.Id;
             $.ajax({
                 type: "post",
-                url: "/Admin/Authority/SysList.aspx/GetById",
+                url: "/Admin/Handler/Authority/SysList.ashx?type=GetById",
                 contentType: "application/json",
-                data: "{'id':'" + id + "'}",
+                data: { id: id },
                 datatype: "json",
                 success: function (data) {
                     var a = $.parseJSON(data.d)[0];
@@ -150,9 +147,9 @@
         var desc = $("#txt_edesc").val();
         $.ajax({
             type: "post",
-            url: "/Admin/Authority/SysList.aspx/Update",
+            url: "/Admin/Handler/Authority/SysList.ashx?type=Update",
             contentType: "application/json",
-            data: "{'id':'" + id + "','name':'" + name + "','desc':'" + desc + "'}",
+            data: { id: id, name: name, desc: desc },
             datatype: "json",
             success: function (data) {
                 var s = $.parseJSON(result.d)[0];

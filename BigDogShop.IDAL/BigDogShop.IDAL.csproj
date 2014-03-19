@@ -47,6 +47,7 @@
     <Compile Include="ILink.cs" />
     <Compile Include="IMenu.cs" />
     <Compile Include="INews.cs" />
+    <Compile Include="IOperate.cs" />
     <Compile Include="IProduct.cs" />
     <Compile Include="IProductImages.cs" />
     <Compile Include="IProvider.cs" />

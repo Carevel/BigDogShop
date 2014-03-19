@@ -46,6 +46,7 @@
     <Compile Include="LinkBLL.cs" />
     <Compile Include="MenuBLL.cs" />
     <Compile Include="NewsBLL.cs" />
+    <Compile Include="OperateBLL.cs" />
     <Compile Include="ProductBLL.cs" />
     <Compile Include="ProductImagesBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

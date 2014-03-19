@@ -44,9 +44,9 @@ namespace BigDogShop.BLL
             return Dal.Update(admin);
         }
 
-        public static bool Delete(string usernames)
+        public static bool Delete(string id)
         {
-            return Dal.Delete(usernames);
+            return Dal.Delete(id);
         }
 
         public static AdminInfo GetById(int id)

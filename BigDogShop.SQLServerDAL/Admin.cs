@@ -105,37 +105,44 @@ namespace BigDogShop.SQLServerDAL
         }
 
         /// <summary>
-        /// 删除记录
+        /// 删除记录(string类型id)
         /// </summary>
-        /// <param name="usernames"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public bool Delete(string usernames)
+        public bool Delete(string id)
         {
+            bool result = true;
             StringBuilder sql = new StringBuilder();
-            SqlConnection con = new SqlConnection(SQLHelper.ConnString);
-            SqlTransaction trans = con.BeginTransaction();
-            bool success = true;
-            string[] names = usernames.Split(new char[] { ',' });
-            for (int i = 0; i < names.Length; i++)
-            {
-                sql.Append("delete from BigDog_Admin where Id=@Id");
-                SqlParameter[] parms = new SqlParameter[] {
-                new SqlParameter("@Id",SqlDbType.NVarChar,50)             
-                };
-                SQLHelper.ExecuteNonQuery(trans, CommandType.Text, sql.ToString(), parms);
-                
-            }
+            SqlConnection conn = new SqlConnection(SQLHelper.ConnString);
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            string[] idArr = id.Split(new char[] { ',' });
             try
             {
+                for (int i = 0; i < idArr.Length; i++)
+                {
+                    sql.Append("delete from BigDog_Admin where Id=@Id");
+                    SqlParameter[] parms = new SqlParameter[] {
+                            new SqlParameter("@Id",SqlDbType.NVarChar,50)             
+                        };
+                    parms[0].Value = idArr[i];
+                    SQLHelper.ExecuteNonQuery(trans, CommandType.Text, sql.ToString(), parms);
+                    sql.Clear();
+                }
                 trans.Commit();
-                return true;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 trans.Rollback();
-                return false;
+                result = false;
+                throw new ApplicationException(e.Message);
+                
             }
-                      
+            finally
+            {
+                conn.Close();
+            }
+            return result;
         }
 
         /// <summary>

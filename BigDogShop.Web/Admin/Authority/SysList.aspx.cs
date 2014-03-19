@@ -22,9 +22,9 @@ namespace BigDogShop.Web.Admin.Authority
         }
 
         [WebMethod]
-        public static string GetList(string usernames= "")
+        public static string GetList(string name= "")
         {
-            DataTable dt = AdminBLL.GetList(usernames);
+            DataTable dt = AdminBLL.GetList(name);
             StringBuilder json = new StringBuilder();
             if (dt.Rows.Count > 0)
             {
@@ -61,9 +61,9 @@ namespace BigDogShop.Web.Admin.Authority
         }
 
         [WebMethod]
-        public static string Delete(string usernames)
+        public static string Delete(string ids)
         {
-            bool successs = AdminBLL.Delete(usernames);
+            bool successs = AdminBLL.Delete(ids);
             StringBuilder json = new StringBuilder();
             json.Append("[{");
             json.Append("\"success\":\"" + successs + "\"");
