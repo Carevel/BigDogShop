@@ -38,11 +38,10 @@ namespace BigDogShop.Web.Admin.Handler.Authority
                     json = GetList(name);
                     break;
                 case "Add":
-                    string user_name = context.Request.Params["user_name"].ToString();
-                    string real_name = context.Request.Params["real_name"].ToString();
-                    string password = context.Request.Params["password"].ToString();
-                    string e_mail = context.Request.Params["e_mail"].ToString();
-                    json = Add(user_name, real_name, password, e_mail);
+                    string user_name = context.Request["user_name"].ToString();
+                    string password = context.Request["password"].ToString();
+                    string e_mail = context.Request["e_mail"].ToString();
+                    json = Add(user_name, password, e_mail);
                     break;
                 case "Delete":
                     string ids="";
@@ -59,11 +58,10 @@ namespace BigDogShop.Web.Admin.Handler.Authority
                 case "Update":
                     string id = context.Request.Params["id"].ToString();
                     string u_user_name = context.Request.Params["user_name"].ToString();
-                    string u_real_name = context.Request.Params["real_name"].ToString();
                     string u_password = context.Request.Params["password"].ToString();
                     string u_is_lock = context.Request.Params["is_lock"].ToString();
                     string u_e_mail = context.Request.Params["e_mail"].ToString();
-                    json = Update(id, u_user_name, u_real_name, u_password, u_e_mail, u_is_lock);
+                    json = Update(id, u_user_name, u_password, u_e_mail, u_is_lock);
                     break;
                 case "Edit":
                     string id1 = context.Request.Params["id"].ToString();
@@ -91,7 +89,6 @@ namespace BigDogShop.Web.Admin.Handler.Authority
                 {
                     json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");
                     json.Append(",\"User_Name\":\"" + dr["User_Name"].ToString() + "\"");
-                    json.Append(",\"Real_Name\":\"" + dr["Real_Name"].ToString() + "\"");
                     json.Append(",\"User_Photo_Url\":\"" + dr["User_Photo_Url"].ToString() + "\"");
                     json.Append(",\"E_Mail\":\"" + dr["E_Mail"].ToString() + "\"");
                     json.Append(",\"Is_Lock\":\"" + dr["Is_Lock"].ToString() + "\"");
@@ -103,11 +100,10 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             return json.ToString();
         }
 
-        public static string Add(string user_name, string real_name, string password, string e_mail)
+        public static string Add(string user_name, string password, string e_mail)
         {
             AdminInfo admin = new AdminInfo();
             admin.User_Name = user_name;
-            admin.Real_Name = real_name;
             admin.Password = password;
             admin.E_Mail = e_mail;
             bool successs = AdminBLL.Add(admin);
@@ -126,13 +122,12 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             json.Append("}]");
             return json.ToString();
         }
-        public static string Update(string id, string user_name, string real_name, string password,
+        public static string Update(string id, string user_name,  string password,
             string e_mail, string is_lock)
         {
             AdminInfo admin = new AdminInfo();
 
             admin.User_Name = user_name;
-            admin.Real_Name = real_name;
             admin.Password = password;
             admin.Is_Lock = is_lock;
             admin.Id = Convert.ToInt32(id);

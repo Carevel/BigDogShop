@@ -13,13 +13,13 @@ namespace BigDogShop.BLL
 {
     public class RoleBLL
     {
-        private static IRole Dal = Facotry.CreateOperate();
+        private static IRole Dal = Facotry.CreateRole();
         public static bool Add(RoleInfo model)
         {
             return Dal.Add(model);
         }
 
-        public static string Delete(string id)
+        public static bool Delete(string id)
         {
             return Dal.Delete(id);
         }
@@ -29,19 +29,16 @@ namespace BigDogShop.BLL
             return Dal.Update(model);
         }
 
-        public static string GetById(string id)
+        public static RoleInfo GetById(string id)
         {
             return Dal.GetById(id);
         }
 
-        public static string GetList()
+        public static DataTable GetList(string name="")
         {
-            return Dal.GetList();
+            return Dal.GetList(name);
         }
 
-        public static string GetListByName(string name)
-        {
-            return Dal.GetListByName(name);
-        }
+       
     }
 }

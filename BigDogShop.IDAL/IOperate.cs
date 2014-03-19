@@ -11,7 +11,7 @@ namespace BigDogShop.IDAL
    public  interface IOperate
     {
        bool Add(OperateInfo model);
-       bool Delete(int id);
+       bool Delete(string ids);
        bool Update(OperateInfo model);
        OperateInfo GetById(int id);
        DataTable GetList(string name="");

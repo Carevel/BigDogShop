@@ -52,18 +52,16 @@ namespace BigDogShop.SQLServerDAL
         public bool Add(AdminInfo admin)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("insert into BigDog_Admin (Role_Id,Role_Type,User_Name,Real_Name,Password,E_Mail)");
-            sql.Append(" values(1,1,@User_Name,@Real_Name,@Password,@E_Mail)");
+            sql.Append("insert into BigDog_Admin (Role_Id,Role_Type,User_Name,Password,E_Mail)");
+            sql.Append(" values(1,1,@User_Name,@Password,@E_Mail)");
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@User_Name",SqlDbType.NVarChar,50),
-                new SqlParameter("@Real_Name",SqlDbType.NVarChar,50),
                 new SqlParameter("@Password",SqlDbType.NVarChar,50),
                 new SqlParameter("@E_Mail",SqlDbType.NVarChar,50)
             };
             parms[0].Value = admin.User_Name;
-            parms[1].Value = admin.Real_Name;
-            parms[2].Value = admin.Password;
-            parms[3].Value = admin.E_Mail;
+            parms[1].Value = admin.Password;
+            parms[2].Value = admin.E_Mail;
             return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
         }
 

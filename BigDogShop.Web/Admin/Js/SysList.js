@@ -2,9 +2,6 @@
     $("#data").datagrid({
         title: "系统管理员列表",
         fit: true,
-        //width: 965,
-        //height: 635,
-        //filter:true,
         nowrap: true,
         method: 'post',
         autoRowHeight: false,
@@ -21,8 +18,6 @@
                         return (a > b ? 1 : -1);
                     }
                 },
-                { field: 'Real_Name', title: '真实姓名', width: 120, rowspan: 3 },
-
                 { field: 'E_Mail', title: 'E_Mail', width: 150, rowspan: 2 },
                 { field: 'Is_Lock', title: '是否锁定', width: 150, rowspan: 2 }
         ]],
@@ -41,18 +36,23 @@
     });
     $("#btnSubmitAdd").click(function () {
         var user_name = $("#txt_user_name").val();
-        var real_name = $("#txt_real_name").val();
         var password = $("#txt_pwd").val();
         var e_mail = $("#txt_e_mail").val();
+        //var data = ;
         $.ajax({
             type: 'post',
             url: '/Admin/Handler/Authority/SysList.ashx?type=Add',
-            data: { user_name: user_name, real_name: real_name, password: password, e_mail: e_mail },
-            contentType: 'application/json',
+            //contentType: 'application/json',
+            //data: { user_name: user_name },
+            //data:'user_name='+user_name+'&password='+password+'&e_mail'+e_mail,
+            data: { user_name: user_name, password: password, e_mail: e_mail },
             datatype: 'json',
             success: function (data) {
                 var json = eval(data)[0];
-                $.messager.alert('操作提示', '操作成功!');
+                $.messager.show({
+                    title: '操作提示',
+                    msg: '操作成功.'
+                });
                 $("#dialog_add").dialog('close');
                 $("#data").datagrid('reload');
             },
@@ -70,8 +70,7 @@
     $("#btnDel").click(function () {
         var ids = "";
         var rows = $("#data").datagrid('getChecked');
-        if (rows.length == 0)
-        {
+        if (rows.length == 0) {
             $.messager.alert("操作提示", "请选择要删除的项");
             return false;
         }
@@ -112,10 +111,22 @@
 
     });
     $("#btnEdit").click(function () {
-        var row = $("#data").datagrid("getSelected");
-        if (row) {
+        $("#txt_id").val("");
+        $("#txt_name").val("");
+        $("#txt_desc").val("");
+        var rows = $("#data").datagrid("getChecked");
+        if (rows.length > 1) {
+            $.messager.alert("操作提示", "只能选择一项进行编辑.");
+            return false;
+        }
+        if (rows.length == 0)
+        {
+            $.messager.alert("操作提示", "请选择一项进行编辑.");
+            return false;
+        }
+        if (rows) {
             $("#dialog_edit").dialog('open');
-            var id = row.Id;
+            var id = rows.Id;
             $.ajax({
                 type: "post",
                 url: "/Admin/Handler/Authority/SysList.ashx?type=GetById",
@@ -131,14 +142,8 @@
                 }
             });
         }
-        else {
-            $.messager.alert("操作提示", "请选择一项!");
-        }
     });
-    $("#btnCancelEdit").click(function () {
-        $("#txt_id").val("");
-        $("#txt_name").val("");
-        $("#txt_desc").val("");
+    $("#btnCancelEdit").click(function () {  
         $("#dialog_edit").dialog('close');
     });
     $("#btnSubmitEdit").click(function () {
@@ -148,7 +153,6 @@
         $.ajax({
             type: "post",
             url: "/Admin/Handler/Authority/SysList.ashx?type=Update",
-            contentType: "application/json",
             data: { id: id, name: name, desc: desc },
             datatype: "json",
             success: function (data) {
@@ -171,5 +175,37 @@
                 }
             }
         });
+    });
+    $("#btnDetail").click(function () {
+        $("#txt_id").val("");
+        $("#txt_name").val("");
+        $("#txt_desc").val("");
+        var rows = $("#data").datagrid("getChecked");
+        if (rows.length > 1) {
+            $.messager.alert("操作提示", "只能选择一项显示详细.");
+            return false;
+        }
+        if (rows.length == 0) {
+            $.messager.alert("操作提示", "请选择一项显示详细.");
+            return false;
+        }
+        if (rows) {
+            $("#dialog_edit").dialog('open');
+            var id = rows.Id;
+            $.ajax({
+                type: "post",
+                url: "/Admin/Handler/Authority/SysList.ashx?type=GetById",
+                contentType: "application/json",
+                data: { id: id },
+                datatype: "json",
+                success: function (data) {
+                    var a = $.parseJSON(data.d)[0];
+                    $("#txt_eid").val(a.Id);
+                    $("#txt_ename").val(a.Name);
+                    $("#txt_edesc").val(a.Description);
+                    $("#dialog_edit").dialog('open');
+                }
+            });
+        }
     });
 });

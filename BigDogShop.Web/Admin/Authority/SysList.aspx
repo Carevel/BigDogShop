@@ -44,7 +44,7 @@
             <a href="#" id="btnSearch" class="easyui-linkbutton" plain="true" iconcls="icon-search">查询</a>
             <a href="#" id="btnAdd" class="easyui-linkbutton" plain="true" iconcls="icon-add">添加</a>
             <a href="#" id="btnEdit" class="easyui-linkbutton" plain="true" iconcls="icon-edit">编辑</a>
-            <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-details" onclick="javascript:alert('Ok')">详细</a>
+            <a href="#" id="btnDetail" class="easyui-linkbutton" plain="true" iconcls="icon-details">详细</a>
             <a href="#" id="btnDel" class="easyui-linkbutton" plain="true" iconcls="icon-remove">删除</a>
         </div>
         </div>
@@ -65,7 +65,7 @@
                 <div class="info_blank">
                     <span class="t_blank">密码</span>
                     <span class="o_blank">
-                        <asp:TextBox ID="txt_password" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txt_pwd" runat="server"></asp:TextBox>
                     </span>
                 </div>
             </div>
@@ -145,6 +145,47 @@
         <div id="dlg-buttonsEdit">
             <a href="#" id="btnSubmitEdit" class="easyui-linkbutton" iconcls="icon-ok">更新</a>
             <a href="#" id="btnCancelEdit" class="easyui-linkbutton" iconcls="icon-cancel">取消</a>
+        </div>
+
+        <!--详细-->
+        <div id="Div1" class="easyui-dialog" style="padding: 5px; width: 350px;"
+            title="管理员信息详细" iconcls="icon-edit" buttons="#dlg-buttonsEdit" closed="true" modal="true">
+            <div class="info">
+                <div class="info_blank">
+                    <span class="t_blank">名称</span>
+                    <span class="o_blank">
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    </span>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info_blank">
+                    <span class="t_blank">E_mail</span>
+                    <span class="o_blank">
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </span>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info_blank">
+                    <span class="t_blank">密码</span>
+                    <span class="o_blank">
+                        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                    </span>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info_blank">
+                    <span class="t_blank">是否锁定</span>
+                    <span class="o_blank">
+                        <select id="Select1" style="width: 50px;">
+                            <option value="Y">是</option>
+                            <option value="F">否</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+
         </div>
 
     </form>

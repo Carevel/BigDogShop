@@ -11,13 +11,9 @@ namespace BigDogShop.IDAL
     public interface IRole
     {
         bool Add(RoleInfo model);
-        string Delete(string id);
+        bool Delete(string ids);
         bool Update(RoleInfo model);
-        string GetById(string id);
-        //RoleInfo GetById(int id);
-        //DataTable GetList();
-        string GetList();
-        //DataTable GetListByName(string name);
-        string GetListByName(string name);
+        RoleInfo GetById(string id);
+        DataTable GetList(string name="");
     }
 }

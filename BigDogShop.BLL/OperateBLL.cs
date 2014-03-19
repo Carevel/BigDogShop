@@ -19,9 +19,9 @@ namespace BigDogShop.BLL
             return Dal.Add(model);
         }
 
-        public static bool Delete(int id)
+        public static bool Delete(string ids)
         {
-            return Dal.Delete(id);
+            return Dal.Delete(ids);
         }
 
         public static bool Update(OperateInfo model)

@@ -12,7 +12,7 @@
             <b>管理员:<asp:Label ID="txt_admin_name" runat="server"></asp:Label></b>
             你好，欢迎光临
             <br />
-            <a href="Index.aspx">管理中心</a> |
+            <a href="Default.aspx">管理中心</a> |
             <a target="_blank" href="../Index.aspx">预览网站</a> |
             <asp:LinkButton ID="lbtn_Exit" runat="server" OnClick="lbtn_Click">安全退出</asp:LinkButton>
         </div>

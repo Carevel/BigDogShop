@@ -1407,7 +1407,7 @@
     <Content Include="Admin\Styles\themes\metro\images\Thumbs.db" />
     <Content Include="Admin\Handler\TreeData.ashx" />
     <Content Include="Admin\Handler\RoleJson.ashx" />
-    <Content Include="Admin\Handler\Authority\List.ashx" />
+    <Content Include="Admin\Handler\Authority\RoleList.ashx" />
     <Content Include="Admin\Handler\Authority\SysList.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
@@ -1549,8 +1549,8 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Handler\Authority\List.ashx.cs">
-      <DependentUpon>List.ashx</DependentUpon>
+    <Compile Include="Admin\Handler\Authority\RoleList.ashx.cs">
+      <DependentUpon>RoleList.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Handler\Authority\SysList.ashx.cs">
       <DependentUpon>SysList.ashx</DependentUpon>

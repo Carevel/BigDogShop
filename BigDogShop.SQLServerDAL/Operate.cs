@@ -72,6 +72,7 @@ namespace BigDogShop.SQLServerDAL
             return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
         }
 
+
         /// <summary>
         /// 更新记录
         /// </summary>
@@ -203,7 +204,6 @@ namespace BigDogShop.SQLServerDAL
             return null;
         }
 
-
         public DataTable GetList(string name = "")
         {
             StringBuilder sql = new StringBuilder();
@@ -215,8 +215,8 @@ namespace BigDogShop.SQLServerDAL
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@name",SqlDbType.NVarChar,50)             
             };
+           
             return SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
         }
     }
-
 }

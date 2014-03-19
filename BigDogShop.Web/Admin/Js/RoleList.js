@@ -53,7 +53,8 @@
         $.ajax({
             type: 'post',
             url: '/Admin/Authority/RoleList.aspx/Add',
-            data: "{'name':'" + name + "','desc':'" + desc + "','id':'" + id + "'}",
+            //data: "{'name':'" + name + "','desc':'" + desc + "','id':'" + id + "'}",
+            data: { name: name, id: id, desc: desc },
             contentType: 'application/json',
             datatype: 'json',
             success: function (data) {
@@ -84,7 +85,8 @@
                         type: "post",
                         url: "/Admin/Authority/RoleList.aspx/Delete",
                         contentType: "application/json",
-                        data: "{'id':'" + id + "'}",
+                        //data: "{'id':'" + id + "'}",
+                        data: { id: id },
                         success: function (result) {
                             var s = $.parseJSON(result.d)[0];
                             if (s.success) {
@@ -118,7 +120,8 @@
                 type: "post",
                 url: "/Admin/Authority/RoleList.aspx/GetById",
                 contentType: "application/json",
-                data: "{'id':'" + id + "'}",
+                //data: "{'id':'" + id + 
+                data: { id: id },
                 datatype: "json",
                 success: function (data) {
                     var a = $.parseJSON(data.d)[0];
@@ -147,7 +150,8 @@
             type: "post",
             url: "/Admin/Authority/RoleList.aspx/Update",
             contentType: "application/json",
-            data: "{'id':'" + id + "','name':'" + name + "','desc':'" + desc + "'}",
+            //data: "{'id':'" + id + "','name':'" + name + "','desc':'" + desc + "'}",
+            data: { id: id, name: name, desc: desc },
             datatype: "json",
             success: function (data) {
                 var s = $.parseJSON(result.d)[0];

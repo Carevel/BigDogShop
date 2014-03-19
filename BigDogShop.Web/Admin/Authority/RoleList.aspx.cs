@@ -21,49 +21,49 @@ namespace BigDogShop.Web.Admin.Authority
             }
         }
 
-        [WebMethod]
-        public static bool  Add(string name,string desc,string id)
-        {
-            RoleInfo role = new RoleInfo();
-            role.Name = name;
-            role.Description = desc;
-            role.Id = id;
-            return RoleBLL.Add(role);
-        }
+        //[WebMethod]
+        //public static bool  Add(string name,string desc,string id)
+        //{
+        //    RoleInfo role = new RoleInfo();
+        //    role.Name = name;
+        //    role.Description = desc;
+        //    role.Id = id;
+        //    return RoleBLL.Add(role);
+        //}
 
-        [WebMethod]
-        public static string Delete(string id)
-        {
-            return RoleBLL.Delete(id);
-        }
+        //[WebMethod]
+        //public static string Delete(string id)
+        //{
+        //    return RoleBLL.Delete(id);
+        //}
 
-        [WebMethod]
-        public static bool Update(string id,string name,string desc)
-        {
-            RoleInfo role = new RoleInfo();
-            role.Name = name;
-            role.Description = desc;
-            role.Id = id;
-            return RoleBLL.Update(role);
-        }
+        //[WebMethod]
+        //public static bool Update(string id,string name,string desc)
+        //{
+        //    RoleInfo role = new RoleInfo();
+        //    role.Name = name;
+        //    role.Description = desc;
+        //    role.Id = id;
+        //    return RoleBLL.Update(role);
+        //}
 
-        [WebMethod]
-        public static string GetById(string id)
-        {
+        //[WebMethod]
+        //public static string GetById(string id)
+        //{
             
-            return RoleBLL.GetById(id);
-        }
+        //    return RoleBLL.GetById(id);
+        //}
 
-        [WebMethod]
-        public static string GetList()
-        {
-            return RoleBLL.GetList();
-        }
+        //[WebMethod]
+        //public static string GetList()
+        //{
+        //    return RoleBLL.GetList();
+        //}
 
-        [WebMethod]
-        public static string GetListByName(string name)
-        {
-            return RoleBLL.GetListByName(name);
-        }
+        //[WebMethod]
+        //public static string GetListByName(string name)
+        //{
+        //    return RoleBLL.GetListByName(name);
+        //}
     }
 }

@@ -13,7 +13,7 @@ namespace BigDogShop.IDAL
         bool Exists(string user_name);
         bool Add(AdminInfo admin);
         bool Update(AdminInfo admin);
-        bool Delete(string usernames);
+        bool Delete(string ids);
         AdminInfo GetById(int id);
         AdminInfo GetModel(string user_name, string password);
         DataTable GetList(string name="");
