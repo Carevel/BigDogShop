@@ -51,12 +51,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +66,10 @@
     <Content Include="Admin\Advertisement\List.aspx" />
     <Content Include="Admin\Articles\Edit.aspx" />
     <Content Include="Admin\Articles\List.aspx" />
+    <Content Include="Admin\Authority\ModuleList.aspx" />
+    <Content Include="Admin\Authority\OperateList.aspx" />
+    <Content Include="Admin\Authority\QueryList.aspx" />
+    <Content Include="Admin\Authority\RightList.aspx" />
     <Content Include="Admin\Authority\RoleList.aspx" />
     <Content Include="Admin\Authority\SysList.aspx" />
     <Content Include="Admin\Category\Edit.aspx" />
@@ -581,14 +585,16 @@
     <Content Include="Admin\Include\LeftMenu.txt" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Index.aspx" />
+    <Content Include="Admin\Js\Authority\ModuleList.js" />
+    <Content Include="Admin\Js\Authority\OperateList.js" />
+    <Content Include="Admin\Js\Authority\RightList.js" />
     <Content Include="Admin\Js\Common.js" />
     <Content Include="Admin\Js\index.js" />
     <Content Include="Admin\Js\jquery-2.1.0.js" />
     <Content Include="Admin\Js\jquery.easyui.min.js" />
-    <Content Include="Admin\Js\jquery.menu.js" />
     <Content Include="Admin\Js\jquery.min.js" />
-    <Content Include="Admin\Js\RoleList.js" />
-    <Content Include="Admin\Js\SysList.js" />
+    <Content Include="Admin\Js\Authority\RoleList.js" />
+    <Content Include="Admin\Js\Authority\SysList.js" />
     <Content Include="Admin\Styles\themes\black\accordion.css" />
     <Content Include="Admin\Styles\themes\black\calendar.css" />
     <Content Include="Admin\Styles\themes\black\combo.css" />
@@ -1407,8 +1413,12 @@
     <Content Include="Admin\Styles\themes\metro\images\Thumbs.db" />
     <Content Include="Admin\Handler\TreeData.ashx" />
     <Content Include="Admin\Handler\RoleJson.ashx" />
-    <Content Include="Admin\Handler\Authority\RoleList.ashx" />
     <Content Include="Admin\Handler\Authority\SysList.ashx" />
+    <Content Include="Admin\Handler\Authority\OperateList.ashx" />
+    <Content Include="Admin\Handler\Authority\RightList.ashx" />
+    <Content Include="Admin\Handler\Authority\ModuleList.ashx" />
+    <Content Include="Admin\Handler\Authority\QueryList.ashx" />
+    <Content Include="Admin\Handler\Authority\RoleList.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
     <Content Include="Js\jquery-1.4.1.js" />
@@ -1500,6 +1510,34 @@
     <Compile Include="Admin\Articles\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Authority\ModuleList.aspx.cs">
+      <DependentUpon>ModuleList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Authority\ModuleList.aspx.designer.cs">
+      <DependentUpon>ModuleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Authority\OperateList.aspx.cs">
+      <DependentUpon>OperateList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Authority\OperateList.aspx.designer.cs">
+      <DependentUpon>OperateList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Authority\QueryList.aspx.cs">
+      <DependentUpon>QueryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Authority\QueryList.aspx.designer.cs">
+      <DependentUpon>QueryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Authority\RightList.aspx.cs">
+      <DependentUpon>RightList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Authority\RightList.aspx.designer.cs">
+      <DependentUpon>RightList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Authority\RoleList.aspx.cs">
       <DependentUpon>RoleList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1548,6 +1586,18 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\ModuleList.ashx.cs">
+      <DependentUpon>ModuleList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\OperateList.ashx.cs">
+      <DependentUpon>OperateList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\QueryList.ashx.cs">
+      <DependentUpon>QueryList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\Authority\RightList.ashx.cs">
+      <DependentUpon>RightList.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Handler\Authority\RoleList.ashx.cs">
       <DependentUpon>RoleList.ashx</DependentUpon>
@@ -1929,9 +1979,6 @@
       <Project>{2bf8106a-c3cd-435b-a35b-69e89e7356c0}</Project>
       <Name>BigDogShop.Web.Base</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

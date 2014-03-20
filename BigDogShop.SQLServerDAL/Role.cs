@@ -104,20 +104,25 @@ namespace BigDogShop.SQLServerDAL
             return null;
         }
 
-        public DataTable GetList(string name="")
+        public DataTable GetList(string name = "")
         {
             StringBuilder sql = new StringBuilder();
             DataTable dt = new DataTable();
-            sql.Append("select Id,Name,Description from BigDog_Admin_Role ");
+            sql.Append("select Id,Name,Description,Created_Date from BigDog_Admin_Role ");
             if (name != "")
             {
                 sql.Append("where Name like '%@name%' ");
                 SqlParameter[] parms = new SqlParameter[] { 
-                new SqlParameter("@name",SqlDbType.NVarChar,50)
+                    new SqlParameter("@name",SqlDbType.NVarChar,50)
                 };
-                dt = SQLHelper.GetDs(sql.ToString(),parms).Tables[0];
+                parms[0].Value = name;
+                dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
             }
-             dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            else
+            {
+                dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            }
+           
             if (dt.Rows.Count > 0)
             {
                 return dt;
@@ -125,6 +130,6 @@ namespace BigDogShop.SQLServerDAL
             return null;
         }
 
-       
+
     }
 }

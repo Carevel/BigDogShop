@@ -51,6 +51,7 @@
     <Compile Include="IProduct.cs" />
     <Compile Include="IProductImages.cs" />
     <Compile Include="IProvider.cs" />
+    <Compile Include="IRight.cs" />
     <Compile Include="IRole.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="IUser.cs" />

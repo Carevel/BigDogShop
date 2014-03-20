@@ -17,11 +17,11 @@
         <Admin:Ad ID="ad1" runat="server" />
         <div class="easyui-layout" style="width:1200px; height: 680px; margin-left:auto;margin-right:auto;">
             <div region="west" split="true" title="管理菜单" style="width: 200px">
-                <ul id="tt" class="easyui-tree" style="margin-left:10px; margin-top:20px;">
+                <ul id="tt" class="easyui-tree" style="margin-left:15px; margin-top:20px;">
                 </ul>
             </div>
-            <div data-options="region:'center',border:false">
-                <div id="tabContainer" class="easyui-tabs" data-options="fit:true">
+            <div split="true" data-options="region:'center'">
+                <div id="tabContainer" class="easyui-tabs" data-options="border:false,fit:true">
                 </div>
             </div>
         </div>

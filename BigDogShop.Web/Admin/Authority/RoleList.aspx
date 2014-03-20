@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoleList.aspx.cs" Inherits="BigDogShop.Web.Admin.Authority.List" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoleList.aspx.cs" Inherits="BigDogShop.Web.Admin.Authority.RoleList" %>
 
 
 <!DOCTYPE html>
@@ -10,44 +10,51 @@
     <link href="../Styles/themes/icon.css" rel="stylesheet" />
     <script src="../../Js/jquery-1.4.2.min.js"></script>
     <script src="../Js/jquery.easyui.min.js"></script>
-    <script src="../Js/RoleList.js"></script>
+    <script src="../Js/Authority/RoleList.js"></script>
 </head>
-<body>
-    <form id="form1" runat="server">
+<body class="easyui-layout">
+
         <!--datagrid-->
-        <table id="data" toolbar="#dlg-toolbar"></table>
-        <div id="dlg-toolbar">
-            <span>角色名称:</span>
-            <input id="txt_search" style="line-height: 20px; border: 1px solid #ccc">
-            <a href="#" id="btnSearch" class="easyui-linkbutton" plain="true" iconcls="icon-search">查询</a>
-            <a href="#" id="btnAdd" class="easyui-linkbutton" plain="true" iconcls="icon-add">添加</a>
-            <a href="#" id="btnEdit" class="easyui-linkbutton" plain="true" iconcls="icon-edit">编辑</a>
-            <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-details" onclick="javascript:alert('Ok')">详细</a>
-            <a href="#" id="btnDel" class="easyui-linkbutton" plain="true" iconcls="icon-remove">删除</a>
-            <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-share" onclick="javascript:alert('Ok')">分配用户</a>
+        <div region="center" style="padding:5px;" border="false" >
+            <table id="data" toolbar="#dlg-toolbar"></table>
+            <div id="dlg-toolbar">
+                <span>角色名称:</span>
+                <input id="txt_search" style="line-height: 20px; border: 1px solid #ccc">
+                <a href="#" id="btnSearch" class="easyui-linkbutton" plain="true" iconcls="icon-search">查询</a>
+                <a href="#" id="btnAdd" class="easyui-linkbutton" plain="true" iconcls="icon-add">添加</a>
+                <a href="#" id="btnEdit" class="easyui-linkbutton" plain="true" iconcls="icon-edit">编辑</a>
+                <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-details" onclick="javascript:alert('Ok')">详细</a>
+                <a href="#" id="btnDel" class="easyui-linkbutton" plain="true" iconcls="icon-remove">删除</a>
+                <a href="#" class="easyui-linkbutton" plain="true" iconcls="icon-share" onclick="javascript:alert('Ok')">分配用户</a>
+            </div>
         </div>
+
 
         <!--添加-->
         <div id="dialog_add" class="easyui-dialog" style="padding: 5px; width: 400px; height: 200px;"
-            title="添加角色" iconcls="icon-ok" buttons="#dlg-buttonsAdd" closed="true" modal="true">
+            title="分配权限" iconcls="icon-ok" buttons="#dlg-buttonsAdd" closed="true" modal="true">
             <div style="margin-left: auto; margin-right: auto; text-align: center;">
                 <table>
                     <tr>
                         <td>角色ID</td>
                         <td>
-                            <asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_id" name="name" runat="server" />
+                            <input type="text" class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_id" name="name" />
+                            <%--<asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_id" name="name" runat="server" />--%>
                         </td>
                     </tr>
                     <tr>
                         <td>角色名称</td>
                         <td>
-                            <asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名称.',required:true,validType:'length[3,100]'" ID="txt_name" name="name" runat="server" />
+                            <input type="text" class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_name" name="name" />
+                            <%--<asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名称.',required:true,validType:'length[3,100]'" ID="TextBox1" name="name" runat="server" />--%>
+                            <%--<asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名称.',required:true,validType:'length[3,100]'" ID="txt_name" name="name" runat="server" />--%>
                         </td>
                     </tr>
                     <tr>
                         <td>说明</td>
                         <td>
-                            <asp:TextBox ID="txt_desc" name="desc" runat="server" />
+                            <input type="text" name="desc" id="txt_desc" />
+                            <%--<asp:TextBox ID="txt_desc" name="desc" runat="server" />--%>
                         </td>
                     </tr>
                 </table>
@@ -61,24 +68,26 @@
 
         <!--编辑-->
         <div id="dialog_edit" class="easyui-dialog" style="padding: 5px; width: 400px; height: 200px;"
-            title="编辑角色" iconcls="icon-edit" buttons="#dlg-buttonsEdit" closed="true" modal="true">
+            title="编辑角色权限" iconcls="icon-edit" buttons="#dlg-buttonsEdit" closed="true" modal="true">
             <table>
                 <tr>
                     <td>角色ID</td>
                     <td>
-                        <asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_eid" name="name" runat="server"></asp:TextBox></td>
+                        <input type="text" class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_eid" name="name" />
+                        <%--<asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_eid" name="name" runat="server"></asp:TextBox>--%></td>
 
                 </tr>
                 <tr>
                     <td>角色名称</td>
                     <td>
-                        <asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名称.',required:true,validType:'length[3,100]'" ID="txt_ename" name="name" runat="server"></asp:TextBox></td>
-
+                        <%--<asp:TextBox class="easyui-validatebox" data-options="prompt:'请输入角色名称.',required:true,validType:'length[3,100]'" ID="txt_ename" name="name" runat="server"></asp:TextBox>--%></td>
+                    <input type="text" class="easyui-validatebox" data-options="prompt:'请输入角色名.',required:true,validType:'length[3,50]'" ID="txt_ename" name="name" />
                 </tr>
                 <tr>
                     <td>说明</td>
                     <td>
-                        <asp:TextBox ID="txt_edesc" type="text" name="desc" runat="server" />
+                        <input type="text" id="txt_edesc" />
+                        <%--<asp:TextBox ID="txt_edesc" type="text" name="desc" runat="server" />--%>
                     </td>
                 </tr>
             </table>
@@ -88,7 +97,6 @@
             <a href="#" id="btnCancelEdit" class="easyui-linkbutton" iconcls="icon-cancel">取消</a>
         </div>
 
-    </form>
 </body>
 </html>
 

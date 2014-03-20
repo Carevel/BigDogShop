@@ -12,7 +12,7 @@ using BigDogShop.BLL;
 namespace BigDogShop.Web.Admin.Handler.Authority
 {
     /// <summary>
-    /// Summary description for List
+    /// Summary description for RoleList
     /// </summary>
     public class RoleList : IHttpHandler
     {
@@ -27,7 +27,7 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             {
                 case "GetList":
                     string name = "";
-                     name = context.Request.Params["Name"] != null ? context.Request.Params["Name"] : ""; 
+                    name = context.Request.Params["Name"] != null ? context.Request.Params["Name"] : "";
                     json = GetList(name);
                     break;
                 case "Add":
@@ -66,18 +66,16 @@ namespace BigDogShop.Web.Admin.Handler.Authority
         public static string GetList(string name = "")
         {
             StringBuilder json = new StringBuilder();
-            DataTable dt = OperateBLL.GetList(name);            
+            DataTable dt = RoleBLL.GetList(name);
             if (dt.Rows.Count > 0)
             {
                 json.Append("[");
                 foreach (DataRow dr in dt.Rows)
                 {
                     json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");
-                    json.Append(",\"User_Name\":\"" + dr["User_Name"].ToString() + "\"");
-                    json.Append(",\"Real_Name\":\"" + dr["Real_Name"].ToString() + "\"");
-                    json.Append(",\"User_Photo_Url\":\"" + dr["User_Photo_Url"].ToString() + "\"");
-                    json.Append(",\"E_Mail\":\"" + dr["E_Mail"].ToString() + "\"");
-                    json.Append(",\"Is_Lock\":\"" + dr["Is_Lock"].ToString() + "\"");
+                    json.Append(",\"Name\":\"" + dr["Name"].ToString() + "\"");
+                    json.Append(",\"Description\":\"" + dr["Description"].ToString() + "\"");
+                    json.Append(",\"Created_Date\":\"" + dr["Created_Date"].ToString() + "\"");
                     json.Append("},");
                 }
                 json.Remove(json.Length - 1, 1);
@@ -86,7 +84,7 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             return json.ToString();
         }
 
-        public static string Add(string id, string name,string desc)
+        public static string Add(string id, string name, string desc)
         {
             RoleInfo model = new RoleInfo();
             model.Id = id;
@@ -108,7 +106,7 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             json.Append("}]");
             return json.ToString();
         }
-        public static string Update(string u_id,string u_name,string u_desc)
+        public static string Update(string u_id, string u_name, string u_desc)
         {
             RoleInfo model = new RoleInfo();
             model.Id = u_id;
@@ -127,8 +125,8 @@ namespace BigDogShop.Web.Admin.Handler.Authority
             StringBuilder json = new StringBuilder();
             json.Append("[{");
             json.Append("\"Id\":\"" + model.Id + "\"");
-            json.Append("\"User_Name\":\"" + model.Name + "\"");
-            json.Append("\"Real_Name\":\"" + model.Description + "\"");
+            json.Append("\"Name\":\"" + model.Name + "\"");
+            json.Append("\"Description\":\"" + model.Description + "\"");
             json.Append("}]");
             return json.ToString();
         }

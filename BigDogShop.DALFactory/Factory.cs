@@ -77,5 +77,10 @@ namespace BigDogShop.DALFactory
         {
             return (IOperate)Assembly.Load("BigDogShop." + type + "DAL").CreateInstance("BigDogShop." + type + "DAL.Operate");
         }
+
+        public static IRight CreateRight()
+        {
+            return (IRight)Assembly.Load("BigDogShop." + type + "DAL").CreateInstance("BigDogShop." + type + "DAL.Rright");
+        }
     }
 }

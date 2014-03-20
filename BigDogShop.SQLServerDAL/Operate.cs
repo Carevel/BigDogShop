@@ -215,7 +215,7 @@ namespace BigDogShop.SQLServerDAL
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@name",SqlDbType.NVarChar,50)             
             };
-           
+            DataTable dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
             return SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
         }
     }
