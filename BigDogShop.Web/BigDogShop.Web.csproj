@@ -857,6 +857,7 @@
     <Content Include="Admin\Styles\Base.css" />
     <Content Include="Admin\Styles\tree.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="HtmlPage2.html" />
     <Content Include="JsSlide\1.css" />
     <Content Include="JsSlide\images\1.jpg" />
     <Content Include="JsSlide\images\2.jpg" />
