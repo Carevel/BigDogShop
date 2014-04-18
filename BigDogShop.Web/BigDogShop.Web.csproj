@@ -587,7 +587,8 @@
     <Content Include="Admin\Index.aspx" />
     <Content Include="Admin\Js\Authority\ModuleList.js" />
     <Content Include="Admin\Js\Authority\OperateList.js" />
-    <Content Include="Admin\Js\Authority\RightList.js" />
+    <Content Include="Admin\Js\Authority\RightList1.js" />
+    <Content Include="Admin\Js\Authority\RightManager.js" />
     <Content Include="Admin\Js\Common.js" />
     <Content Include="Admin\Js\index.js" />
     <Content Include="Admin\Js\jquery-2.1.0.js" />
@@ -1420,6 +1421,7 @@
     <Content Include="Admin\Handler\Authority\ModuleList.ashx" />
     <Content Include="Admin\Handler\Authority\QueryList.ashx" />
     <Content Include="Admin\Handler\Authority\RoleList.ashx" />
+    <Content Include="Admin\Handler\TreeDetailForm.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
     <Content Include="Js\jquery-1.4.1.js" />
@@ -1614,6 +1616,9 @@
     </Compile>
     <Compile Include="Admin\Handler\TreeData.ashx.cs">
       <DependentUpon>TreeData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Handler\TreeDetailForm.ashx.cs">
+      <DependentUpon>TreeDetailForm.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

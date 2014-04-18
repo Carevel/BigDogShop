@@ -75,7 +75,7 @@ namespace BigDogShop.Web.Admin.Handler.Authority
                 foreach (DataRow dr in dt.Rows)
                 {
                     json.Append("{\"Id\":\"" + dr["Id"].ToString() + "\"");
-                    json.Append(",\"Name\":\"" + dr["Right_Id"].ToString() + "\"");
+                    json.Append(",\"Name\":\"" + dr["Module_Id"].ToString() + "\"");
                     json.Append(",\"Description\":\"" + dr["Role_Id"].ToString() + "\"");
                     json.Append(",\"Created_Date\":\"" + dr["Description"].ToString() + "\"");
                     json.Append(",\"Created_Date\":\"" + dr["Created_Date"].ToString() + "\"");

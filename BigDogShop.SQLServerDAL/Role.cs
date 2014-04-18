@@ -108,7 +108,7 @@ namespace BigDogShop.SQLServerDAL
         {
             StringBuilder sql = new StringBuilder();
             DataTable dt = new DataTable();
-            sql.Append("select Id,Name,Description,Created_Date from BigDog_Admin_Role ");
+            sql.Append("select Id,Name,Description,CONVERT(varchar(100),Created_Date,23) Created_Date from BigDog_Admin_Role ");
             if (name != "")
             {
                 sql.Append("where Name like '%@name%' ");

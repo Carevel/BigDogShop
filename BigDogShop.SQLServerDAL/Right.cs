@@ -113,10 +113,10 @@ namespace BigDogShop.SQLServerDAL
         {
             StringBuilder sql = new StringBuilder();
             DataTable dt = new DataTable();
-            sql.Append("select Id,Right_Id,Role_Id,Description,Created_Date from BigDog_Admin_Right ");
+            sql.Append("select Id,Module_Id,Role_Id,Description,CONVERT(varchar(100),Created_Date,23) Created_Date from BigDog_Admin_Right ");
             if (name != "")
             {
-                sql.Append("where Right_Id like '%@name%' ");
+                sql.Append("where Module_Id like '%@name%' ");
                 SqlParameter[] parms = new SqlParameter[] { 
                     new SqlParameter("@name",SqlDbType.NVarChar,50)
                 };

@@ -52,8 +52,8 @@ namespace BigDogShop.SQLServerDAL
         public bool Add(AdminInfo admin)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("insert into BigDog_Admin (Role_Id,Role_Type,User_Name,Password,E_Mail)");
-            sql.Append(" values(1,1,@User_Name,@Password,@E_Mail)");
+            sql.Append("insert into BigDog_Admin (User_Name,Password,E_Mail)");
+            sql.Append(" values(@User_Name,@Password,@E_Mail)");
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@User_Name",SqlDbType.NVarChar,50),
                 new SqlParameter("@Password",SqlDbType.NVarChar,50),
@@ -73,12 +73,10 @@ namespace BigDogShop.SQLServerDAL
         public bool Update(AdminInfo admin)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("update BigDog_Admin set Role_Id=@Role_Id,Role_Type=@Role_Type,User_Name=@User_Name,");
+            sql.Append("update BigDog_Admin set User_Name=@User_Name,");
             sql.Append("Real_Name=@Real_Name,Password=@Password,User_Photo_Url=@User_Photo_Url,");
-            sql.Append("E_Mail=@E_Mail,Is_Lock='@Is_Lock,Update_Date=@Update_Date,Updated_By=@Updated_By where Id=@Id");
+            sql.Append("E_Mail=@E_Mail,Is_Lock=@Is_Lock,Update_Date=@Update_Date,Updated_By=@Updated_By where Id=@Id");
             SqlParameter[] parms = new SqlParameter[] {
-                new SqlParameter("@Role_Id",SqlDbType.Int),
-                new SqlParameter("@Role_Type",SqlDbType.Int),
                 new SqlParameter("@User_Name",SqlDbType.NVarChar,50),
                 new SqlParameter("@Real_Name",SqlDbType.NVarChar,50),
                 new SqlParameter("@Password",SqlDbType.NVarChar,50),
@@ -88,17 +86,15 @@ namespace BigDogShop.SQLServerDAL
                 new SqlParameter("@Update_Date",SqlDbType.DateTime),
                 new SqlParameter("@Updated_By",SqlDbType.NVarChar,50)
             };
-            parms[0].Value = admin.Role_Id;
-            parms[1].Value = admin.Role_Type;
-            parms[2].Value = admin.User_Name;
-            parms[3].Value = admin.Real_Name;
-            parms[5].Value = admin.Password;
-            parms[6].Value = admin.User_Photo_Url;
-            parms[7].Value = admin.E_Mail;
-            parms[8].Value = admin.Is_Lock;
-            parms[9].Value = admin.Updated_Date;
-            parms[10].Value = admin.Updated_By;
-            parms[11].Value = admin.Id;
+            parms[0].Value = admin.User_Name;
+            parms[1].Value = admin.Real_Name;
+            parms[2].Value = admin.Password;
+            parms[3].Value = admin.User_Photo_Url;
+            parms[4].Value = admin.E_Mail;
+            parms[5].Value = admin.Is_Lock;
+            parms[6].Value = admin.Updated_Date;
+            parms[7].Value = admin.Updated_By;
+            parms[8].Value = admin.Id;
             return SQLHelper.ExecuteNonQuery(CommandType.Text, sql.ToString(), parms) > 0;
         }
 
@@ -151,18 +147,17 @@ namespace BigDogShop.SQLServerDAL
         public AdminInfo GetById(int id)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Role_Id,Role_Type,User_Name,Real_Name,Password,User_Photo_Url,E_Mail,Is_Lock from BigDog_Admin where id='" + id + "'");
+            sql.Append("select User_Name,Real_Name,Password,User_Photo_Url,E_Mail,Is_Lock from BigDog_Admin where id='" + id + "'");
             AdminInfo admin = new AdminInfo();
             DataTable dt = new DataTable();
             dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
             if (dt.Rows.Count > 0)
             {
-                admin.Role_Id = Convert.ToInt32(dt.Rows[0]["Role_Id"].ToString());
-                admin.Role_Type = Convert.ToInt32(dt.Rows[0]["Role_Type"].ToString());
                 admin.User_Name = dt.Rows[0]["User_Name"].ToString();
                 admin.Real_Name = dt.Rows[0]["Real_Name"].ToString();
                 admin.Password = dt.Rows[0]["Password"].ToString();
                 admin.User_Photo_Url = dt.Rows[0]["User_Photo_Url"].ToString();
+                admin.E_Mail = dt.Rows[0]["E_Mail"].ToString();
                 admin.Is_Lock = dt.Rows[0]["Is_Lock"].ToString();
                 return admin;
             }
@@ -182,7 +177,7 @@ namespace BigDogShop.SQLServerDAL
         public AdminInfo GetModel(string user_name, string password)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Id,Role_Id,Role_Type,User_Name,Real_Name,Password,User_Photo_Url,E_Mail,Is_Lock from BigDog_Admin ");
+            sql.Append("select Id,User_Name,Real_Name,Password,User_Photo_Url,E_Mail,Is_Lock from BigDog_Admin ");
             sql.Append("where User_Name=@User_Name and Password=@Password");
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@User_Name",SqlDbType.NVarChar,50),
@@ -202,14 +197,14 @@ namespace BigDogShop.SQLServerDAL
         public DataTable GetList()
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("delete from BigDog_Admin ");
+            sql.Append("select *  from BigDog_Admin ");
             return SQLHelper.GetDs(sql.ToString()).Tables[0];
         }
 
         public DataTable GetList(string name = "")
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("delete from BigDog_Admin where 1=1 ");
+            sql.Append("select *  from BigDog_Admin where 1=1 ");
             if (name != "")
             {
                 sql.Append(" and User_Name like '%" + name + "%'");
