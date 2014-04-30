@@ -1,0 +1,497 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text;
+using System.Web.Services;
+using dotnetCHARTING;
+using NPOI.HSSF.UserModel;
+using NPOI.HSSF.Util;
+using NPOI.DDF;
+using NPOI.SS.UserModel;
+using System.IO;
+using NPOI.SS;
+
+public partial class MiWeekReport : PageBaseInfo_V2, CommonPageEvent
+{
+    protected override void Page_Load(object sender, EventArgs e)
+    {
+        this.Form1 = form1;
+        this.Languagefolder = "NETWORK";
+        this.ProgramId = "2012101904";
+        base.Page_Load(sender, e);
+        if (!IsPostBack)
+        {
+            FirstPageLoad();
+        }
+        temp_left.Text = "450";
+    }
+    public void DataRowBound(GridViewRowEventArgs e)
+    {
+        e.Row.Attributes.Add("RowType", "DataRow");
+    }
+    public void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        this.GridViewCreateHeader(sender, e);
+    }
+    public void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        DataRowCommand(e, sender);
+    }
+    public void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            DataRowBound(e);
+        }
+        else if (e.Row.RowType == DataControlRowType.Pager)
+        {
+            this.GridViewPager(e);
+        }
+        else if (e.Row.RowType == DataControlRowType.Header)
+        {
+            this.GridViewHeader(e);
+        }
+    }
+    public void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        this.GridViewPageIndexChange(sender, e);
+        Bind();
+    }
+    public void FirstPageLoad()
+    {
+
+        this.lab_program_id.Text = this.ProgramId;
+        this.lab_program_name.Text = this.ProgramName;
+        this.lab_user.Text = this.WorkName;
+        this.Img_user.ImageUrl = this.UserPhoto;
+        GridView1.PageSize = this.PageSize;
+        string sql = "select location f1,location f2 from(select distinct location  from oracle_report_summary )";
+        OracleHelper.SetDDL(sql.ToString(), ddl_site_type, 2);
+        int year = DateTime.Now.Year;
+
+        ddl_year.Items.Add("");
+        ddl_year.SelectedValue = "";
+        for (int i = 5; i >= 0; i--)
+        {
+            ListItem li = new ListItem();
+            li.Value = (year - i).ToString();
+            li.Text = (year - i).ToString();
+            ddl_year.Items.Add(li);
+        }
+
+
+        PageStatusInit(1);
+    }
+    public void btn_song_Click(object sender, EventArgs e)
+    {
+        Bind();
+    }
+
+    public void DataRowCommand(GridViewCommandEventArgs e, object sender)
+    {
+        string _id = e.CommandArgument.ToString();
+        string sql = "";
+        DataSet ds = new DataSet();
+        if (e.CommandName == "DeleteItem")
+        {
+            //user.Style.Add("display", "none");
+
+            sql = "delete from MDS_NETWORK_SOFTWARE  WHERE BRIEF_SOFTNAME ='" + _id + "' or SOFT_NAME='" + _id + "' ";
+            //sql = "update MDS_NETWORK_SOFTWARE set BRIEF_SOFTNAME='',softtype=''  WHERE BRIEF_SOFTNAME ='" + _id + "' or SOFT_NAME='" + _id + "' ";
+            OracleHelper.ExeSQL(sql);
+            Bind();
+        }
+        else if (e.CommandName == "EditItem")
+        {
+            PageStatusInit(2);
+            //user.Style.Add("display", "");
+            //user.Style.Add("left", temp_left.Text + "px");
+            //user.Style.Add("top", temp_top.Text + "px");
+            //detail.Style.Add("display", "none");
+            sql = " select * from (SELECT nvl(BRIEF_SOFTNAME,soft_name) BRIEF_SOFTNAME,to_char(PURCHASE_DATE,'yyyy-MM-dd') PURCHASE_DATE,PRICE, LICENSE_TYPE, PERMIT_TYPE,SOFTTYPE FROM MDS_NETWORK_SOFTWARE WHERE BRIEF_SOFTNAME = '" + _id + "') group by BRIEF_SOFTNAME,PURCHASE_DATE,PRICE,LICENSE_TYPE, PERMIT_TYPE,SOFTTYPE ";
+            ds = OracleHelper.GetDS(sql);
+            //hidden_id.Value = _id.ToString();
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    txtSoftName.Text = ds.Tables[0].Rows[0]["BRIEF_SOFTNAME"].ToString();
+            //    txtPrice.Text = ds.Tables[0].Rows[0]["PRICE"].ToString();
+            //    txtPurchase_date.Text = ds.Tables[0].Rows[0]["PURCHASE_DATE"].ToString();
+            //    ddl_edit_license_type.SelectedValue = ds.Tables[0].Rows[0]["LICENSE_TYPE"].ToString();
+            //    ddl_edit_permit_type.SelectedValue = ds.Tables[0].Rows[0]["PERMIT_TYPE"].ToString();
+            //    ddl_edit_type.SelectedValue = ds.Tables[0].Rows[0]["SOFTTYPE"].ToString();
+            //}
+            //btn_clear.Visible = true;
+            //lab_stauts.Text = "Update";
+            //string language = temp_language.Text;
+            //string path1 = System.Web.HttpContext.Current.Server.MapPath("~/Xml/NETWORK/NETWORK_SOFTWARE/NETWORK_SOFTWARE" + language + ".xml");
+            //header_title.Text = OracleHelper.ReturnTable(path1, language, "2");
+        }
+        else if (e.CommandName == "ShowItem")
+        {
+            //title_notice1.Text = "軟件簡名明細";
+            //user.Style.Add("display", "none");
+            //detail.Style.Add("display", "");
+            //detail.Style.Add("left", temp_left.Text + "px");
+            //detail.Style.Add("top", temp_top.Text + "px");
+            //string html = BindDetail(_id);
+            //label_detail2.Text = html;
+        }
+        else
+        {
+            //user.Style.Add("display", "none");
+        }
+    }
+    public void PageStatusInit(int item)
+    {
+        //user.Style.Add("display", "none");
+        //detail.Style.Add("display", "none");
+        //btn_clear.Visible = false;
+        //lab_stauts.Text = "Add";
+        lbl_html.Style.Add("display", "");
+        chart1.Style.Add("display", "none");
+        string collapse = "";
+        collapse = this.Collapse;
+
+        if (collapse == "Y")
+        {
+            DivGrid.Style.Add("width", "auto");
+            DivGrid.Style.Add("left", "35px");
+            DivUserShow.Style.Add("left", "1px");
+            DivUser.Style.Add("left", "-200px");
+            DivUser.Style.Add("display", "none");
+        }
+        else
+        {
+            DivGrid.Style.Add("width", "auto");
+            DivGrid.Style.Add("left", "205px");
+            DivUserShow.Style.Add("left", "-25px");
+            DivUser.Style.Add("left", "1px");
+            DivUser.Style.Remove("display");
+        }
+        string language = this.UserLanguage;
+        if (GridView1.Rows.Count == 0)
+        {
+            lab_mess.Text = WebCom.ShowSystemTip(language, item, 80, 180, "commoncache");
+        }
+        else
+        {
+            lab_mess.Text = "";
+        }
+    }
+
+
+    public void Bind()
+    {
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString();
+        string type = ddl_type.SelectedValue.ToString();      
+
+        if (string.IsNullOrEmpty(site))
+        {
+            WebCom.ShowJsMessage(this.Page, "請選擇 Repaire Site", 80, 120);
+            return;
+        }
+        if (string.IsNullOrEmpty(year))
+       
+        {
+            WebCom.ShowJsMessage(this.Page, "請選擇 Year", 80, 120);
+            return;
+        }
+
+        if (string.IsNullOrEmpty(type))
+        {
+            WebCom.ShowJsMessage(this.Page, "請選擇查詢條件", 80, 120);
+            return;
+        }
+        lbl_html.Text = BindHtml();
+        lbl_html.Style.Add("display", "");
+        chart1.Style.Add("display", "");
+        //PageStatusInit(2);
+    }
+
+    protected void btn_to_excel_Click(object sender, EventArgs e)
+    {
+        //SendExcel();
+        DataTable dt = OracleHelper.GetDS(CreateSQL().ToString()).Tables[0];
+        string filename = "測試報表";
+        Response.ContentType = "application/vnd.ms-excel";
+        Response.AppendHeader("Content-Disposition", string.Format("attachment;filename={0}", UTF_filename(filename)));
+        Response.Clear();
+        GenerateDate(dt, filename);
+        GetExcelStream().WriteTo(Response.OutputStream);
+        Response.End();
+
+    }
+
+    public void btn_add_Click(object sender, System.EventArgs e) { }
+    public void btn_clear_Click(object sender, System.EventArgs e) { }
+    public void btn_submit_Click(object sender, System.EventArgs e) { }
+
+
+    
+
+    #region NPOI通用代碼
+    HSSFWorkbook hssfwb = new HSSFWorkbook();
+    MemoryStream GetExcelStream()
+    {
+        MemoryStream file = new MemoryStream();
+        hssfwb.Write(file);
+        return file;
+    }
+    public void GenerateDate(DataTable dt, string name)
+    {
+        ISheet sheet1 = hssfwb.CreateSheet(name);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            IRow row = sheet1.CreateRow(i);
+            for (int j = 0; j < dt.Columns.Count; j++)
+            {
+                if (i == 0)
+                {
+                    for (int k = 0; k < dt.Rows.Count; k++)
+                    {
+                        row.CreateCell(k).SetCellValue(dt.Columns[j].ColumnName.ToString());
+                    }
+                }
+                else
+                {
+                    row.CreateCell(j).SetCellValue(dt.Rows[i - 1][j].ToString());
+                }
+            }
+        }
+
+        AddPieChart(sheet1, hssfwb, "/temp/chart.png", 0, 0);
+    }
+    #endregion
+
+    private void AddPieChart(ISheet sheet, HSSFWorkbook workbook, string fileurl, int row, int col)
+    {
+        try
+        {
+            //add picture data to this workbook.
+            string path = Server.MapPath("~/html/");
+            if (fileurl.Contains("/"))
+            {
+                path += fileurl.Substring(fileurl.IndexOf('/'));
+            }
+            string FileName = path;
+            byte[] bytes = System.IO.File.ReadAllBytes(FileName);
+
+            if (!string.IsNullOrEmpty(FileName))
+            {
+                int pictureIdx = workbook.AddPicture(bytes, NPOI.SS.UserModel.PictureType.JPEG);
+                HSSFPatriarch patriarch = (HSSFPatriarch)sheet.CreateDrawingPatriarch();
+                HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 100, 50, col, row, col + 1, row + 1);
+                //##处理照片位置，【图片左上角为（col, row）第row+1行col+1列，右下角为（ col +1, row +1）第 col +1+1行row +1+1列，宽为100，高为50
+
+                HSSFPicture pict = (HSSFPicture)patriarch.CreatePicture(anchor, pictureIdx);
+
+                // pict.Resize();这句话一定不要，这是用图片原始大小来显示
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void btn_import_Click(object sender, EventArgs e)
+    {
+
+        DataTable dt = OracleHelper.GetDS(CreateSQL().ToString()).Tables[0];
+        string filename = "測試報表";
+        Response.ContentType = "application/vnd.ms-excel";
+        Response.AppendHeader("Content-Disposition", string.Format("attachment;filename={0}", UTF_filename(filename)));
+        Response.Clear();
+        GenerateDate(dt, filename);
+        GetExcelStream().WriteTo(Response.OutputStream);
+        Response.End();
+
+    }
+    public string UTF_filename(string filename)
+    {
+        return HttpUtility.UrlDecode(filename, System.Text.Encoding.UTF8);
+    }
+
+
+    public void BindChart(DataTable dt)
+    {
+        lab_mess.Visible = false;
+        chart1.Visible = true;
+
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString();
+        string type = ddl_type.SelectedValue.ToString();
+
+        SeriesCollection sc = new SeriesCollection();
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            Series s = new Series();
+            s.Name = dt.Rows[i][2].ToString();
+            s.Element.Length = 20;
+            for (int j = 3; j < dt.Columns.Count; j++)
+            {
+                Element e = new Element();
+                e.Name = dt.Columns[j].ColumnName.ToString();
+                var a = dt.Rows[i][j].ToString() == null ? "0" : dt.Rows[i][j].ToString();
+                e.YValue = Convert.ToDouble(dt.Rows[i][j].ToString() == "" ? "0" : dt.Rows[i][j].ToString());
+                e.ToolTip = a;
+                e.URL = "WeekDataDetail.aspx?type=" + type + "&item=" + dt.Rows[i][2].ToString() + "&site=" + site + "&year=" + year + "&week=" + dt.Columns[j].ColumnName + "";
+                s.AddElements(e);
+                
+            }
+            sc.Add(s);
+        }
+
+        Charting c = new Charting();
+        c.Ttile = "Report";
+        c.XTitle = "Week";
+        c.YTitle = "Number";
+        c.PicHeight = 400;
+        c.PicWidth = 500 + dt.Columns.Count * 15;
+        c.PhaysicalImagePath = "temp";
+        c.FileName = "chart";
+        c.User3D = false;
+        c.DataSource = sc;
+        c.CreateLine(this.chart1);
+    }
+
+    protected string BindHtml()
+    {
+        StringBuilder html = new StringBuilder();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString();
+        string type = ddl_type.SelectedValue.ToString();
+        
+        if (string.IsNullOrEmpty(site))
+        {
+            site = "ITEM";
+        }
+
+        string sql2="select distinct item from oracle_report_summary";
+        DataTable dtC = OracleHelper.GetDS(sql2).Tables[0];
+        DataTable result = new DataTable();
+        foreach (DataRow dr in dtC.Rows)
+        {
+            string sql = null;
+            if (!string.IsNullOrEmpty(type))
+            {
+                if (type == "M")//月份
+                {
+                    //sql = "select count(*) from "+dr["item"].ToString()+"where to_char(REPAIR_DATE,'yyyy')=;
+                }
+                if (type == "W")//周次
+                {
+
+                }
+            }
+        }
+        DataTable dt = OracleHelper.GetDS(CreateSQL().ToString()).Tables[0];
+        if (dt.Rows.Count > 0)
+        {
+            //lab_mess.Text = "";
+            BindChart(dt);
+            html.Append("<table id='table_detail___V' class='scroll' cellpadding='0' cellspacing='0' style=' width:100% '>");
+            html.Append("<tr>");
+            html.Append("<th>" + site + "</th>");
+            for (int i = 1; i <= 52; i++)
+            {
+                html.Append("<th>WK" + i + "</th>");
+            }
+            html.Append("</tr>");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                html.Append("<tr>");
+                for (int j = 2; j < dt.Columns.Count; j++)
+                {
+                    if (j == 2)
+                    {
+                        html.Append("<td>" + (dt.Rows[i][j].ToString() == "" ? "0" : dt.Rows[i][j].ToString()) + "</td>");
+                    }
+                    else
+                    {
+                        html.Append("<td><a href='WeekDataDetail.aspx?type=" + type + "&item=" + dt.Rows[i][2].ToString() + "&site=" + site + "&year=" + year + "&week=" + dt.Columns[j].ColumnName + "' target='_blank'>" + (dt.Rows[i][j].ToString() == "" ? "0" : dt.Rows[i][j].ToString()) + "</a></td>");
+                    }
+                }
+                html.Append("</tr>");
+            }
+        }
+        else
+        {
+            html.Append( WebCom.ShowSystemTip(this.temp_language.Text, 1, 80, 180, "commoncache"));
+        }
+
+        return html.ToString();
+    }
+
+    protected string CreateSQL()
+    {
+        StringBuilder html = new StringBuilder();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString();
+        string type = ddl_type.SelectedValue.ToString();
+
+        sbSQL.Append("select * from oracle_report_summary where 1=1 ");
+
+        if (!string.IsNullOrEmpty(site))
+        {
+            sbSQL.Append(" AND LOCATION = '" + site + "'");
+        }
+        else
+        {
+            WebCom.ShowJsMessage(this.Page, "請選擇 Repaire Site", 80, 120);
+        }
+        if (!string.IsNullOrEmpty(year))
+        {
+            sbSQL.Append(" AND YEAR = '" + year + "'");
+        }
+        else
+        {
+            WebCom.ShowJsMessage(this.Page, "請選擇 Year", 80, 120);
+        }
+        if (!string.IsNullOrEmpty(type))
+        {
+            if (type == "M")//月份
+            { 
+                
+            }
+            if (type == "W")//周次
+            { 
+            
+            }
+        }
+        sbSQL.Append("  order by year,item asc");
+        return sbSQL.ToString();
+    }
+
+    public DataTable getDt(DataTable dt, string type)
+    {
+        DataTable result = new DataTable();
+        //DataRow dr = new DataRow();
+        if (type == "year")
+        {
+            int count = 0;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                for (int j = 3; j < dt.Columns.Count; j++)
+                {
+                    count += count + Convert.ToInt32(dt.Rows[i][j].ToString());
+
+                }
+                count = 0;
+            }
+        }
+        return dt;
+    }
+    public override DataTable GetExcelTable()
+    {
+        return OracleHelper.getDB(CreateSQL() + ", ITEM ASC");
+    }
+}
