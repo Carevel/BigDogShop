@@ -1,0 +1,916 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text;
+using System.Web.Services;
+using dotnetCHARTING;
+using NPOI.HSSF.UserModel;
+using NPOI.HSSF.Util;
+using NPOI.DDF;
+using NPOI.SS.UserModel;
+using System.IO;
+using NPOI.SS;
+using System.Data.OleDb;
+
+
+public partial class MiWeekReport : PageBaseInfo_V2, CommonPageEvent
+{
+    protected override void Page_Load(object sender, EventArgs e)
+    {
+        this.Form1 = form1;
+        this.Languagefolder = "NETWORK";
+        this.ProgramId = "2014050604";
+        base.Page_Load(sender, e);
+        if (!IsPostBack)
+        {
+            FirstPageLoad();
+        }
+        temp_left.Text = "450";
+    }
+    public void DataRowBound(GridViewRowEventArgs e)
+    {
+        e.Row.Attributes.Add("RowType", "DataRow");
+    }
+    public void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        this.GridViewCreateHeader(sender, e);
+    }
+    public void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        DataRowCommand(e, sender);
+    }
+    public void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            DataRowBound(e);
+        }
+        else if (e.Row.RowType == DataControlRowType.Pager)
+        {
+            this.GridViewPager(e);
+        }
+        else if (e.Row.RowType == DataControlRowType.Header)
+        {
+            this.GridViewHeader(e);
+        }
+    }
+    public void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        this.GridViewPageIndexChange(sender, e);
+        Bind();
+    }
+    public void FirstPageLoad()
+    {
+
+        this.lab_program_id.Text = this.ProgramId;
+        this.lab_program_name.Text = this.ProgramName;
+        this.lab_user.Text = this.WorkName;
+        this.Img_user.ImageUrl = this.UserPhoto;
+        GridView1.PageSize = this.PageSize;
+        //string sql = "select location f1,location f2 from(select distinct location  from oracle_report_summary )";
+        //OracleHelper.SetDDL(sql.ToString(), ddl_site_type, 2);
+        int year = DateTime.Now.Year;
+        for (int i = year - 4; i <= year; i++)
+        {
+            ListItem l = new ListItem();
+            l.Text = i.ToString();
+            l.Value = i.ToString();
+            ddl_year.Items.Add(l);
+        }
+        ddl_year.SelectedValue = year.ToString();
+        ddl_week_to.SelectedValue = WebCom.GetWeekOfYear(DateTime.Now);
+        //string sql_year = "select Year f1,Year f2 from(select distinct Year  from oracle_report_summary )";
+        //OracleHelper.SetDDL(sql_year.ToString(), ddl_year, 2);
+
+        PageStatusInit(1);
+    }
+    public void btn_song_Click(object sender, EventArgs e)
+    {
+        Bind();
+    }
+
+    public void DataRowCommand(GridViewCommandEventArgs e, object sender)
+    {
+
+    }
+    public void PageStatusInit(int item)
+    {
+        string collapse = "";
+        collapse = this.Collapse;
+
+        if (collapse == "Y")
+        {
+            DivGrid.Style.Add("width", "auto");
+            DivGrid.Style.Add("left", "35px");
+            DivUserShow.Style.Add("left", "1px");
+            DivUser.Style.Add("left", "-200px");
+            DivUser.Style.Add("display", "none");
+        }
+        else
+        {
+            DivGrid.Style.Add("width", "auto");
+            DivGrid.Style.Add("left", "205px");
+            DivUserShow.Style.Add("left", "-25px");
+            DivUser.Style.Add("left", "1px");
+            DivUser.Style.Remove("display");
+        }
+        string language = this.UserLanguage;
+        if (GridView1.Rows.Count == 0)
+        {
+            lab_mess.Text = WebCom.ShowSystemTip(language, item, 80, 180, "commoncache");
+        }
+        else
+        {
+            lab_mess.Text = "";
+        }
+    }
+
+
+    public void Bind()
+    {
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString();
+        string type = ddl_type.SelectedValue.ToString();
+
+        string s = getHtml();
+        if (s.Length > 0)
+        {
+            lbl_html.Text = s;
+            lbl_html.Style.Add("display", "");
+        }
+
+    }
+
+    protected void btn_to_excel_Click(object sender, EventArgs e)
+    {
+        DataTable dt = OracleHelper.GetDS(CreateSQL().ToString()).Tables[0];
+        string filename = WebCom.RandomnAlpha(5);
+        Response.ContentType = "application/vnd.ms-excel";
+        Response.AppendHeader("Content-Disposition", string.Format("attachment;filename={0}.xls", UTF_filename(filename)));
+        Response.Clear();
+        //GenerateExcelDate(dt, filename);
+        GenerateExcelTable(dt, filename);
+        GetExcelStream().WriteTo(Response.OutputStream);
+        Response.End();
+    }
+
+    public void btn_add_Click(object sender, System.EventArgs e) { }
+    public void btn_clear_Click(object sender, System.EventArgs e) { }
+    public void btn_submit_Click(object sender, System.EventArgs e) { }
+
+
+    string[] notes = { "* Multiple return - all part returned more than 1 times, regardless of time between / symptoms, include more than 12 months return", "* Due to e-PRT information missing, a lot of field DOA cases are not reported in return document. RV received DOA is less than field DOA cases.", "* only previous one week detail information record in the rest of tabs", "* Average TTR = average (sum (shipment date - received date))" };
+
+    #region NPOI生成代碼
+    HSSFWorkbook hssfwb = new HSSFWorkbook();
+    MemoryStream GetExcelStream()
+    {
+        MemoryStream file = new MemoryStream();
+        hssfwb.Write(file);
+        return file;
+    }
+    public void GenerateExcelDate(DataTable dt, string name)
+    {
+        ISheet sheet1 = hssfwb.CreateSheet(name);
+
+        for (int i = 22; i <= dt.Rows.Count + 22; i++)
+        {
+            IRow row = sheet1.CreateRow(i);
+            for (int j = 0; j < dt.Columns.Count; j++)
+            {
+                if ((i - 22) == 0)
+                {
+                    for (int k = 0; k < dt.Columns.Count; k++)
+                    {
+                        if (k <= 2)
+                        {
+                            row.CreateCell(k).SetCellValue(ToName(dt.Columns[k].ColumnName.ToString()));
+                        }
+                        else
+                        {
+                            row.CreateCell(k).SetCellValue(dt.Columns[k].ColumnName.ToString());
+                        }
+
+                    }
+                }
+                else
+                {
+                    row.CreateCell(j).SetCellValue(dt.Rows[(i - 22) - 1][j].ToString());
+                }
+            }
+        }
+
+        int count = dt.Rows.Count + 22 + 2;
+
+        for (int i = 0; i < 4; i++)
+        {
+            IRow noteRow = sheet1.CreateRow(i + count);
+            noteRow.CreateCell(0).SetCellValue(notes[i].ToString());
+        }
+
+        AddPieChart(sheet1, hssfwb, "/chart.png", 20, dt.Columns.Count);
+
+    }
+    public void GenerateExcelTable(DataTable dt, string name)
+    {
+        BindChart(dt);
+
+        ISheet sheet1 = hssfwb.CreateSheet(name);
+
+        string _sql = "select distinct MEANING,DESCRIPTION  from mgs_parameters where lookup_type='ORACLE_REPORT_SUMMARY'  and enabled='Y' order by LOOKUP_CODE ";
+        DataTable _dt = OracleHelper.GetDS(_sql.ToString()).Tables[0];
+
+        for (int i = 22; i < _dt.Rows.Count + 22; i++)
+        {
+            int _i = i - 22;
+            if (_i == 0)//生成表列名
+            {
+                IRow rowCname = sheet1.CreateRow(i - 1);//行個數
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    rowCname.CreateCell(j).SetCellValue(dt.Columns[j].ColumnName.ToString());
+                }
+            }
+            IRow row = sheet1.CreateRow(i);//行個數
+
+            //else
+            //{
+            var v_flag = false;
+            for (int j = 0; j < dt.Columns.Count; j++)
+            {
+
+                if (v_flag)
+                {
+                    break;//跳出
+                }
+                if (j <= 1)//生成site,year
+                {
+                    var a = dt.Rows[0][j].ToString();
+                    row.CreateCell(j).SetCellValue(dt.Rows[0][j].ToString());
+                }
+                else if (j == 2) //替換item名
+                {
+                    var b = _dt.Rows[_i][0].ToString();
+                    row.CreateCell(j).SetCellValue(_dt.Rows[_i][0].ToString());//新item名
+                }
+                else
+                {
+                    var ss = _i;
+                    if (_i == _dt.Rows.Count - 1)//平均值欄位
+                    {
+                        DataTable dt2 = get_attr();
+                        for (int z = 3; z < dt2.Columns.Count; z++)
+                        {
+                            row.CreateCell(z).SetCellValue(dt2.Rows[0][z].ToString());
+                        }
+                    }
+                    else
+                    {
+                        var flag = false;
+                        for (int m = 0; m < dt.Rows.Count; m++)//遍歷原數據源item名
+                        {
+                            var i1 = dt.Rows[m][2].ToString();
+                            var i2 = _dt.Rows[_i][0].ToString();
+                            if (dt.Rows[m][2].ToString().Contains(_dt.Rows[_i][0].ToString().Trim()))//包含該所選表名
+                            {
+                                for (int n = 3; n < dt.Columns.Count; n++)
+                                {
+                                    if (dt.Rows[m][j].ToString() == "0")
+                                    {
+                                        row.CreateCell(n).SetCellValue("0");
+                                    }
+                                    else
+                                    {
+                                        var c = dt.Rows[m][n].ToString();
+                                        row.CreateCell(n).SetCellValue(dt.Rows[m][n].ToString());
+                                    }
+                                }
+                                flag = true;
+                            }
+                            if (flag)
+                            {
+                                v_flag = true;
+                                break;//跳出
+                            }
+                            else  //不包含該表名
+                            {
+                                for (int n = 3; n < dt.Columns.Count; n++)
+                                {
+                                    row.CreateCell(j).SetCellValue("0");
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            //}
+        }
+
+        int count = dt.Rows.Count + 22 + 10;
+
+        for (int i = 0; i < 4; i++)
+        {
+            IRow noteRow = sheet1.CreateRow(i + count);
+            noteRow.CreateCell(0).SetCellValue(notes[i].ToString());
+        }
+
+        //chart1.Visible = false;
+
+        AddPieChart(sheet1, hssfwb, "/chart.png", 20, dt.Columns.Count);
+
+    }
+    #endregion
+
+    private void AddPieChart(ISheet sheet, HSSFWorkbook workbook, string fileurl, int row, int col)
+    {
+        try
+        {
+            //add picture data to this workbook.
+            string path = Server.MapPath("~/temp/");
+            if (fileurl.Contains("/"))
+            {
+                path += fileurl.Substring(fileurl.IndexOf('/'));
+            }
+            string FileName = path;
+            byte[] bytes = System.IO.File.ReadAllBytes(FileName);
+
+            if (!string.IsNullOrEmpty(FileName))
+            {
+                int pictureIdx = workbook.AddPicture(bytes, NPOI.SS.UserModel.PictureType.JPEG);
+                HSSFPatriarch patriarch = (HSSFPatriarch)sheet.CreateDrawingPatriarch();
+                HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 100, 50, 1, 1, col + 1, row + 1);
+                //##处理照片位置，【图片左上角为（col, row）第row+1行col+1列，右下角为（ col +1, row +1）第 col +1+1行row +1+1列，宽为100，高为50
+
+                HSSFPicture pict = (HSSFPicture)patriarch.CreatePicture(anchor, pictureIdx);
+
+                pict.Resize();//用原始圖片大小来显示
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public string UTF_filename(string filename)
+    {
+        return HttpUtility.UrlDecode(filename, System.Text.Encoding.UTF8);
+    }
+
+
+    public void BindChart(DataTable dt)
+    {
+        chart1.Visible = true;
+
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString().PadLeft(2, '0');
+        string type = ddl_type.SelectedValue.ToString();
+        int time_from = 0;
+        int time_to = 0;
+        int weekf = 0;
+        int weekt = 0;
+        SeriesCollection sc = new SeriesCollection();
+        string _sql = "select distinct MEANING,DESCRIPTION  from mgs_parameters where lookup_type='ORACLE_REPORT_SUMMARY'  and enabled='Y' order by LOOKUP_CODE ";
+        DataTable _dt = OracleHelper.GetDS(_sql.ToString()).Tables[0];
+        Series s2 = new Series();
+        for (int i = 0; i < _dt.Rows.Count; i++)
+        {
+
+            Series s = new Series();
+            
+            s.Name = _dt.Rows[i][0].ToString();
+            s.Element.Length = 20;
+            var flag = false;
+
+
+            if (i == _dt.Rows.Count - 1)
+            {
+
+                if (type == "W")//周
+                {
+                    time_from = Convert.ToInt32(ddl_week_from.SelectedValue.ToString());
+                    time_to = Convert.ToInt32(ddl_week_to.SelectedValue.ToString());
+                }
+                if (type == "M")//月
+                {
+                    time_from = Convert.ToInt32(ddl_month_from.SelectedValue.ToString());
+                    time_to = Convert.ToInt32(ddl_month_to.SelectedValue.ToString());
+                }
+                StringBuilder sql_attr = new StringBuilder();
+                sql_attr.Append(" select year,site,item ");
+
+                if (type == "W")
+                {
+                    for (int j = time_from; j <= time_to; j++)
+                    {
+                        sql_attr.Append(" ,nvl(MAX(DECODE(WK," + j + ",amount)),'0') WK" + j.ToString().PadLeft(2, '0') + "");
+                    }
+                }
+                if (type == "M")
+                {
+                    StringBuilder sql = new StringBuilder();
+                    sql.Append(" select to_char(to_date('" + year + "" + time_from.ToString().PadLeft(2, '0') + "01','yyyymmdd'),'iw'),");
+                    sql.Append(" to_char(last_day(to_date('" + year + "" + time_to.ToString().PadLeft(2, '0') + "','yyyymm')),'iw') from dual");
+                    DataTable dt2 = OracleHelper.GetDS(sql.ToString()).Tables[0];
+                    weekf = Convert.ToInt32(dt2.Rows[0][0].ToString());
+                    weekt = Convert.ToInt32(dt2.Rows[0][1].ToString());
+                    for (int j = weekf; j <= weekt; j++)
+                    {
+                        sql_attr.Append(" ,nvl(MAX(DECODE(WK," + j + ",amount)),'0') WK" + j.ToString().PadLeft(2, '0') + "");
+                    }
+                }
+                //sql_attr.Remove(sql_attr.Length - 1, 1);
+                sql_attr.Append(" from ( ");
+                sql_attr.Append(" select location site,'Average TTR' item,to_char(repair_date,'iw') WK,to_char(REPAIR_DATE,'YYYY') YEAR,to_char(avg(time_to_repair),'fm999990') amount from ORACLE_PROCEED_ITEMS where 1=1  AND LOCATION = 'ShangHai' ");
+                sql_attr.Append(" and to_char(REPAIR_DATE,'YYYY')='" + year + "' ");
+                sql_attr.Append(" group by location,to_char(repair_date,'iw'),to_char(REPAIR_DATE,'YYYY')  order by to_char(repair_date,'iw') ");
+                sql_attr.Append(" )group by site,year,item ");
+
+                //Response.Write(sql_attr.ToString());
+                //return html.ToString();
+
+                DataTable dt_attr = OracleHelper.GetDS(sql_attr.ToString()).Tables[0];
+                for (int j = 0; j < dt_attr.Rows.Count; j++)
+                {
+                    //Series s = new Series();
+                    s.Name = dt_attr.Rows[j][2].ToString();
+                    s.Element.Length = 20;
+                    for (int k = 3; k < dt_attr.Columns.Count; k++)
+                    {
+                        Element e = new Element();
+                        e.Name = dt_attr.Columns[k].ColumnName.ToString();
+                        var a = dt_attr.Rows[j][k].ToString() == "" ? "0" : dt_attr.Rows[j][k].ToString();
+                        e.YValue = Convert.ToDouble((dt_attr.Rows[j][k].ToString() == "" ? "0" : dt_attr.Rows[j][k].ToString()).ToString());
+                        e.ToolTip = a;
+                        s.AddElements(e);
+                    }
+                }
+                sc.Add(s);
+
+            }
+            else
+            {
+                for (int m = 0; m < dt.Rows.Count; m++)
+                {
+                    if (dt.Rows[m][2].ToString().Contains(_dt.Rows[i][0].ToString().Trim()))//包含該所選表名
+                    {
+                        for (int j = 3; j < dt.Columns.Count; j++)
+                        {
+                            Element e = new Element();
+                            e.Name = dt.Columns[j].ColumnName.ToString();
+                            var a = dt.Rows[m][j].ToString() == null ? "0" : dt.Rows[m][j].ToString();
+                            e.YValue = Convert.ToDouble((dt.Rows[m][j].ToString() == "" ? "0" : dt.Rows[m][j].ToString()).ToString());
+                            e.ToolTip = a;
+                            e.URL = "WeekDataDetail.aspx?type=" + Server.UrlEncode("W") + "&item=" + Server.UrlEncode(dt.Rows[m][2].ToString()) + "&site=" + Server.UrlEncode(site) + "&tablename=" + Server.UrlEncode(_dt.Rows[i][1].ToString()) + "&year=" + Server.UrlEncode(year) + "&week=" + Server.UrlEncode(dt.Columns[j].ColumnName) + "";
+                            s.AddElements(e);
+                        }
+                        flag = true;
+                        sc.Add(s);
+                    }
+                    if (flag)
+                    {
+                        flag = false;
+                        break;
+                    }
+                    //else
+                    //{
+                    //    for (int j = 3; j < dt.Columns.Count; j++)
+                    //    {
+                    //        Element e = new Element();
+                    //        e.Name = dt.Columns[j].ColumnName.ToString();
+                    //        e.YValue = 0;
+                    //        e.ToolTip = "0";
+                    //        s.AddElements(e);
+                    //    }
+                    //    sc.Add(s);
+                    //}
+
+
+                }
+                if (flag == false)
+                {
+                    for (int j = 3; j < dt.Columns.Count; j++)
+                    {
+                        Element e = new Element();
+                        e.Name = dt.Columns[j].ColumnName.ToString();
+                        e.YValue = 0;
+                        e.ToolTip = "0";
+                        s.AddElements(e);
+                    }
+                    sc.Add(s);
+                }
+            }
+           
+            
+
+        }
+        //DataTable dt_attr = get_attr();
+        //for (int i = 0; i < dt_attr.Rows.Count; i++)
+        //{
+        //    Series s = new Series();
+        //    s.Name = dt_attr.Rows[i][0].ToString();
+        //    s.Element.Length = 20;
+        //    for (int j = 3; j < dt_attr.Columns.Count; j++)
+        //    {
+        //        Element e = new Element();
+        //        e.Name = dt.Columns[j].ColumnName.ToString();
+        //        e.YValue = 0;
+        //        e.ToolTip = "0";
+        //        s2.AddElements(e);
+        //    }
+        //}
+        //sc.Add(s2);
+
+        Charting c = new Charting();
+        c.Ttile = "Oracle Report";
+        c.XTitle = "Week";
+        c.YTitle = "Qty";
+        c.PicHeight = 330;
+        c.PicWidth = 450 + dt.Columns.Count * 20;
+        c.PhaysicalImagePath = "temp";
+        c.FileName = "chart";
+        c.User3D = false;
+        c.DataSource = sc;
+        c.CreateLine(this.chart1);
+    }
+
+    protected string getHtml()
+    {
+        StringBuilder html = new StringBuilder();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString().PadLeft(2, '0');
+        string type = ddl_type.SelectedValue.ToString();
+        int time_from = 0;
+        int time_to = 0;
+        if (type == "W")//周
+        {
+            time_from = Convert.ToInt32(ddl_week_from.SelectedValue.ToString());
+            time_to = Convert.ToInt32(ddl_week_to.SelectedValue.ToString());
+        }
+        if (type == "M")//月
+        {
+            time_from = Convert.ToInt32(ddl_month_from.SelectedValue.ToString());
+            time_to = Convert.ToInt32(ddl_month_to.SelectedValue.ToString());
+        }
+        if (string.IsNullOrEmpty(site))
+        {
+            site = "ITEM";
+        }
+
+        DataTable dt = OracleHelper.GetDS(CreateSQL().ToString()).Tables[0];
+        int weekf = 0;
+        int weekt = 0;
+        if (dt.Rows.Count > 0)//有數據
+        {
+            lab_mess.Text = "";
+
+            BindChart(dt);
+            chart1.Style.Add("display", "");
+
+            html.Append("<table id='table_detail___V' class='scroll' cellpadding='0' cellspacing='0' style=' width:100% '>");
+            html.Append("<tr>");
+            html.Append("<th>" + site + "</th>");
+            int n = time_to - time_from + 1;
+
+            if (type == "W")
+            {
+                for (int i = time_from; i <= time_to; i++)
+                {
+                    html.Append("<th>WK" + i.ToString().PadLeft(2, '0') + "</th>");
+                }
+            }
+            if (type == "M")
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" select to_char(to_date('" + year + "" + time_from.ToString().PadLeft(2, '0') + "01','yyyymmdd'),'iw'),");
+                sql.Append(" to_char(last_day(to_date('" + year + "" + time_to.ToString().PadLeft(2, '0') + "','yyyymm')),'iw') from dual");
+                DataTable dt2 = OracleHelper.GetDS(sql.ToString()).Tables[0];
+                weekf = Convert.ToInt32(dt2.Rows[0][0].ToString());
+                weekt = Convert.ToInt32(dt2.Rows[0][1].ToString());
+                for (int j = weekf; j <= weekt; j++)
+                {
+                    html.Append("<th>WK" + j.ToString().PadLeft(2, '0') + "</th>");
+                };
+            }
+            html.Append("</tr>");
+            string _sql = "select distinct MEANING,DESCRIPTION  from mgs_parameters where lookup_type='ORACLE_REPORT_SUMMARY'  and enabled='Y' order by LOOKUP_CODE ";
+            DataTable _dt = OracleHelper.GetDS(_sql.ToString()).Tables[0];
+            var flag = false;
+            for (int i = 0; i < _dt.Rows.Count; i++)//平均值最後求
+            {
+                html.Append("<tr>");
+                html.Append("<td>" + _dt.Rows[i][0].ToString() + "</td>");
+                flag = false;
+                if (i == _dt.Rows.Count - 1)
+                {
+                    StringBuilder sql_attr = new StringBuilder();
+                    sql_attr.Append(" select year,site,item ");
+
+                    if (type == "W")
+                    {
+                        for (int j = time_from; j <= time_to; j++)
+                        {
+                            sql_attr.Append(" ,nvl(MAX(DECODE(WK," + j + ",amount)),'0') WK" + j.ToString().PadLeft(2, '0') + "");
+                        }
+                    }
+                    if (type == "M")
+                    {
+                        for (int j = weekf; j <= weekt; j++)
+                        {
+                            sql_attr.Append(" ,nvl(MAX(DECODE(WK," + j + ",amount)),'0') WK" + j.ToString().PadLeft(2, '0') + "");
+                        }
+                    }
+                    //sql_attr.Remove(sql_attr.Length - 1, 1);
+                    sql_attr.Append(" from ( ");
+                    sql_attr.Append(" select location site,'Average TTR' item,to_char(repair_date,'iw') WK,to_char(REPAIR_DATE,'YYYY') YEAR,to_char(avg(time_to_repair),'fm999990') amount from ORACLE_PROCEED_ITEMS where 1=1  AND LOCATION = 'ShangHai' ");
+                    sql_attr.Append(" group by location,to_char(repair_date,'iw'),to_char(REPAIR_DATE,'YYYY')  order by to_char(repair_date,'iw') ");
+                    sql_attr.Append(" )group by site,year,item ");
+
+                    //Response.Write(sql_attr.ToString());
+                    //return html.ToString();
+
+                    DataTable dt_attr = OracleHelper.GetDS(sql_attr.ToString()).Tables[0];
+
+                    if (dt_attr.Rows.Count > 0)
+                    {
+                        for (int l = 0; l < dt_attr.Rows.Count; l++)
+                        {
+                            for (int j = 3; j < dt_attr.Columns.Count; j++)
+                            {
+                                if (dt_attr.Rows[l][j].ToString() != "0")
+                                {
+                                    html.Append("<td style='text-align:right'>" + Convert.ToInt32(dt_attr.Rows[l][j].ToString()).ToString("n0") + "</td>");
+                                    //html.Append("<td style='text-align:right'><a href='WeekDataDetail.aspx?type=" + Server.UrlEncode("W") + "&item=" + Server.UrlEncode(_dt.Rows[i][0].ToString()) + "&site=" + Server.UrlEncode(site) + "&tablename=" + Server.UrlEncode(_dt.Rows[i][1].ToString()) + "&year=" + Server.UrlEncode(year) + "&week=" + Server.UrlEncode(dt_attr.Columns[j].ColumnName) + "' target='_blank'>" + (Convert.ToInt32(dt_attr.Rows[l][j].ToString()).ToString("n0")) + "</a></td>");
+                                }
+                                else
+                                {
+                                    html.Append("<td style='text-align:right'>0</td>");
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        for (int l = 0; l < dt_attr.Columns.Count - 3; l++)
+                        {
+                            html.Append("<td style='text-align:right'>0</td>");
+                        }
+                    }
+                    return html.ToString();
+                }
+                for (int j = 0; j < dt.Rows.Count; j++) //對於一個已有的表名
+                {
+                    string target_item = dt.Rows[j][2].ToString();
+                    string temp_tablename = _dt.Rows[i][1].ToString();
+                    string origin_item = _dt.Rows[i][0].ToString();
+
+                    if (dt.Rows[j][2].ToString().Contains(_dt.Rows[i][0].ToString().Trim()))//包含該表名
+                    {
+                        var row = j;
+                        for (int k = 3; k < dt.Columns.Count; k++)
+                        {
+                            if (dt.Rows[j][k].ToString() == "0")
+                            {
+                                html.Append("<td style='text-align:right'>0</td>");
+                            }
+                            else
+                            {
+                                html.Append("<td style='text-align:right'><a href='WeekDataDetail.aspx?type=" + Server.UrlEncode("W") + "&item=" + Server.UrlEncode(_dt.Rows[i][0].ToString()) + "&site=" + Server.UrlEncode(site) + "&tablename=" + Server.UrlEncode(_dt.Rows[i][1].ToString()) + "&year=" + Server.UrlEncode(year) + "&week=" + Server.UrlEncode(dt.Columns[k].ColumnName) + "' target='_blank'>" + (Convert.ToInt32(dt.Rows[j][k].ToString()).ToString("n0")) + "</a></td>");
+                            }
+                        }
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag == false)
+                {
+                    if (type == "W")
+                    {
+                        for (int k = time_from; k <= time_to; k++)
+                        {
+                            html.Append("<td style='text-align:right'>0</td>");
+                        }
+                    }
+                    if (type == "M")
+                    {
+                        for (int k = weekf; k <= weekt; k++)
+                        {
+                            html.Append("<td style='text-align:right'>0</td>");
+                        }
+                    }
+                }
+                html.Append("</tr>");
+            }
+        }
+        else
+        {
+            html.Append(WebCom.ShowSystemTip(this.temp_language.Text, 1, 80, 180, "commoncache"));
+            chart1.Style.Add("display", "none");
+        }
+        html.Append("</table>");
+        return html.ToString();
+    }
+
+
+
+    public DataTable get_attr()
+    {
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString().PadLeft(2, '0');
+        string type = ddl_type.SelectedValue.ToString();
+        StringBuilder sbSQL = new StringBuilder();
+        int time_from = 0;
+        int time_to = 0;
+        int weekf = 0;
+        int weekt = 0;
+
+        if (type == "W")
+        {
+            time_from = Convert.ToInt32(ddl_week_from.SelectedValue.ToString());
+            time_to = Convert.ToInt32(ddl_week_to.SelectedValue.ToString());
+        }
+        if (type == "M")
+        {
+            weekf = Convert.ToInt32(ddl_month_from.SelectedValue.ToString());
+            weekt = Convert.ToInt32(ddl_month_to.SelectedValue.ToString());
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" select to_char(to_date('" + year + "" + weekf.ToString().PadLeft(2, '0') + "01','yyyymmdd'),'iw'),");
+            sql.Append(" to_char(last_day(to_date('" + year + "" + weekt.ToString().PadLeft(2, '0') + "','yyyymm')),'iw') from dual");
+            DataTable dt2 = OracleHelper.GetDS(sql.ToString()).Tables[0];
+            weekf = Convert.ToInt32(dt2.Rows[0][0].ToString());
+            weekt = Convert.ToInt32(dt2.Rows[0][1].ToString());
+
+        }
+
+        StringBuilder sql_attr = new StringBuilder();
+        sql_attr.Append(" select year,site,item ");
+
+        if (type == "W")
+        {
+            for (int j = time_from; j <= time_to; j++)
+            {
+                sql_attr.Append(" ,nvl(MAX(DECODE(WK," + j + ",amount)),'0') WK" + j.ToString().PadLeft(2, '0') + "");
+            }
+        }
+        if (type == "M")
+        {
+            for (int j = weekf; j <= weekt; j++)
+            {
+                sql_attr.Append(" ,nvl(MAX(DECODE(WK," + j + ",amount)),'0') WK" + j.ToString().PadLeft(2, '0') + "");
+            }
+        }
+        //sql_attr.Remove(sql_attr.Length - 1, 1);
+        sql_attr.Append(" from ( ");
+        sql_attr.Append(" select location site,'Average TTR' item,to_char(repair_date,'iw') WK,to_char(REPAIR_DATE,'YYYY') YEAR,to_char(avg(time_to_repair),'fm999990') amount from ORACLE_PROCEED_ITEMS where 1=1  AND LOCATION = 'ShangHai' ");
+        sql_attr.Append(" group by location,to_char(repair_date,'iw'),to_char(REPAIR_DATE,'YYYY')  order by to_char(repair_date,'iw') ");
+        sql_attr.Append(" )group by site,year,item ");
+
+        //Response.Write(sql_attr.ToString());
+        //return html.ToString();
+        DataTable dt_attr = OracleHelper.GetDS(sql_attr.ToString()).Tables[0];
+        return dt_attr;
+    }
+
+    //改變列名
+    public string ToName(string olename)
+    {
+        string name = olename;
+        name = name.Replace('_', ' ');
+        char[] namechar = name.ToCharArray();
+        string[] namestr = new string[namechar.Length];
+        string sname = "";
+        for (int j = 1; j <= namechar.Length; j++)
+        {
+            if (j == 1)
+            {
+                sname += namechar[j - 1].ToString().ToUpper();
+            }
+            else
+            {
+                if (namechar[j - 2].ToString() == " ")
+                {
+                    sname += namechar[j - 1].ToString();
+                }
+                else
+                {
+                    sname += namechar[j - 1].ToString().ToLower();
+                }
+            }
+
+        }
+        return sname;
+    }
+
+    protected string CreateSQL()
+    {
+        StringBuilder html = new StringBuilder();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        string site = ddl_site_type.SelectedValue.ToString();
+        string year = ddl_year.SelectedValue.ToString();
+        string type = ddl_type.SelectedValue.ToString();
+        string time_f = temp_ddl_time_from.Value.ToString();
+        int time_from = 0;
+        int time_to = 0;
+        if (type == "W")
+        {
+            time_from = Convert.ToInt32(ddl_week_from.SelectedValue.ToString());
+            time_to = Convert.ToInt32(ddl_week_to.SelectedValue.ToString());
+        }
+        if (type == "M")
+        {
+            time_from = Convert.ToInt32(ddl_month_from.SelectedValue.ToString());
+            time_to = Convert.ToInt32(ddl_month_to.SelectedValue.ToString());
+        }
+
+        sbSQL.Append("select Year,Location Site,Item ");
+        if (!string.IsNullOrEmpty(type))
+        {
+            if (type == "M")//月
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" select to_char(to_date('" + year + "" + time_from.ToString().PadLeft(2, '0') + "01','yyyymmdd'),'iw'),");
+                sql.Append(" to_char(last_day(to_date('" + year + "" + time_to.ToString().PadLeft(2, '0') + "','yyyymm')),'iw') from dual");
+                DataTable dt2 = OracleHelper.GetDS(sql.ToString()).Tables[0];
+                int weekf = Convert.ToInt32(dt2.Rows[0][0].ToString());
+                int weekt = Convert.ToInt32(dt2.Rows[0][1].ToString());
+                for (int j = weekf; j <= weekt; j++)
+                {
+                    sbSQL.Append(",nvl(WK" + j.ToString().PadLeft(2, '0') + ",0) WK" + j.ToString().PadLeft(2, '0') + "");
+
+                };
+
+            }
+            if (type == "W")//周
+            {
+                for (int i = time_from; i <= time_to; i++)
+                {
+                    sbSQL.Append(",nvl(WK" + i.ToString().PadLeft(2, '0') + ",0)  WK" + i.ToString().PadLeft(2, '0') + "");
+                }
+            }
+        }
+        sbSQL.Append(" from oracle_report_summary where 1=1 ");
+        if (!string.IsNullOrEmpty(site))
+        {
+            sbSQL.Append(" AND LOCATION = '" + site + "'");
+        }
+
+        if (!string.IsNullOrEmpty(year))
+        {
+            sbSQL.Append(" AND YEAR = '" + year + "'");
+        }
+
+        sbSQL.Append("  order by year,item asc");
+        return sbSQL.ToString();
+    }
+
+    public override DataTable GetExcelTable()
+    {
+
+        return OracleHelper.getDB(CreateSQL() + ", ITEM ASC");
+    }
+
+
+    protected void ddl_type_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var type = ddl_type.SelectedValue;
+        if (ddl_type.SelectedValue == "W")
+        {
+
+            sp_time_from.InnerHtml = "Start Week:";
+            sp_time_to.InnerHtml = "End Week:";
+            ddl_month_from.Visible = false;
+            ddl_month_to.Visible = false;
+            ddl_week_from.Visible = true;
+            ddl_week_to.Visible = true;
+            ddl_week_from.SelectedValue = "01";
+            ddl_week_to.SelectedValue = WebCom.GetWeekOfYear(DateTime.Now);
+        }
+        if (ddl_type.SelectedValue == "M")
+        {
+
+            sp_time_from.InnerHtml = "Start Month:";
+            sp_time_to.InnerHtml = "End Month:";
+            ddl_month_from.Visible = true;
+            ddl_month_to.Visible = true;
+            ddl_week_from.Visible = false;
+            ddl_week_to.Visible = false;
+            var month = DateTime.Now.Month.ToString();
+            ddl_month_from.SelectedValue = "01";
+            ddl_month_to.SelectedValue = DateTime.Now.Month.ToString().PadLeft(2, '0');
+            //Response.Write(DateTime.Now.Month.ToString().PadLeft(2, '0'));
+        }
+        chart1.Style.Add("display", "none");
+        lbl_html.Style.Add("display", "none");
+        lab_mess.Text = WebCom.ShowSystemTip(this.temp_language.Text, 1, 80, 180, "commoncache");
+        //PageStatusInit(1);
+    }
+}
