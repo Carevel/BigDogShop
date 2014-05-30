@@ -857,8 +857,6 @@
     <Content Include="Admin\Products\List.aspx" />
     <Content Include="Admin\Styles\Base.css" />
     <Content Include="Admin\Styles\tree.css" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="HtmlPage2.html" />
     <Content Include="JsSlide\1.css" />
     <Content Include="JsSlide\images\1.jpg" />
     <Content Include="JsSlide\images\2.jpg" />
@@ -1406,7 +1404,6 @@
     <Content Include="Js\Effact\Rotation2.js" />
     <Content Include="Handler\GetGlobalLeftMenuData.ashx" />
     <Content Include="List.aspx" />
-    <Content Include="测试滑动js.aspx" />
     <Content Include="Admin\Handler\GlobalTree.ashx" />
     <Content Include="Admin\Styles\themes\black\images\Thumbs.db" />
     <Content Include="Admin\Styles\themes\bootstrap\images\Thumbs.db" />
@@ -1917,13 +1914,6 @@
     </Compile>
     <Compile Include="User_Security.aspx.designer.cs">
       <DependentUpon>User_Security.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="测试滑动js.aspx.cs">
-      <DependentUpon>测试滑动js.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="测试滑动js.aspx.designer.cs">
-      <DependentUpon>测试滑动js.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

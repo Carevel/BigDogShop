@@ -85,7 +85,7 @@ ul
     float: left;
     height: 70px;
     width: 270px;
-    background: url(../Images/top_logo.jpg) no-repeat;
+    background: url(../Images/logo/logo.jpg) no-repeat;
 }
 
 .top_header_info
@@ -147,7 +147,16 @@ ul
 }
 
 /*菜单栏*/
-.nav_container
+.header_nav_1
+{
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    line-height: 40px;
+    width: 1200px;
+    background: #ef3b3b;
+}
+.header_nav
 {
     margin-left: auto;
     margin-right: auto;
@@ -164,7 +173,7 @@ ul
     float: left;
 }
 
-#nav
+.nav
 {
     float: left;
     height: 40px;
@@ -173,7 +182,7 @@ ul
     text-align: center;
 }
 
-    #nav:hover
+    .nav:hover
     {
         cursor: pointer;
         background-color: #bb0404;
@@ -190,28 +199,17 @@ ul
     line-height: 40px;
     background-color: #ef3b3b;
 }
-
+    .header_nav ul li a
+    {
+        text-decoration:none;
+        font-size:initial;
+       
+    }
     .header_nav ul li:hover
     {
         background-color: #bb0404;
-        cursor: pointer;
     }
 
-    .header_nav ul li a
-    {
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        color: #fff;
-        font-size: larger;
-        font-weight: bold;
-    }
-
-        .header_nav ul li a:hover
-        {
-            /*color:#018636;*/
-            /*border-bottom:4px solid #018636;*/
-        }
 /*所有菜单列表*/
 .lay_out_menu
 {
@@ -281,7 +279,7 @@ ul
 
         .allsort_box ul li
         {
-            width: 210px;
+            padding-left:30px;
             height: 30px;
             line-height: 30px;
             list-style: none;
@@ -290,12 +288,14 @@ ul
 
             .allsort_box ul li:hover
             {
+                
                 background: #42b8ed;
             }
 
             .allsort_box ul li a
             {
-                text-align: center;
+                
+                text-align: left;
                 text-decoration: none;
                 padding-left: 8px;
                 color: #000;
@@ -322,7 +322,7 @@ ul
 }*/
 .sort_list
 {
-
+    margin:15px 15px 15px 0px;
     background: #fff;
     z-index: 11;
 }
@@ -360,30 +360,40 @@ ul
 
 .clearfix
 {
-    width: 350px;
+    width: 240px;
     float: left;
     height: 80px;
+    margin:0 -6px 10px 20px;
     border-bottom: 1px solid #ccc;
 }
-
+.sort_color
+{
+    /*position:absolute;*/
+}
 .sort_color span
 {
-    padding: 0px 0px 0px 30px;
+    /*padding: 0px 0px 0px 30px;*/
  
     height: 30px;
     display: block;
 }
+.sort_color a
+{
+    width:100px;
+    text-wrap:none;
+}
 .show_sort
 {
-    top: -60px;
-    width: 700px;
+    /*top: -60px;*/
+    width: 787px;
     min-width:600px;
     min-height: 500px;
-    border: 2px solid #B8B8B8;
+    border: 2px solid #DE8BFF;
     background: #fff;
     position: absolute;
     display:none;
-    left: 210px;
+    left:210px;
+    top:-60px;
     box-shadow:1px 1px 3px #B8B8B8;
     -webkit-box-shadow:1px 1px 3px #B8B8B8;
     z-index: 1000;

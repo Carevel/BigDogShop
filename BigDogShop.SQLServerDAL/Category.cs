@@ -124,17 +124,18 @@ namespace BigDogShop.SQLServerDAL
         public DataTable GetChildList(int father_id,int type_id)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Id,Type_Id,Category_Name,Father_Id,Category_Layer,Link_Url,Description");
+            sql.Append("select distinct Type_Id");
             sql.Append(" Seo_Name,Seo_KeyWords,Seo_Description from BigDog_Category");
-            sql.Append(" WHERE Father_Id=@Father_Id and Type_Id=@Type_Id");
-            SqlParameter[] parms = new SqlParameter[] { 
-                new SqlParameter("@Father_Id",SqlDbType.Int),
-                new SqlParameter("@Type_Id",SqlDbType.Int)
-            };
-            parms[0].Value = father_id;
-            parms[1].Value = type_id;
-   
-            return SQLHelper.GetDs(sql.ToString(),parms).Tables[0];
+            //sql.Append(" WHERE Father_Id=@Father_Id and Type_Id=@Type_Id");
+            //SqlParameter[] parms = new SqlParameter[] { 
+            //    new SqlParameter("@Father_Id",SqlDbType.Int),
+            //    new SqlParameter("@Type_Id",SqlDbType.Int)
+            //};
+            //parms[0].Value = father_id;
+            //parms[1].Value = type_id;
+            DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            //dt = dt.DefaultView.ToTable(true, new string[] { "Type_Id", "Father_Id" });
+            return dt;
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace BigDogShop.SQLServerDAL
         public DataTable GetList(int father_id)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Id,Type_Id,Father_Id,Category_Name,Description,Link_Url from BigDog_Category where Father_Id=@Father_Id");
+            sql.Append("select distinct Type_Id from BigDog_Category where Father_Id=@Father_Id");
             SqlParameter[] parms = new SqlParameter[] { 
                 new SqlParameter("@Father_Id",SqlDbType.Int)
             };
@@ -156,6 +157,36 @@ namespace BigDogShop.SQLServerDAL
                 return dt;
             }
             return null;
+        }
+
+        public DataTable getItemList()
+        {
+            DataTable dt = GetList(0);
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select Id,Type_Id,Father_Id,Category_Name,Description,Link_Url from BigDog_Category ");
+            DataTable dtItem = new DataTable();
+            DataColumn dc = new DataColumn("Category_Name", typeof(String));
+            dt.Columns.Add(dc);
+            dtItem = SQLHelper.GetDs(sql.ToString()).Tables[0];
+            DataRow[] drSelect;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+               
+                StringBuilder item=new StringBuilder();
+                drSelect=dtItem.Select("TYPE_ID='"+dt.Rows[i][0].ToString()+"'");
+                if (drSelect.Length > 0)
+                {
+                    for (int j = 0; j < drSelect.Length; j++)
+                    {
+                        item.Append("<a href='#' target='_blank'>" + drSelect[j]["Category_Name"].ToString() + "</a>、");
+                    }
+                }
+                
+                item.Remove(item.Length - 1, 1);
+
+                dt.Rows[i]["Category_Name"] = item.ToString();
+            }
+            return dt;
         }
     }
 }

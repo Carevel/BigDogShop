@@ -50,9 +50,12 @@ namespace BigDogShop.BLL
         /// </summary>
         /// <param name="father_id"></param>
         /// <returns></returns>
-        public static DataTable GetCategoryList(int father_id)
+        public static DataTable GetCategoryList()
         {
-            return Dal.GetList(father_id);
+            return Dal.getItemList();
         }
+
+
+        
     }
 }

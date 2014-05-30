@@ -10,7 +10,7 @@ using BigDogShop.Model;
 
 namespace BigDogShop.SQLServerDAL
 {
-    public class Product:IProduct
+    public class Product : IProduct
     {
         /// <summary>
         /// 添加一条数据
@@ -153,7 +153,7 @@ namespace BigDogShop.SQLServerDAL
                 model.Product_Origin = dt.Rows[0]["Product_Origin"].ToString();
                 model.Sales_Count = Convert.ToInt32(dt.Rows[0]["Salses_Count"]);
                 model.Description = dt.Rows[0]["Description"].ToString();
-                model.Rank = Convert.ToInt32( dt.Rows[0]["Rank"].ToString());
+                model.Rank = Convert.ToInt32(dt.Rows[0]["Rank"].ToString());
                 model.Price = Convert.ToDecimal(dt.Rows[0]["Price"].ToString());
                 model.Promote_Price = Convert.ToDecimal(dt.Rows[0]["Promote_Price"].ToString());
                 model.Member_Price = Convert.ToDecimal(dt.Rows[0]["Member_Price"].ToString());
@@ -173,7 +173,7 @@ namespace BigDogShop.SQLServerDAL
         /// <param name="keywords"></param>
         /// <returns></returns>
         public DataTable GetBySearchKeywords(string keywords)
-        { 
+        {
             //string[] str=keywords.PadRight(' ').Split(new char[]{' '});
             StringBuilder sql = new StringBuilder();
             sql.Append("select Product_Name,Product_No,Provider_Id,Product_Type_Id,Product_Origin,Sales_Count,Description");
@@ -221,8 +221,8 @@ namespace BigDogShop.SQLServerDAL
         public DataTable GetLists()
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Product_Name,Product_No,Provider_Id,Product_Type_Id,Product_Origin,Sales_Count,Description");
-            sql.Append("Rank,Price,Promote_Price,Member_Price,Vip_Price,Stock,Product_Image_Id,Extra_Property_Id,Status");
+            sql.Append(" select Product_Name,Product_No,Provider_Id,Product_Type_Id,Product_Origin,Sales_Count,Description,");
+            sql.Append(" Rank,Price,Promote_Price,Member_Price,Vip_Price,Stock,Product_Image_Id,Extra_Property_Id,Status");
             sql.Append(" from BigDog_Product ");
             DataTable dt = SQLHelper.GetDs(sql.ToString()).Tables[0];
             if (dt.Rows.Count > 0)

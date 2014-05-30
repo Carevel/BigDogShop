@@ -36,7 +36,9 @@ namespace BigDogShop.Web
             DataTable dt = NewsBLL.GetNewsList();
             rpt_news.DataSource = dt;
             rpt_news.DataBind();
+            
         }
 
+        
     }
 }

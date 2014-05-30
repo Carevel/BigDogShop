@@ -1,20 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HeaderNav.ascx.cs" Inherits="BigDogShop.Web.UserControl.HeaderNav" %>
 <%@ OutputCache Duration="20" VaryByParam="none" Shared="true" VaryByCustom="browser" %>
-<div class="nav_container">
-    <span id="nav">全部商品分类</span>
+<div class="header_nav_1">
+    <div>
+        <a href="#" class="nav">全部商品分类</a>
+    </div>
     <!--所有菜单-->
     <div class="allsort_box">
+
         <ul id="sort_lists">
-            <asp:Repeater ID="rpt_menu_category" runat="server" OnItemDataBound="rpt_menu_category_ItemDataBound">
+            <asp:Repeater ID="rpt_menu_category" runat="server">
                 <ItemTemplate>
-                    <li class="sort_color">
-                        <span class="bg_gray" id="<%#Eval("Type_Id") %>">
-                            <asp:Repeater ID="rpt_menu_category_list" runat="server">
-                                <ItemTemplate>
-                                    <a href="#"><%#Eval("Category_Name") %>,</a>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </span>
+                    <li class="<%# Convert.ToInt32(Eval("Type_Id"))/2==0?"sort_color":"sort_color" %>" typeid="<%#Eval("Type_Id") %>">
+                        <%#Eval("Category_Name") %>
                         <div typeid="<%#Eval("Type_Id") %>" class="show_sort global_loading"></div>
                     </li>
                 </ItemTemplate>
@@ -33,7 +30,7 @@
             </asp:Repeater>
 
         </ul>
-
+         缓存菜单测试(20秒):<asp:Label ID="lbl_time" runat="server"></asp:Label>
     </div>
-    缓存菜单测试(20秒):<asp:Label ID="lbl_time" runat="server"></asp:Label>
+   
 </div>

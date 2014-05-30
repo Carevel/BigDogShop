@@ -14,17 +14,18 @@ namespace BigDogShop.SQLServerDAL
     public class News : INews
     {
         /// <summary>
-        /// 添加菜单
+        /// 添加新聞
         /// </summary>
         /// <param name="news"></param>
         /// <returns></returns>
         public bool Add(NewsInfo news)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("insert into BigDog_News(Title,Father_Id,Image_Url,Link_Url)");
-            sql.Append("values(@Title,@Father_Id@Image_Url,@Link_Url)");
+            sql.Append("insert into BigDog_News(Title,Type_Id,Father_Id,Image_Url,Link_Url)");
+            sql.Append("values(@Title,@Type_Id,@Father_Id@Image_Url,@Link_Url)");
             SqlParameter[] parms = new SqlParameter[] {
                 new SqlParameter("@Title",SqlDbType.NVarChar,50),
+                new SqlParameter("@Type_Id",SqlDbType.NVarChar,50),
                 new SqlParameter("@Father_Id",SqlDbType.Int),
                 new SqlParameter("@Image_Url",SqlDbType.NVarChar,200),
                 new SqlParameter("@Link_Url",SqlDbType.NVarChar,200)
@@ -33,7 +34,7 @@ namespace BigDogShop.SQLServerDAL
         }
 
         /// <summary>
-        /// 根据ID删除菜单
+        /// 根据ID删除新聞
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -49,7 +50,7 @@ namespace BigDogShop.SQLServerDAL
         }
 
         /// <summary>
-        /// 更新菜单实体
+        /// 更新新聞实体
         /// </summary>
         /// <param name="news"></param>
         /// <returns></returns>
@@ -109,7 +110,7 @@ namespace BigDogShop.SQLServerDAL
             SqlParameter[] parms = new SqlParameter[] { 
                 new SqlParameter("@Father_Id",SqlDbType.Int)
             };
-            DataTable dt = SQLHelper.GetDs(sql.ToString(),parms).Tables[0];
+            DataTable dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
             return dt;
         }
         /// <summary>
