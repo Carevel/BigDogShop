@@ -103,13 +103,14 @@ namespace BigDogShop.SQLServerDAL
             return null;
         }
 
-        public DataTable GetNewsList(int father_id)
+        public DataTable GetNewsList(int typeId)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("select Id,Title,Type_Id,Father_Id,Description,Image_Url,Link_Url from BigDog_News where Father_Id=@Father_Id");
+            sql.Append("select Id,Title,Type_Id,Father_Id,Description,Image_Url,Link_Url from BigDog_News where type_Id=@typeId AND Promoted='Y'");
             SqlParameter[] parms = new SqlParameter[] { 
-                new SqlParameter("@Father_Id",SqlDbType.Int)
+                new SqlParameter("@typeId",SqlDbType.Int)
             };
+            parms[0].Value = typeId;
             DataTable dt = SQLHelper.GetDs(sql.ToString(), parms).Tables[0];
             return dt;
         }

@@ -857,6 +857,12 @@
     <Content Include="Admin\Products\List.aspx" />
     <Content Include="Admin\Styles\Base.css" />
     <Content Include="Admin\Styles\tree.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Images\Icons\category_line.jpg" />
+    <Content Include="Images\Icons\loading-bdUpdate_01.gif" />
+    <Content Include="Images\Icons\menu_loading.gif" />
+    <Content Include="Images\Rotate\Slide\new01.jpg" />
+    <Content Include="Images\Rotate\Slide\s_news01.jpg" />
     <Content Include="JsSlide\1.css" />
     <Content Include="JsSlide\images\1.jpg" />
     <Content Include="JsSlide\images\2.jpg" />
@@ -869,6 +875,7 @@
     <Content Include="JsSlide\move.js" />
     <Content Include="JsSlide\仿flash滑动.html" />
     <Content Include="Js\jquery.easyui.min.js" />
+    <Content Include="test111.aspx" />
     <Content Include="UserControl\AdminButtom.ascx" />
     <Content Include="UserControl\AdminTop.ascx" />
     <Content Include="Admin\Users\Edit.aspx" />
@@ -1392,7 +1399,7 @@
     <Content Include="Include\UserScore.txt" />
     <Content Include="Index.aspx" />
     <Content Include="Js\ajaxfileupload.js" />
-    <Content Include="Js\BigDogJs.js" />
+    <Content Include="Js\index.js" />
     <Content Include="Js\city.min.js" />
     <Content Include="Js\Common.js" />
     <Content Include="Js\ContactsList\ContactList.js" />
@@ -1419,6 +1426,7 @@
     <Content Include="Admin\Handler\Authority\QueryList.ashx" />
     <Content Include="Admin\Handler\Authority\RoleList.ashx" />
     <Content Include="Admin\Handler\TreeDetailForm.ashx" />
+    <Content Include="Handler\index\getRotatorData.ashx" />
     <None Include="Js\jquery-1.4.1-vsdoc.js" />
     <Content Include="Js\Effact\Slide.js" />
     <Content Include="Js\jquery-1.4.1.js" />
@@ -1679,6 +1687,16 @@
     </Compile>
     <Compile Include="Admin\Products\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\index\getRotatorData.ashx.cs">
+      <DependentUpon>getRotatorData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="test111.aspx.cs">
+      <DependentUpon>test111.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test111.aspx.designer.cs">
+      <DependentUpon>test111.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControl\AdminButtom.ascx.cs">
       <DependentUpon>AdminButtom.ascx</DependentUpon>

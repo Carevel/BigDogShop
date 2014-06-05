@@ -19,7 +19,7 @@ namespace BigDogShop.Web.Handler
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/json";
-            string type_id = context.Request.Params["type_id"].ToString();
+            string type_id = context.Request.Params["typeId"].ToString();
             StringBuilder html = new StringBuilder();
             html.Append("[{ \"value\":\"");
             StringBuilder sql = new StringBuilder();
@@ -51,7 +51,7 @@ namespace BigDogShop.Web.Handler
                             DataRow[] dr = dt.Select("bId='" + dtv.Rows[i][0] + "'");
                             for (int n = 0; n < dr.Length; n++)
                             {
-                                if (n != dr.Length)
+                                if ((n+1) != dr.Length)
                                 {
                                     html.Append("<dd><a id='" + dr[n].ItemArray[7].ToString() + "' href='#' target='_blank'>" + dr[n].ItemArray[9].ToString() + "</a>|</dd>");
                                 }
@@ -61,8 +61,12 @@ namespace BigDogShop.Web.Handler
                                 }
                             }
                             html.Append("</dt></dl>");
-                            html.Append("</div>");
+                            html.Append("</div><div class='category_line'></div>");
                         }
+                    }
+                    else
+                    {
+                        html.Append("");
                     }
                 }
                 catch (Exception ex)

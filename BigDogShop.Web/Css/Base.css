@@ -134,28 +134,53 @@ ul
     width: 400px;
     height: 30px;
     line-height: 30px;
-    border: 2px solid #ff4d4d;
+    border: 2px solid red;
+    outline: medium none;
+    padding-left: 0 0 0 30px;
+    vertical-align: middle;
+    position: relative;
+    float: left;
 }
 
 #he1_btn_search_keywords
 {
-    width: 80px;
+    width: 94px;
+    line-height: 30px;
     height: 36px;
-    border: 2px solid #ff4d4d;
+    border: 0px;
     background: #ff4d4d;
     color: #fff;
+    float: left;
+    font: 700 15px/40px "microsoft yahei";
 }
 
+    #he1_btn_search_keywords:hover
+    {
+        cursor: pointer;
+    }
+
+.search_box
+{
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 500px;
+    height: 50px;
+    line-height: 70px;
+    float: left;
+    vertical-align: middle;
+}
 /*菜单栏*/
 .header_nav_1
 {
     margin-left: auto;
     margin-right: auto;
+    /*position:relative;*/
     height: 40px;
     line-height: 40px;
     width: 1200px;
     background: #ef3b3b;
 }
+
 .header_nav
 {
     margin-left: auto;
@@ -166,20 +191,23 @@ ul
     background: #ef3b3b;
 }
 
-.header_nav ul
-{
-    padding: 0px;
-    margin: 0px;
-    float: left;
-}
+    .header_nav ul
+    {
+        padding: 0px;
+        margin: 0px;
+        float: left;
+    }
 
 .nav
 {
     float: left;
     height: 40px;
     line-height: 40px;
-    width: 210px;
+    width: 214px;
     text-align: center;
+    color: white;
+    text-decoration: none;
+    font: 700 15px/40px "microsoft yahei";
 }
 
     .nav:hover
@@ -199,12 +227,14 @@ ul
     line-height: 40px;
     background-color: #ef3b3b;
 }
+
     .header_nav ul li a
     {
-        text-decoration:none;
-        font-size:initial;
-       
+        text-decoration: none;
+        font: 700 15px/40px "microsoft yahei";
+        color: white;
     }
+
     .header_nav ul li:hover
     {
         background-color: #bb0404;
@@ -253,7 +283,7 @@ ul
 .watch
 {
     width: 1200px;
-    height: 400px;
+    height: 420px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -264,13 +294,15 @@ ul
     float: left;
     position: absolute;
     margin-top: 40px;
-    border: 1px solid #eee;
+    border: 2px solid red;
+    border-top: none;
+    height: 420px;
 }
 
     .allsort_box ul
     {
         width: 210px;
-        height: 400px;
+        height: 420px;
         text-decoration: none;
         z-index: 1000;
         padding: 0px;
@@ -279,7 +311,7 @@ ul
 
         .allsort_box ul li
         {
-            padding-left:30px;
+            /*padding-left: 30px;*/
             height: 30px;
             line-height: 30px;
             list-style: none;
@@ -288,13 +320,11 @@ ul
 
             .allsort_box ul li:hover
             {
-                
                 background: #42b8ed;
             }
 
             .allsort_box ul li a
             {
-                
                 text-align: left;
                 text-decoration: none;
                 padding-left: 8px;
@@ -322,7 +352,7 @@ ul
 }*/
 .sort_list
 {
-    margin:15px 15px 15px 0px;
+    margin: 15px 15px 15px 0px;
     background: #fff;
     z-index: 11;
 }
@@ -332,11 +362,13 @@ ul
         margin: 0px;
         padding: 0px;
         margin-bottom: 5px;
-        width: 70px;
+        width: 240px;
         height: 15px;
         font-size: 14px;
         text-align: left;
         line-height: 15px;
+        font-weight: bold;
+        font-family: "Microsoft YaHei";
     }
 
     .sort_list dd
@@ -347,7 +379,7 @@ ul
         padding: 0px;
         font-size: 12px;
         line-height: 15px;
-        margin-left: 10px;
+        /*margin-left: 10px;*/
     }
 
         .sort_list dd a
@@ -363,64 +395,90 @@ ul
     width: 240px;
     float: left;
     height: 80px;
-    margin:0 -6px 10px 20px;
+    margin: 0 -6px 10px 20px;
     border-bottom: 1px solid #ccc;
 }
+/*.category_line
+{
+    width: 240px;
+    height:4px;
+
+    margin:0px;
+    margin-bottom:0px;
+    background:url(../Images/Icons/category_line.jpg) repeat-x;
+}*/
 .sort_color
 {
-    /*position:absolute;*/
+    /*position:absolute;
 }
-.sort_color span
-{
-    /*padding: 0px 0px 0px 30px;*/
- 
+
+    .sort_color span
+    {
+        /*padding: 0px 0px 0px 30px;*/
     height: 30px;
     display: block;
 }
-.sort_color a
-{
-    width:100px;
-    text-wrap:none;
-}
+
+    .sort_color a
+    {
+        width: 100px;
+        text-wrap: none;
+        font: 18px;
+    }
+
 .show_sort
 {
     /*top: -60px;*/
-    width: 787px;
-    min-width:600px;
+    /*width: 787px;*/
+    min-width: 800px;
     min-height: 500px;
     border: 2px solid #DE8BFF;
     background: #fff;
     position: absolute;
-    display:none;
-    left:210px;
-    top:-60px;
-    box-shadow:1px 1px 3px #B8B8B8;
-    -webkit-box-shadow:1px 1px 3px #B8B8B8;
+    display: none;
+    /*left: 210px;*/
+    box-shadow: 1px 1px 3px #B8B8B8;
+    -webkit-box-shadow: 1px 1px 3px #B8B8B8;
     z-index: 1000;
 }
+
     .show_sort a:hover
     {
-        color:black;
+        color: black;
     }
+
 .sort_color1
 {
-    background:#ffc2c2;
+    background: #ffc2c2;
 }
+
 .sort_color2
 {
-    background:#ffc2c2;
+    background: #ffc2c2;
 }
+
 .sort_color3
 {
-    background:#ffc2c2;
+    background: #ffc2c2;
 }
+
+.loading
+{
+    margin-top: 200px;
+    margin-left: 354px;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    position: absolute;
+    display: none;
+}
+
 .in_icon
 {
-    display:block;
-    width:30px;
-    height:30px;
-    text-align:right;
-    color:#ccc;
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-align: right;
+    color: #ccc;
 }
 /*#list_detail dl dt
 {
@@ -683,31 +741,96 @@ ul
 {
     width: 290px;
     height: 100px;
-    margin-left: 10px;
     background: #018636;
     float: left;
 }
 
-.fjnews
+.tuan_index
 {
-    margin-top:5px;
+    margin-top: 5px;
     width: 290px;
-    margin-left: 10px;
-    height: 290px;
+    height: 305px;
     float: left;
-    background: #ffa501;
+    /*background: #ffa501;*/
 }
 
 .o_news
 {
     float: left;
-    margin-top:8px;
-    width: 300px;
-    height: 400px;
-    /*background:#ccc;*/
+    margin-top: 4px;
+    width: 290px;
+    height: 410px;
+    margin-left: 10px;
     position: relative;
 }
 
+.tabs
+{
+    width: 290px;
+    height: 300px;
+    position: relative;
+}
+
+.tabtn
+{
+    width: 290px;
+    height: 30px;
+    margin: 0px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+    .tabtn li
+    {
+        width: 72px;
+        text-align: center;
+        float: left;
+        height: 30px;
+        line-height: 30px;
+    }
+.liorigin
+{
+    background: #dcdcdc;
+}
+.liover
+{
+    cursor: pointer;
+    font:bold;
+    color:red;
+    background:#fff;
+}
+
+.liout
+{
+    cursor: pointer;
+    color: #ef3b3b;
+    background: white;
+}
+
+.sublist
+{
+    width: 290px;
+    height: 250px;
+    background: green;
+}
+
+    .sublist ul
+    {
+        width: 290px;
+        margin: 0px;
+        padding-left: 0px;
+        list-style: none;
+    }
+
+        .sublist ul li
+        {
+            display: none;
+            width: 290px;
+            height: 250px;
+            float: left;
+            position: absolute;
+            background: #ffc2c2;
+        }
 
 /*主楼*/
 #electronics

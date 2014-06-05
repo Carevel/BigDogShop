@@ -12,13 +12,16 @@
                 <ItemTemplate>
                     <li class="<%# Convert.ToInt32(Eval("Type_Id"))/2==0?"sort_color":"sort_color" %>" typeid="<%#Eval("Type_Id") %>">
                         <%#Eval("Category_Name") %>
-                        <div typeid="<%#Eval("Type_Id") %>" class="show_sort global_loading"></div>
+                        <div typeid="<%#Eval("Type_Id") %>" class="show_sort global_loading">
+                            <div class="loading">
+                                <img src="../Images/Icons/menu_loading.gif" />
+                            </div>
+                        </div>
+
                     </li>
                 </ItemTemplate>
             </asp:Repeater>
         </ul>
-    </div>
-    <div id="list_detail">
     </div>
     <!--主菜单-->
     <div class="header_nav">
@@ -30,7 +33,7 @@
             </asp:Repeater>
 
         </ul>
-         缓存菜单测试(20秒):<asp:Label ID="lbl_time" runat="server"></asp:Label>
+        缓存菜单测试(20秒):<asp:Label ID="lbl_time" runat="server"></asp:Label>
     </div>
-   
+
 </div>

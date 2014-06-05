@@ -22,7 +22,7 @@ namespace BigDogShop.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {                
+            {
                 if (!IsUserLogin())
                 {
                     user = GetUserInfo();
@@ -32,13 +32,33 @@ namespace BigDogShop.Web
         }
 
         public void Bind()
-        {          
-            DataTable dt = NewsBLL.GetNewsList();
+        {
+            DataTable dt = NewsBLL.GetNewsList(1);
             rpt_news.DataSource = dt;
             rpt_news.DataBind();
-            
+
+            initRptData();
         }
 
-        
+        public void initRptData()
+        {
+            DataTable dt = new DataTable();
+
+            dt = NewsBLL.GetNewsList(2);
+            rpt_slide.DataSource = dt;
+            rpt_slide.DataBind();
+
+            dt = NewsBLL.GetNewsList(3);
+            rpt_bd.DataSource = dt;
+            rpt_bd.DataBind();
+
+            dt = NewsBLL.GetNewsList(4);
+            rpt_tuan.DataSource = dt;
+            rpt_tuan.DataBind();
+
+            dt = NewsBLL.GetNewsList(5);
+            rpt_specialty.DataSource = dt;
+            rpt_specialty.DataBind();
+        }
     }
 }
