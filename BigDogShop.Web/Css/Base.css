@@ -2,7 +2,7 @@
 {
     margin: 0px;
     padding: 0px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 ul
@@ -745,7 +745,7 @@ ul
     float: left;
 }
 
-.tuan_index
+.wgt
 {
     margin-top: 5px;
     width: 290px;
@@ -764,40 +764,52 @@ ul
     position: relative;
 }
 
-.tabs
-{
-    width: 290px;
-    height: 300px;
-    position: relative;
-}
-
-.tabtn
+.wgt_tabs
 {
     width: 290px;
     height: 30px;
-    margin: 0px;
-    padding-left: 0px;
-    list-style: none;
+    position: relative;
 }
 
-    .tabtn li
-    {
-        width: 72px;
-        text-align: center;
-        float: left;
-        height: 30px;
-        line-height: 30px;
-    }
+.blur_in
+{
+    font: 12px;
+    width: 56px;
+    text-align: center;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    background: #eee;
+    text-decoration: none;
+    border: 1px solid #ccc;
+}
+
+.blur_out
+{
+    font: 12px;
+    font: bold;
+    width: 56px;
+    text-align: center;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    background: white;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-bottom: none;
+}
+
 .liorigin
 {
     background: #dcdcdc;
 }
+
 .liover
 {
     cursor: pointer;
-    font:bold;
-    color:red;
-    background:#fff;
+    font: bold;
+    color: red;
+    background: #fff;
 }
 
 .liout
@@ -807,29 +819,40 @@ ul
     background: white;
 }
 
-.sublist
+/*轮播*/
+.wgt_list
 {
     width: 290px;
-    height: 250px;
-    background: green;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    /*border: 1px solid #ccc;*/
+    /*padding-bottom:1px;*/
+    border-top: none;
 }
 
-    .sublist ul
+.wgt_box
+{
+    position: absolute;
+}
+
+    .wgt_box ul
     {
-        width: 290px;
         margin: 0px;
         padding-left: 0px;
         list-style: none;
+        border-top: none;
     }
 
-        .sublist ul li
+        .wgt_box ul li
         {
-            display: none;
             width: 290px;
-            height: 250px;
+            height: 180px;
+            overflow: hidden;
             float: left;
-            position: absolute;
             background: #ffc2c2;
+            text-decoration: none;
+            float: left;
         }
 
 /*主楼*/

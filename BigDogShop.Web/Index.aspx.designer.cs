@@ -76,13 +76,13 @@ namespace BigDogShop.Web {
         protected global::System.Web.UI.WebControls.Repeater rpt_slide;
         
         /// <summary>
-        /// rpt_bd control.
+        /// rpt_corner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt_bd;
+        protected global::System.Web.UI.WebControls.Repeater rpt_corner;
         
         /// <summary>
         /// rpt_tuan control.
@@ -112,13 +112,22 @@ namespace BigDogShop.Web {
         protected global::System.Web.UI.WebControls.Repeater rpt_newgoods;
         
         /// <summary>
-        /// rpt_ control.
+        /// rpt_activity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt_;
+        protected global::System.Web.UI.WebControls.Repeater rpt_activity;
+        
+        /// <summary>
+        /// Repeater1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
         
         /// <summary>
         /// se1 control.

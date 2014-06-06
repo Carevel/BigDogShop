@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Js/Effact/Rotation2.js"></script>
     <script type="text/javascript" src="Js/Effact/LazyLoad.js"></script>
     <script src="Js/index.js"></script>
+    <script src="Js/Effact/Slide.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             imgLazyLoad();
@@ -74,76 +75,93 @@
             </div>
             <div class="o_news">
                 <div class="a_right">
-                    <asp:Repeater ID="rpt_bd" runat="server">
+                    <asp:Repeater ID="rpt_corner" runat="server">
                         <ItemTemplate>
                             <a href="#" target="_blank">
                                 <img src='/Images/Rotate/Slide/<%#Eval("Image_Url") %>'></img></a>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
-                <div class="tuan_index">
-                    <div class="tabs">
-                        <ul class="tabtn">
-                            <li>团购</li>
-                            <li>特产中国</li>
-                            <li>新品</li>
-                            <li>特卖</li>
-                        </ul>
 
-                        <div class="sublist">
+                <!--轮番-->
+                <div class="wgt">
+                    <div class="wgt_tabs">
+                        <a class="blur_in" href="#">团购</a>
+                        <a class="blur_in" href="#">特产中国</a>
+                        <a class="blur_in" href="#">新品</a>
+                        <a class="blur_in" href="#">特卖</a>
+                        <a class="blur_in" href="#">大牌</a>
+                    </div>
+                    <div class="wgt_list">
+                        <div class="wgt_box">
                             <ul>
-                                <li>
-                                    <ul>
-                                        <asp:Repeater ID="rpt_tuan" runat="server">
-                                            <ItemTemplate>
-                                                <a href="#" target="_blank">
-                                                    <img src="/images/rotate/slide/<%#Eval("img_url") %>" alt="团购" /></a>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
+                                <asp:Repeater ID="rpt_tuan" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <a href="#" target="_blank">
+                                                <img src="/images/rotate/tabs/tuan/<%#Eval("Image_Url") %>" alt="团购" /></a>
+                                        </li>
 
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </div>
+                        <div class="wgt_box">
+                            <ul>
+                                <asp:Repeater ID="rpt_specialty" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <a href="#" target="_blank">
+                                                <img src="/images/rotate/tabs/special/<%#Eval("Image_Url") %>" alt="特产" /></a>
+                                        </li>
 
-                                </li>
-                                <li>
-                                    <ul>
-                                        <asp:Repeater ID="rpt_specialty" runat="server">
-                                            <ItemTemplate>
-                                                <a href="#" target="_blank">
-                                                    <img src="/images/rotate/slide/<%#Eval("img_url") %>" alt="特产" /></a>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </div>
+                        <div class="wgt_box">
+                            <ul>
+                                <asp:Repeater ID="rpt_newgoods" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <a href="#" target="_blank">
+                                                <img src="/images/rotate/tabs/newgoods/<%#Eval("Image_Url") %>" alt="新品" /></a>
 
-                                </li>
-                                <li>
-                                    <ul>
-                                        <asp:Repeater ID="rpt_newgoods" runat="server">
-                                            <ItemTemplate>
-                                                <a href="#" target="_blank">
-                                                    <img src="/images/rotate/slide/<%#Eval("img_url") %>" alt="新品" /></a>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
+                                        </li>
 
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </div>
+                        <div class="wgt_box">
+                            <ul>
+                                <asp:Repeater ID="rpt_activity" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <a href="#" target="_blank">
+                                                <img src="/images/rotate/tabs/activity/<%#Eval("Image_Url") %>" alt="特卖" /></a>
+                                        </li>
 
-                                </li>
-                                <li>
-                                    <ul>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </div>
+                        <div class="wgt_box">
+                            <ul>
+                                <asp:Repeater ID="Repeater1" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <a href="#" target="_blank">
+                                                <img src="/images/rotate/tabs/activity/<%#Eval("Image_Url") %>" alt="大牌" /></a>
+                                        </li>
 
-                                        <asp:Repeater ID="rpt_" runat="server">
-                                            <ItemTemplate>
-                                                <a href="#" target="_blank">
-                                                    <img src="/images/rotate/slide/<%#Eval("img_url") %>" alt="特卖" /></a>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
-
-                                </li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </ul>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
 

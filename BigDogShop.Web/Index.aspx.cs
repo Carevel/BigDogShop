@@ -44,21 +44,29 @@ namespace BigDogShop.Web
         {
             DataTable dt = new DataTable();
 
-            dt = NewsBLL.GetNewsList(2);
+            dt = NewsBLL.GetNewsList(7);
             rpt_slide.DataSource = dt;
             rpt_slide.DataBind();
 
-            dt = NewsBLL.GetNewsList(3);
-            rpt_bd.DataSource = dt;
-            rpt_bd.DataBind();
+            dt = NewsBLL.GetNewsList(2);
+            rpt_corner.DataSource = dt;
+            rpt_corner.DataBind();
 
-            dt = NewsBLL.GetNewsList(4);
+            dt = NewsBLL.GetNewsList(3);
             rpt_tuan.DataSource = dt;
             rpt_tuan.DataBind();
 
-            dt = NewsBLL.GetNewsList(5);
+            dt = NewsBLL.GetNewsList(4);
             rpt_specialty.DataSource = dt;
             rpt_specialty.DataBind();
+
+            dt = NewsBLL.GetNewsList(5);
+            rpt_newgoods.DataSource = dt;
+            rpt_newgoods.DataBind();
+
+            dt = NewsBLL.GetNewsList(6);
+            rpt_activity.DataSource = dt;
+            rpt_activity.DataBind();
         }
     }
 }
