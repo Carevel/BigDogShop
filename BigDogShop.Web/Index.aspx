@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>BigDog商城,货到付款,放心购物!</title>
+    <title>货到付款,放心购物!</title>
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="Css/Base.css" rel="stylesheet" />
     <link href="Css/Rotation.css" rel="stylesheet" />
@@ -154,7 +154,6 @@
                                             <a href="#" target="_blank">
                                                 <img src="/images/rotate/tabs/activity/<%#Eval("Image_Url") %>" alt="大牌" /></a>
                                         </li>
-
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </ul>
@@ -164,35 +163,54 @@
 
             </div>
         </div>
+        <div class="floor_list">
+            <div class="lifeshow">
+                <div class="fl_notice"></div>
+                <div class="showlist">
+                    <div class=""></div>
+                </div>
+                <div class="fa"></div>
+            </div>
+            <!--家电通讯-->
+            <div id="electronics">
+                <div class="left_nav">
+                    <asp:Repeater ID="rpt_home" runat="server" >
+                        <ItemTemplate>
+                            <div class=""></div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+                <div class="center_nav">
+                    <asp:Repeater ID="rpt_home_center" runat="server">
+                        <ItemTemplate>
+                            <div class=""></div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+            <!--电脑数码-->
+            <div id="digitals">
+                <div class="left_nav">
+                </div>
+                <div class="center_nav">
+                </div>
+            </div>
+            <!--服饰鞋包-->
+            <div id="clothing">
+                <div class="left_nav">
+                </div>
+                <div class="center_nav">
+                </div>
+            </div>
+            <!--美容珠宝-->
+            <div id="jewellery">
+                <div class="left_nav">
+                </div>
+                <div class="center_nav">
+                </div>
+            </div>
+        </div>
 
-        <!--家电通讯-->
-        <div id="electronics">
-            <div class="left_nav">
-            </div>
-            <div class="center_nav">
-            </div>
-        </div>
-        <!--电脑数码-->
-        <div id="digitals">
-            <div class="left_nav">
-            </div>
-            <div class="center_nav">
-            </div>
-        </div>
-        <!--服饰鞋包-->
-        <div id="clothing">
-            <div class="left_nav">
-            </div>
-            <div class="center_nav">
-            </div>
-        </div>
-        <!--美容珠宝-->
-        <div id="jewellery">
-            <div class="left_nav">
-            </div>
-            <div class="center_nav">
-            </div>
-        </div>
         <Service:Se ID="se1" runat="server" />
         <Link:Li ID="li1" runat="server" />
     </form>

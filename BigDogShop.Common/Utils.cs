@@ -114,6 +114,7 @@ namespace BigDogShop.Common
             cookie[key] = strValue;
             cookie.Expires = DateTime.Now.AddMinutes(expires);
             HttpContext.Current.Response.AppendCookie(cookie);
+           
         }
 
         /// <summary>

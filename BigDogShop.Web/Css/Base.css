@@ -856,10 +856,43 @@ ul
         }
 
 /*主楼*/
+.floor_list
+{
+    margin: 0px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lifeshow
+{
+    width: 1200px;
+    height: 400px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aliceblue;
+}
+.fl_notice
+{
+    height:50px;
+    background-color:aqua;
+}
+.showlist
+{
+    height:300px;
+    background-color:antiquewhite;
+}
+.fa
+{
+    height:50px;
+    background-color:ActiveCaption;
+}
+
 #electronics
 {
     width: 1200px;
-    height: 500px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
@@ -868,7 +901,7 @@ ul
 #digitals
 {
     width: 1200px;
-    height: 500px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
@@ -877,7 +910,7 @@ ul
 #clothing
 {
     width: 1200px;
-    height: 500px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
@@ -886,7 +919,7 @@ ul
 #jewellery
 {
     width: 1200px;
-    height: 500px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
@@ -894,17 +927,17 @@ ul
 
 .left_nav
 {
-    width: 210px;
-    height: 500px;
+    width: 215px;
+    height: 400px;
     background: #ccc;
     float: left;
 }
 
 .center_nav
 {
-    width: 990px;
-    height: 500px;
-    /*margin-left:5px;*/
+    width: 980px;
+    height: 400px;
+    margin-left: 5px;
     float: left;
     background: #d84c4c;
 }
